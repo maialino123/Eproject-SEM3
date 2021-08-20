@@ -1,42 +1,601 @@
-﻿<!DOCTYPE html>
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+<head lang="en-US" class="supernova">
+    <title>Around a Travel Category Flat Bootstrap responsive Website Template | Login :: w3layouts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Around Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <link rel="alternate" type="application/json+oembed" href="https://www.jotform.com/oembed/?format=json&amp;url=https%3A%2F%2Fform.jotform.com%2F212314566406451" title="oEmbed Form">
+    <link rel="alternate" type="text/xml+oembed" href="https://www.jotform.com/oembed/?format=xml&amp;url=https%3A%2F%2Fform.jotform.com%2F212314566406451" title="oEmbed Form">
+    <meta property="og:title" content="Order Your Products">
+    <meta property="og:url" content="https://form.jotform.com/212314566406451">
+    <meta property="og:description" content="Please click the link to complete this form.">
+    <meta name="slack-app-id" content="AHNMASS8M">
+    <link rel="shortcut icon" href="https://cdn.jotfor.ms/favicon.ico">
+    <link rel="canonical" href="https://form.jotform.com/212314566406451" />
+    <meta name="HandheldFriendly" content="true" />
+    <!--Payment-->
+    <style type="text/css">
+        media print {
+            .form-section
+
+        {
+            display: inline !important
+        }
+
+        .form-pagebreak {
+            display: none !important
+        }
+
+        .form-section-closed {
+            height: auto !important
+        }
+
+        .page-section {
+            position: initial !important
+        }
+        }
+    </style>
+    <link type="text/css" rel="stylesheet" href="https://cdn01.jotfor.ms/themes/CSS/5e6b428acc8c4e222d1beb91.css?themeRevisionID=5eb3b4ae85bd2e1e2966db96" />
+    <link type="text/css" rel="stylesheet" href="https://cdn02.jotfor.ms/css/styles/payment/payment_styles.css?3.3.27207" />
+    <link type="text/css" rel="stylesheet" href="https://cdn03.jotfor.ms/css/styles/payment/payment_feature.css?3.3.27207" />
+    <style type="text/css" id="form-designer-style">
+        /* Injected CSS Code */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /*PREFERENCES STYLE*/
+        /* NEW THEME STYLE */
+        .supernova {
+            background-color: undefined;
+        }
+
+        .form-all {
+            margin-top: 72px;
+            background-color: undefined;
+            box-shadow: undefined
+        }
+
+        .form-line-active {
+            background-color: undefined;
+        }
+
+        .form-line-error {
+            background-color: undefined;
+        }
+
+            .form-line-error input:not(#coupon-input):not(.form-validation-error) {
+                border-color: undefined;
+            }
+
+        .form-label {
+            color: undefined;
+        }
+
+        .form-sub-label {
+            color: undefined;
+        }
+
+        .form-dropdown,
+        .form-textarea,
+        .form-textbox,
+        .form-checkbox + label:before, .form-radio + label:before,
+        .form-radio + span:before, .form-checkbox + span:before {
+            border-color: undefined;
+            background-color: undefined;
+            color: undefined;
+        }
+
+        .rating-item label {
+            border-color: undefined;
+            color: undefined;
+            background-color: undefined;
+        }
+
+        .rating-item-title.for-to > label:first-child,
+        .rating-item-title.for-from > label:first-child {
+            background-color: transparent;
+            color: undefined;
+        }
+
+        .appointmentCalendarContainer .monthYearPicker .pickerItem + .pickerItem {
+            border-left-color: undefined;
+        }
+
+        .appointmentCalendarContainer {
+            background-color: undefined;
+            border-color: undefined;
+        }
+
+            .appointmentCalendarContainer .currentDate,
+            .appointmentCalendarContainer .pickerItem .pickerYear,
+            .appointmentCalendarContainer .pickerItem .pickerMonth {
+                color: undefined;
+            }
+
+        .appointmentCalendar .calendarDay {
+            color: undefined;
+        }
+
+        .appointmentCalendarContainer .monthYearPicker {
+            border-color: undefined;
+        }
+
+        .rating-item input:focus + label, .rating-item input:hover + label {
+            color: undefined;
+        }
+
+        .appointmentCalendar .calendarDay.isUnavailable,
+        ::placeholder {
+            color: undefined;
+        }
+
+        .form-spinner-button-container > *,
+        .appointmentDayPickerButton,
+        .form-matrix-column-headers, .form-matrix-row-headers {
+            background-color: undefined;
+        }
+
+        .appointmentCalendar .dayOfWeek {
+            background-color: undefined;
+            color: undefined;
+        }
+
+        .form-matrix-values {
+            background-color: undefined;
+        }
+
+        .rating-item input:focus + label, .rating-item input:hover + label {
+            color: undefined;
+            background-color: undefined;
+            border-color: undefined;
+        }
+
+        .rating-item input:checked + label {
+            background-color: undefined;
+            border-color: undefined;
+            color: #fff;
+        }
+
+        .form-checkbox + label, .form-radio + label :not(.rating-item) {
+            color: undefined;
+        }
+
+        .form-dropdown:hover, .form-textarea:hover, .form-textbox:hover, .form-checkbox:hover + label:before, .form-radio:hover + label:before {
+            border-color: undefined;
+            box-shadow: undefined;
+        }
+
+        .form-dropdown:focus, .form-textarea:focus, .form-textbox:focus, .form-checkbox:focus + label:before, .form-radio:focus + label:before {
+            border-color: undefined;
+            box-shadow: undefined;
+        }
+
+        .form-matrix-column-headers, .form-matrix-table td, .form-matrix-table td:last-child, .form-matrix-table th, .form-matrix-table th:last-child, .form-matrix-table tr:last-child td, .form-matrix-table tr:last-child th, .form-matrix-table tr:not([role=group]) + tr[role=group] th,
+        .form-matrix-column-headers, .form-matrix-table td,
+        .form-matrix-table td:last-child, .form-matrix-table th,
+        .form-matrix-table th:last-child, .form-matrix-table tr:last-child td,
+        .form-matrix-table tr:last-child th,
+        .form-matrix-table tr:not([role=group]) + tr[role=group] th {
+            border-color: undefined;
+            color: undefined;
+        }
+
+        .form-matrix-headers.form-matrix-column-headers,
+        .isSelected .form-matrix-column-headers:nth-last-of-type(2) {
+            border-color: undefined;
+        }
+
+        .form-radio:checked + label:after {
+            background-color: undefined;
+        }
+
+        .form-checkbox:checked + label:before {
+            background-color: undefined;
+            border-color: undefined;
+        }
+
+        .form-radio:checked + label:before {
+            border-color: undefined;
+        }
+
+        .form-header {
+            color: undefined;
+        }
+
+        .jSignature, .signature-pad-passive {
+            border-color: undefined;
+        }
+
+        .form-header-group .form-subHeader {
+            color: undefined;
+        }
+
+        .form-header-group {
+            border-color: undefined;
+        }
+
+        .header-large {
+            color: undefined;
+            border-color: undefined;
+        }
+
+        li[data-type="control_text"] .form-html {
+            color: undefined;
+        }
+
+        li[data-type="control_datetime"] .extended .allowTime-container + .form-sub-label-container {
+            background-color: undefined;
+        }
+
+        .submit-button {
+            background-color: undefined;
+            border-color: undefined;
+        }
+
+        .form-sacl-button, form-submit-print {
+            color: undefined;
+        }
+
+        .form-pagebreak-back {
+            background-color: undefined;
+            border-color: undefined;
+        }
+
+        .form-pagebreak-next {
+            background-color: undefined;
+        }
+
+        .form-pagebreak, .form-pagebreak > div {
+            border-color: undefined;
+        }
+
+        .form-buttons-wrapper, .form-pagebreak, .form-submit-clear-wrapper {
+            border-color: undefined;
+        }
+
+        /* NEW THEME STYLE */
+        /*PREFERENCES STYLE*/
+        /*PREFERENCES STYLE*/
+        .form-all {
+            font-family: Inter, sans-serif;
+        }
+
+            .form-all .qq-upload-button,
+            .form-all .form-submit-button,
+            .form-all .form-submit-reset,
+            .form-all .form-submit-print {
+                font-family: Inter, sans-serif;
+            }
+
+            .form-all .form-pagebreak-back-container,
+            .form-all .form-pagebreak-next-container {
+                font-family: Inter, sans-serif;
+            }
+
+        .form-header-group {
+            font-family: Inter, sans-serif;
+        }
+
+        .form-label {
+            font-family: Inter, sans-serif;
+        }
+
+            .form-label.form-label-auto {
+                display: block;
+                float: none;
+                text-align: left;
+                width: 100%;
+            }
+
+        .form-line {
+            margin-top: 12px;
+            margin-bottom: 12px;
+        }
+
+        .form-all {
+            max-width: 752px;
+            width: 100%;
+        }
+
+        .form-label.form-label-left,
+        .form-label.form-label-right,
+        .form-label.form-label-left.form-label-auto,
+        .form-label.form-label-right.form-label-auto {
+            width: 230px;
+        }
+
+        .form-all {
+            font-size: 16px
+        }
+
+            .form-all .qq-upload-button,
+            .form-all .qq-upload-button,
+            .form-all .form-submit-button,
+            .form-all .form-submit-reset,
+            .form-all .form-submit-print {
+                font-size: 16px
+            }
+
+            .form-all .form-pagebreak-back-container,
+            .form-all .form-pagebreak-next-container {
+                font-size: 16px
+            }
+
+        .supernova .form-all, .form-all {
+            background-color: #fff;
+            border: 1px solid transparent;
+        }
+
+        .form-all {
+            color: #2C3345;
+        }
+
+        .form-label-top,
+        .form-label-left,
+        .form-label-right,
+        .form-html,
+        .form-checkbox-item label,
+        .form-radio-item label {
+            color: #2C3345;
+        }
+
+        .supernova {
+            background-color: rgba(100,146,190,0.7);
+        }
+
+            .supernova body {
+                background: transparent;
+            }
+
+        .form-textbox,
+        .form-textarea,
+        .form-radio-other-input,
+        .form-checkbox-other-input,
+        .form-captcha input,
+        .form-spinner input {
+            background-color: #fff;
+        }
+
+        .supernova {
+            background-image: none;
+        }
+
+        #stage {
+            background-image: none;
+        }
+
+        .form-all {
+            background-image: none;
+        }
+
+        .ie-8 .form-all:before {
+            display: none;
+        }
+
+        .ie-8 {
+            margin-top: auto;
+            margin-top: initial;
+        }
+
+        /*PREFERENCES STYLE*/ /*__INSPECT_SEPERATOR__*/
+        /* Injected CSS Code */
+    </style>
+    <script src="https://cdn01.jotfor.ms/static/prototype.forms.js" type="text/javascript"></script>
+    <script src="https://cdn02.jotfor.ms/static/jotform.forms.js?3.3.27207" type="text/javascript"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/punycode/1.4.1/punycode.js"></script>
+    <script src="https://cdn03.jotfor.ms/js/payments/paypalcomplete.js?v=3.3.27207" type="text/javascript"></script>
+    <script src="https://cdn01.jotfor.ms/js/payments/paymentUtils.js?v=3.3.27207" type="text/javascript"></script>
+    <script src="https://cdn02.jotfor.ms/js/libraries/promise-polyfill.js"></script>
+    <script src="https://cdn03.jotfor.ms/js/payments/payment_form_embedded.js?v=3.3.27207" type="text/javascript"></script>
+    <script src="https://js.jotform.com/vendor/postMessage.js?3.3.27207" type="text/javascript"></script>
+    <script src="https://js.jotform.com/WidgetsServer.js?v=1629472326924" type="text/javascript"></script>
+    <script type="text/javascript">
+        JotForm.newDefaultTheme = true;
+        JotForm.extendsNewTheme = false;
+        JotForm.newPaymentUIForNewCreatedForms = true;
+        JotForm.newPaymentUI = true;
+
+        JotForm.setConditions([{ "action": [{ "id": "action_1629469744559", "visibility": "Hide", "isError": false, "field": "61" }], "id": "1629469766306", "index": "0", "link": "Any", "priority": "0", "terms": [{ "id": "term_1629469744559", "field": "50", "operator": "isEmpty", "value": "", "isError": false }], "type": "field" }, { "action": [{ "id": "action_1629469457431", "visibility": "Show", "isError": false, "field": "61" }], "id": "1629469499930", "index": "1", "link": "Any", "priority": "1", "terms": [{ "id": "term_1629469457431", "field": "50", "operator": "isFilled", "value": "", "isError": false }], "type": "field" }, { "action": [{ "id": "action_1594379423339", "visibility": "Show", "isError": false, "field": "54" }], "id": "1594379434969", "index": "4", "link": "Any", "priority": "4", "terms": [{ "id": "term_1594379423339", "field": "56", "operator": "equals", "value": "Yes", "isError": false }], "type": "field" }, { "action": [{ "id": "action_1594379392623", "visibility": "Show", "isError": false, "field": "55" }], "id": "1594379411599", "index": "5", "link": "Any", "priority": "5", "terms": [{ "id": "term_1594379392623", "field": "56", "operator": "equals", "value": "Yes", "isError": false }], "type": "field" }, { "action": [{ "id": "action_1594378974017", "visibility": "Hide", "isError": false, "field": "52" }], "id": "1594378987259", "index": "6", "link": "Any", "priority": "6", "terms": [{ "id": "term_1594378974017", "field": "51", "operator": "equals", "value": "Yes", "isError": false }], "type": "field" }, { "action": [{ "id": "action_0_1594379880244", "visibility": "Hide", "isError": false, "field": "52" }], "id": "1594378967530", "index": "7", "link": "Any", "priority": "7", "terms": [{ "id": "term_0_1594379880244", "field": "51", "operator": "isEmpty", "value": "", "isError": false }], "type": "field" }]); JotForm.clearFieldOnHide = "disable";
+        JotForm.submitError = "jumpToFirstError";
+
+        JotForm.init(function () {
+            /*INIT-START*/
+            productID = { "0": "input_42_1000", "1": "input_42_1001", "2": "input_42_1002" };
+            paymentType = "product";
+            JotForm.setCurrencyFormat('USD', true, 'point');
+            JotForm.totalCounter({ "input_42_1000": { "price": "10", "quantityField": "input_42_quantity_1000_0" }, "input_42_1001": { "price": "10", "quantityField": "input_42_quantity_1001_0" }, "input_42_1002": { "price": "10", "quantityField": "input_42_quantity_1002_0" } });
+            $$('.form-product-custom_quantity').each(function (el, i) { el.observe('blur', function () { isNaN(this.value) || this.value < 1 ? this.value = '0' : this.value = parseInt(this.value) }) });
+            $$('.form-product-custom_quantity').each(function (el, i) { el.observe('focus', function () { this.value == 0 ? this.value = '' : this.value }) });
+            JotForm.handleProductLightbox();
+            JotForm.paymentProperties = { "styleColor": "gold", "styleShape": "rect", "styleSize": "medium", "styleLabel": "checkout", "styleLayout": "vertical", "payLaterEnabled": "No", "paymentFormProperties": { "products": [{ "cid": "2001", "connectedCategories": "[\"2001\"]", "connectedProducts": "[]", "corder": "0", "customPrice": "", "customPriceSource": "0", "description": "Please enter a short description.", "hasExpandedOption": "", "hasQuantity": "1", "hasSpecialPricing": "", "icon": "", "images": "[\"https://cdn.jotfor.ms/assets/img/payments/sample_image-1.png\",\"https://cdn.jotfor.ms/assets/img/payments/sample_image-2.png\",\"https://cdn.jotfor.ms/assets/img/payments/sample_image-3.png\"]", "name": "Product Name", "options": [{ "type": "quantity", "properties": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10", "name": "Quantity", "defaultQuantity": "", "specialPricing": false, "specialPrices": "", "expanded": false }], "period": "Monthly", "pid": "1000", "price": "10", "recurringtimes": "No Limit", "required": "", "selected": "", "setupfee": "", "showSubtotal": "0", "trial": "" }, { "connectedCategories": "[]", "connectedProducts": "[]", "customPrice": "", "customPriceSource": "0", "description": "Please enter a short description.", "hasExpandedOption": "", "hasQuantity": "1", "hasSpecialPricing": "", "icon": "", "images": "[\"https://cdn.jotfor.ms/assets/img/payments/sample_image-2.png\",\"https://cdn.jotfor.ms/assets/img/payments/sample_image-1.png\",\"https://cdn.jotfor.ms/assets/img/payments/sample_image-3.png\"]", "name": "Product Name 2", "options": [{ "type": "quantity", "properties": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10", "name": "Weight (kg)", "defaultQuantity": "", "specialPricing": false, "specialPrices": "", "expanded": false }], "period": "Monthly", "pid": "1001", "price": "10", "recurringtimes": "No Limit", "required": "", "selected": "", "setupfee": "", "showSubtotal": "0", "trial": "" }, { "connectedCategories": "[]", "connectedProducts": "[]", "customPrice": "", "customPriceSource": "0", "description": "Please enter a short description.", "hasExpandedOption": "", "hasQuantity": "1", "hasSpecialPricing": "", "icon": "", "images": "[\"https://cdn.jotfor.ms/assets/img/payments/sample_image-3.png\",\"https://cdn.jotfor.ms/assets/img/payments/sample_image-1.png\",\"https://cdn.jotfor.ms/assets/img/payments/sample_image-2.png\"]", "name": "Product Name 3", "options": [{ "type": "quantity", "properties": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10", "name": "Quantity", "defaultQuantity": "", "specialPricing": false, "specialPrices": "", "expanded": false }], "period": "Monthly", "pid": "1002", "price": "10", "recurringtimes": "No Limit", "required": "", "selected": "", "setupfee": "", "showSubtotal": "0", "trial": "" }] } }
+            if (window.JotForm && JotForm.accessible) $('input_54').setAttribute('tabindex', 0);
+            if (window.JotForm && JotForm.accessible) $('input_53').setAttribute('tabindex', 0);
+            JotForm.alterTexts(undefined);
+            JotForm.alterTexts({ "couponApply": "Apply", "couponBlank": "Please enter a coupon.", "couponChange": "", "couponEnter": "Enter coupon", "couponExpired": "Coupon is expired. Please try another one.", "couponInvalid": "Coupon is invalid.", "couponValid": "Coupon is valid.", "shippingShipping": "Shipping", "taxTax": "Tax", "totalSubtotal": "Subtotal", "totalTotal": "Total" }, true);
+            /*INIT-END*/
+        });
+
+        JotForm.prepareCalculationsOnTheFly([null, { "name": "orderYour", "qid": "1", "text": "Order Your Products", "type": "control_head" }, { "name": "submit2", "qid": "2", "text": "Submit", "type": "control_button" }, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, { "name": "product", "qid": "42", "text": "Product", "type": "control_paypalcomplete" }, { "name": "paymentMethods", "qid": "43", "text": "Payment Methods", "type": "control_paymentmethods" }, { "name": "yourName", "qid": "44", "text": "Your Name", "type": "control_fullname" }, { "name": "yourEmail", "qid": "45", "subLabel": "example@example.com", "text": "Your Email", "type": "control_email" }, null, null, null, null, { "name": "address", "qid": "50", "text": "Billing Address", "type": "control_address" }, { "name": "typeA", "qid": "51", "text": "Is shipping address same as billing address?", "type": "control_radio" }, { "name": "address52", "qid": "52", "text": "Shipping Address", "type": "control_address" }, { "name": "typeA53", "qid": "53", "text": "Special Instructions", "type": "control_textarea" }, { "name": "typeA54", "qid": "54", "text": "Gift Message", "type": "control_textarea" }, { "name": "name", "qid": "55", "text": "Recipient's Full Name", "type": "control_fullname" }, { "name": "typeA56", "qid": "56", "text": "Send Gift?", "type": "control_radio" }, null, null, null, null, { "name": "input61", "qid": "61", "text": "", "type": "control_widget" }]);
+        setTimeout(function () {
+            JotForm.paymentExtrasOnTheFly([null, { "name": "orderYour", "qid": "1", "text": "Order Your Products", "type": "control_head" }, { "name": "submit2", "qid": "2", "text": "Submit", "type": "control_button" }, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, { "name": "product", "qid": "42", "text": "Product", "type": "control_paypalcomplete" }, { "name": "paymentMethods", "qid": "43", "text": "Payment Methods", "type": "control_paymentmethods" }, { "name": "yourName", "qid": "44", "text": "Your Name", "type": "control_fullname" }, { "name": "yourEmail", "qid": "45", "subLabel": "example@example.com", "text": "Your Email", "type": "control_email" }, null, null, null, null, { "name": "address", "qid": "50", "text": "Billing Address", "type": "control_address" }, { "name": "typeA", "qid": "51", "text": "Is shipping address same as billing address?", "type": "control_radio" }, { "name": "address52", "qid": "52", "text": "Shipping Address", "type": "control_address" }, { "name": "typeA53", "qid": "53", "text": "Special Instructions", "type": "control_textarea" }, { "name": "typeA54", "qid": "54", "text": "Gift Message", "type": "control_textarea" }, { "name": "name", "qid": "55", "text": "Recipient's Full Name", "type": "control_fullname" }, { "name": "typeA56", "qid": "56", "text": "Send Gift?", "type": "control_radio" }, null, null, null, null, { "name": "input61", "qid": "61", "text": "", "type": "control_widget" }]);
+        }, 20);
+    </script>
+    <!--Payment-->
+
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- bootstrap-css -->
+    <link href="~/assets/admin/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <!--// bootstrap-css -->
+    <!-- css -->
+    <link rel="stylesheet" href="~/assets/admin/css/style.css" type="text/css" media="all" />
+    <!--// css -->
+    <!-- font-awesome icons -->
+    <link href="~/assets/admin/css/font-awesome.css" rel="stylesheet">
+    <!-- //font-awesome icons -->
+    <!-- font -->
+    <link href='//fonts.googleapis.com/css?family=Francois+One' rel='stylesheet' type='text/css'>
+    <!-- //font -->
+    <script src="~/assets/admin/js/jquery-1.11.1.min.js"></script>
+    <script src="~/assets/admin/js/bootstrap.js"></script>
+    <script type="text/javascript" src="~/assets/admin/js/move-top.js"></script>
+    <script type="text/javascript" src="~/assets/admin/js/easing.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1000);
+            });
+        });
+    </script>
+    <!--animate-->
+    <link href="~/assets/admin/css/animate.css" rel="stylesheet" type="text/css" media="all">
+    <script src="~/assets/admin/js/wow.min.js"></script>
+    <script>
+        new WOW().init();
+    </script>
+    <!--//end-animate-->
+
+
+</head>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+    <!-- header -->
+    <div class="header">
+        <div class="top-header">
+            <div class="container">
+                <div class="top-header-info">
+                    <div class="top-header-left wow fadeInLeft animated" data-wow-delay=".5s">
+                        <p>More than 10 new destinations for your trip</p>
+                    </div>
+                    <div class="top-header-right wow fadeInRight animated" data-wow-delay=".5s">
+                        <div class="top-header-right-info">
+                            <ul>
+                                <li><a href="login.html">Login</a></li>
+                                <li><a href="signup.html">Sign up</a></li>
+                            </ul>
+                        </div>
+                        <div class="social-icons">
+                            <ul>
+                                <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a class="twitter facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a class="twitter google" href="#"><i class="fa fa-google-plus"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
+        </div>
+        <div class="bottom-header">
+            <div class="container">
+                <div class="logo wow fadeInDown animated" data-wow-delay=".5s">
+                    <h1><a href="index.html"><img src="images/logo.jpg" alt="" /></a></h1>
+                </div>
+                <div class="top-nav wow fadeInRight animated" data-wow-delay=".5s">
+                    <nav class="navbar navbar-default">
+                        <div class="container">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                Menu
+                            </button>
+                        </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav">
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="about.html">About</a></li>
+                                <li><a href="codes.html">Codes</a></li>
+                                <li>
+                                    <a href="#" class="dropdown-toggle hvr-bounce-to-bottom" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gallery<span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="hvr-bounce-to-bottom" href="gallery1.html">Gallery1</a></li>
+                                        <li><a class="hvr-bounce-to-bottom" href="gallery2.html">Gallery2</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="blog.html">Blog</a></li>
+                                <li><a href="contact.html">Contact</a></li>
+                            </ul>
+                            <div class="clearfix"> </div>
+                        </div>
+                    </nav>
+                </div>
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+    <!-- //header -->
+    @RenderBody()
+    <!-- footer -->
+    <div class="footer">
+        <div class="container">
+            <div class="footer-grids">
+                <div class="col-md-3 footer-nav wow fadeInLeft animated" data-wow-delay=".5s">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="gallery1.html">Gallery</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-5 footer-nav wow fadeInUp animated" data-wow-delay=".5s">
+                    <h4>Newsletter</h4>
+                    <p>Nunc non feugiat quam, vitae placerat ipsum. Cras at felis congue, volutpat neque eget</p>
+                    <form>
+                        <input type="email" id="mc4wp_email" name="EMAIL" placeholder="Enter your email here" required="">
+                        <input type="submit" value="Subscribe">
+                    </form>
+                </div>
+                <div class="col-md-4 footer-nav wow fadeInRight animated" data-wow-delay=".5s">
+                    <h4>Latest News</h4>
+                    <div class="news-grids">
+                        <div class="news-grid">
+                            <h6>09/01/2016 : <a href="single.html">Cras at felis congue</a></h6>
+                            <h6>13/07/2016 : <a href="single.html">Volutpat neque eget</a></h6>
+                            <h6>13/02/2016 : <a href="single.html">Agittis tellus ut dictum</a></h6>
+                            <h6>28/11/2016 : <a href="single.html">Habitant morbi et netus</a></h6>
+                            <h6>19/01/2016 : <a href="single.html">pellentesque habitant morbi</a></h6>
+                            <h6>23/02/2016 : <a href="single.html">Maecenas volutpat lacus</a></h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+            <div class="copyright wow fadeInUp animated" data-wow-delay=".5s">
+                <p>© 2016 Around . All Rights Reserved . Design by <a href="http://w3layouts.com/">W3layouts</a></p>
+            </div>
+        </div>
     </div>
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    <!-- //footer -->
 </body>
 </html>
+<script type="text/javascript">JotForm.ownerView = true;</script>
+<script src="https://cdn.jotfor.ms//js/vendor/smoothscroll.min.js?v=3.3.27207"></script>
+<script src="https://cdn.jotfor.ms//js/errorNavigation.js?v=3.3.27207"></script>
