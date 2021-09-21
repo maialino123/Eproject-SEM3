@@ -1,0 +1,387 @@
+﻿@model List<Eproject_Online_floral_delivery.DAL.tbl_category>
+@{
+    ViewBag.Title = "Categories";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<style>
+    .modal-notify .modal-header {
+        border-radius: 3px 3px 0 0;
+    }
+
+    .modal-notify .modal-content {
+        border-radius: 3px;
+    }
+</style>
+<main>
+    <!--MODAL DELETE END-->
+    <!-- Central Modal Medium Info -->
+    <div class="modalRemoveCategory">
+        <div class="modal fade right" id="sideModalTLInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-notify modal-info modal-side modal-top-right" role="document">
+                <!--Content-->
+                <div class="modal-content">
+                    <!--Header-->
+                    <div class="modal-header">
+                        <p class="heading lead">
+                            Are You Sure?
+                        </p>
+
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" class="white-text">&times;</span>
+                        </button>
+                    </div>
+
+                    <!--Body-->
+                    <div class="modal-body">
+
+                        <img src="https://mdbootstrap.com/wp-content/uploads/2016/11/admin-dashboard-bootstrap.jpg" alt=""
+                             class="img-fluid">
+
+                        <div class="text-center">
+                            <p>Deleting the category will result in some products being temporarily closed. You can also turn off actives instead of deleting them.</p>
+                        </div>
+                    </div>
+
+                    <!--Footer-->
+                    <div class="modal-footer justify-content-center">
+                        <a type="button" class="btn btn-info" id="deleteNow">
+                            Delete <i class="far fa-trash-alt white-text"></i>
+                        </a>
+                        <a type="button" class="btn btn-outline-info waves-effect" data-dismiss="modal">Cancel</a>
+                    </div>
+                </div>
+                <!--/.Content-->
+            </div>
+        </div>
+    </div>
+    <!-- Central Modal Medium Info-->
+    <!--MODAL DELETE END-->
+    <div class="modal fade" id="orangeModalSubscription" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-notify modal-warning" role="document">
+            <!--Content-->
+            <div class="modal-content">
+                <!--Header-->
+                <div class="modal-header text-center">
+                    <h4 class="modal-title white-text w-100 font-weight-bold py-2 contentHeaderCate"></h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="white-text">&times;</span>
+                    </button>
+                </div>
+
+                <form id="categoryForm">
+                    <!--Body-->
+                    <div class="modal-body">
+                        <div class="md-form mb-5">
+                            <input type="text" id="form3" class="form-control validate CategoryName" name="name" autofocus>
+                            <label data-error="wrong" data-success="right" for="form3">Category Name</label>
+                        </div>
+
+                        <!-- Default unchecked -->
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input CategoriActive" id="defaultUnchecked" name="isActive">
+                            <label class="custom-control-label" for="defaultUnchecked">Active</label>
+                        </div>
+                    </div>
+
+                    <!--Footer-->
+                    <div class="modal-footer justify-content-center sendCategory">
+
+                    </div>
+                </form>
+            </div>
+            <!--/.Content-->
+        </div>
+    </div>
+
+
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Tables</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="../Admin">Dashboard</a></li>
+            <li class="breadcrumb-item active">Categories</li>
+        </ol>
+        <div class="card mb-4">
+            <div class="card-header justify-content-center text-justify">
+                <i class="fas fa-table me-1"></i>
+                Category Details
+                <!--Elegant-->
+                <button type="button" class="btn btn-black justify-content-center teal-text btn-showCategoryAdd" style="float: right" data-toggle="modal" data-target="#orangeModalSubscription"><i class="fas fa-plus"></i> Add New</button>
+                <button type="button" class="btn btn-default justify-content-center btn-refreshCategoryAdd" style="float: right"><i class="fas fa-sync-alt"></i> Refresh</button>
+            </div>
+            <div class="card-body">
+                <table id="datatablesSimple">
+                    <thead>
+                        <tr>
+                            <th>Sr. No.</th>
+                            <th>Category Name</th>
+                            <th>Active</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Sr. No.</th>
+                            <th>Category Name</th>
+                            <th>Active</th>
+                            <th>Action</th>
+                        </tr>
+                    </tfoot>
+                    <tbody class="dgvCategories">
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@(Model.IndexOf(item)+1)</td>
+                                <td>@item.name</td>
+                                <td>@((bool)item.isActive ? "Enable" : "Disnable")</td>
+                                <td><button id="btnEdit" data-id="@item.categoryID" data-name="@item.name" data-active="@item.isActive" data-toggle="modal" data-target="#orangeModalSubscription"><i class="far fa-edit"></i></button> <button id="btnRemove" data-id="@item.categoryID" data-toggle="modal" data-target="#sideModalTLInfo" style="margin-left: 8px"><i class="far fa-trash-alt"></i></button></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+
+@section scripts{
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.3.1/flatly/bootstrap.min.css">
+    <link href="~/assets/admin/MDBBoostrap/mdbBootstrap.min.css" rel="stylesheet" />
+    <!-- Material Design Bootstrap -->
+    <script src="~/assets/admin/MDBBoostrap/MDBBoostrap.min.js"></script>
+    <link href="~/assets/admin/MDBBoostrap/MDB.min.css" rel="stylesheet" />
+    <script src="~/assets/admin/MDBBoostrap/fontAll.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script src="~/assets/admin/MDBBoostrap/MDB.min.js"></script><div class="hiddendiv common"></div>
+    <link href="~/assets/admin/admin-sbStyle/build/toastr.css" rel="stylesheet" type="text/css" />
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script src="~/assets/admin/admin-sbStyle/build/toastr.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            toastr.options = {
+                closeButton: true,
+                debug: true,
+                newestOnTop: true,
+                progressBar: true,
+                positionClass: "toast-top-right",
+                preventDuplicates: false,
+                onclick: null,
+                showDuration: 300,
+                hideDuration: 1000,
+                timeOut: 5000,
+                extendedTimeOut: 1000,
+                showEasing: "swing",
+                hideEasing: "linear",
+                showMethod: "fadeIn",
+                hideMethod: "fadeOut"
+            };
+            $(".CategoriActive").on('change', function () {
+                if ($(this).is(':checked')) {
+                    $(this).attr('value', 'true');
+                } else {
+                    $(this).attr('value', 'false');
+                }
+            });
+            $(".btn-showCategoryAdd").click(function (e) {
+                e.preventDefault();
+                $(".contentHeaderCate").text("Add Category");
+                $(".sendCategory").html('<input id="btnSubmit" type="button" class="btn btn-outline-warning waves-effect" value="Send" />');
+            });
+            //Event add button
+            $(document).on("click", "#btnSubmit", function (e) {
+                var valData = new Object();
+                valData.name = $(".CategoryName").val();
+                valData.isActive = $(".CategoriActive").val();
+                if (valData != null) {
+                    submitData(valData);
+                }
+            });
+
+            //event edit button
+            $(document).on("click", "#btnEdit", function (e) {
+                $(".sendCategory").html('<input id="btnSubmitEdit" type="button" class="btn btn-outline-warning waves-effect" value="Send" />');
+                let idCategory = $(this).data("id");
+                let nameCategory = $(this).data("name");
+                let activeCategory = $(this).data("active");
+                $(".contentHeaderCate").text("Edit Category");
+                $(".CategoryName").val(nameCategory);
+                $(".CategoriActive").prop("checked", activeCategory == "" ? (activeCategory == "True" ? true : false) : activeCategory);
+                //event submit update row
+                $("#btnSubmitEdit").click(function (e) {
+                    e.preventDefault();
+                    var valData = new Object();
+                    valData.categoryID = idCategory;
+                    valData.name = $(".CategoryName").val();
+                    valData.isActive = $(".CategoriActive").val();
+                    editData(valData);
+                });
+            });
+            //Event refresh table
+            $(".btn-refreshCategoryAdd").click(function (e) {
+                getAllData();
+            });
+
+            //Event Remove data
+            $(document).on("click", "#btnRemove", function (e) {
+                var categoryID = $(this).data("id");
+                //event yes submit row
+                $("#deleteNow").click(function (e) {
+                    e.preventDefault();
+                    var valData = new Object();
+                    valData.categoryID = categoryID;
+                    removeData(valData);
+                });
+            });
+
+            //Find all data category with ajax
+            function getAllData() {
+                $.ajax({
+                    url: "/Admin/CategoryAll",
+                    type: "GET",
+                    dataType: 'json',
+                    crossDomain: true,
+                    contentType: 'application/json; charset=UTF-8',
+                    success: function (respose) {
+                        var dataCategoryJson = JSON.parse(respose);
+                        console.log(dataCategoryJson);
+                        let rows = '';
+                        var index = 1;
+                        for (let item of dataCategoryJson) {
+                            console.log(item.name);
+                            rows += `<tr>
+                                                                                <td>${index}</td>
+                                                                                <td>${item.name}</td>
+                                                                                <td>${(item.isActive ? "Enable" : "Disnable")}</td>
+                                                                                <td><button id="btnEdit" data-id="${item.categoryID}" data-name="${item.name}" data-active="${item.isActive}" data-toggle="modal" data-target="#orangeModalSubscription"><i class="far fa-edit"></i></button>
+                                                                                <button id="btnRemove" data-id="${item.categoryID}" data-toggle="modal" data-target="#sideModalTLInfo" style="margin-left: 8px"><i class="far fa-trash-alt"></i></button></td>
+                                                                                </tr>`
+                            index++;
+                        };
+                        $(".dgvCategories").html(rows);
+                    },
+                    error: function (respose) {
+                        console.log(respose.responseText);
+                    }
+                });
+            };
+            //ADD a category
+            function submitData(valData) {
+                $.ajax({
+                    url: "/Admin/AddCategory",
+                    type: "POST",
+                    dataType: 'json',
+                    crossDomain: true,
+                    contentType: 'application/json; charset=UTF-8',
+                    data: JSON.stringify(valData),
+                    success: function (respose) {
+                        console.log("Data result: " + respose);
+                        if (respose != null) {
+                            getAllData();
+                            //Show toast
+                            shortCutFunction = "success";
+                            msg = "Successfully added a category!";
+                            title = "success!"
+                            var $toast = toastr[shortCutFunction](msg, title);
+                            $toastlast = $toast;
+                            //Show toast
+                        } else {
+                            console.log("Directory already exists");
+                            //Show toast
+                            shortCutFunction = "warning";
+                            msg = "The process of category encountered an error!";
+                            title = "warning!"
+                            var $toast = toastr[shortCutFunction](msg, title);
+                            $toastlast = $toast;
+                            //Show toast
+                        }
+                    },
+                    error: function (data) {
+                        console.log(data.responseText);
+                        //Show toast
+                        shortCutFunction = "error";
+                        msg = data.responseText;
+                        title = "error!"
+                        var $toast = toastr[shortCutFunction](msg, title);
+                        $toastlast = $toast;
+                        //Show toast
+                    }
+                });
+            };
+            //UPDATE a category
+            function editData(valData) {
+                $.ajax({
+                    url: "/Admin/editCategory",
+                    type: 'POST',
+                    dataType: 'json',
+                    crossDomain: true,
+                    contentType: "application/json; charset=UTF-8",
+                    data: JSON.stringify(valData),
+                    success: function (respose) {
+                        if (respose.messageError == null) {
+                            getAllData();
+                            //Show toast
+                            shortCutFunction = "success";
+                            msg = "Successfully update a category!";
+                            title = "success!"
+                            var $toast = toastr[shortCutFunction](msg, title);
+                            $toastlast = $toast;
+                            //Show toast
+                        } else {
+                            //Show toast
+                            shortCutFunction = "warning";
+                            msg = respose.messageError;
+                            title = respose.name;
+                            var $toast = toastr[shortCutFunction](msg, title);
+                            $toastlast = $toast;
+                            //Show toast
+                        }
+                    },
+                    error: function (respose) {
+                        console.log("Error Edit Category: " + respose.status);
+                        //Show toast
+                        shortCutFunction = "error";
+                        msg = respose.status;
+                        title = "error!";
+                        var $toast = toastr[shortCutFunction](msg, title);
+                        $toastlast = $toast;
+                        //Show toast
+                    }
+                });
+            };
+            //DELETE a category
+            function removeData(valData) {
+                $.ajax({
+                    url: "/Admin/removeCategory",
+                    type: 'POST',
+                    dataType: 'json',
+                    crossDomain: true,
+                    contentType: "application/json; charset=UTF-8",
+                    data: JSON.stringify(valData),
+                    success: function (respose) {
+                        getAllData();
+                        //Show toast
+                        shortCutFunction = "success";
+                        msg = "Successfully delete a category!";
+                        title = "success!"
+                        var $toast = toastr[shortCutFunction](msg, title);
+                        $toastlast = $toast;
+                        //Show toast
+                    },
+                    error: function (respose) {
+                        console.log("Error Edit Category: " + respose.status);
+                        //Show toast
+                        shortCutFunction = "error";
+                        msg = respose.status;
+                        title = "error!";
+                        var $toast = toastr[shortCutFunction](msg, title);
+                        $toastlast = $toast;
+                        //Show toast
+                    }
+                });
+            }
+        });
+    </script>
+}
+
+

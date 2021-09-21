@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Eproject_FloralModelStoreContainer" CdmEntityContainer="Eproject_FloralEntities">
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="Eproject_FloralModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_category">
+      <EntityTypeMapping TypeName="Eproject_FloralModel.tbl_category">
+        <MappingFragment StoreEntitySet="tbl_category">
+          <ScalarProperty Name="categoryID" ColumnName="categoryID" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="parentID" ColumnName="parentID" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_customer">
+      <EntityTypeMapping TypeName="Eproject_FloralModel.tbl_customer">
+        <MappingFragment StoreEntitySet="tbl_customer">
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="customerID" ColumnName="customerID" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="birthDay" ColumnName="birthDay" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="tokenID" ColumnName="tokenID" />
+          <ScalarProperty Name="roleID" ColumnName="roleID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_message">
+      <EntityTypeMapping TypeName="Eproject_FloralModel.tbl_message">
+        <MappingFragment StoreEntitySet="tbl_message">
+          <ScalarProperty Name="messageID" ColumnName="messageID" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="messageCategoryID" ColumnName="messageCategoryID" />
+          <ScalarProperty Name="message" ColumnName="message" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_messageCategory">
+      <EntityTypeMapping TypeName="Eproject_FloralModel.tbl_messageCategory">
+        <MappingFragment StoreEntitySet="tbl_messageCategory">
+          <ScalarProperty Name="messageCategoryID" ColumnName="messageCategoryID" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_order">
+      <EntityTypeMapping TypeName="Eproject_FloralModel.tbl_order">
+        <MappingFragment StoreEntitySet="tbl_order">
+          <ScalarProperty Name="statusOrderID" ColumnName="statusOrderID" />
+          <ScalarProperty Name="orderID" ColumnName="orderID" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="dateOfStart" ColumnName="dateOfStart" />
+          <ScalarProperty Name="dateOffinish" ColumnName="dateOffinish" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="shippingTypeID" ColumnName="shippingTypeID" />
+          <ScalarProperty Name="customerID" ColumnName="customerID" />
+          <ScalarProperty Name="promotionPrice" ColumnName="promotionPrice" />
+          <ScalarProperty Name="paymentTypeID" ColumnName="paymentTypeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_orderDetail">
+      <EntityTypeMapping TypeName="Eproject_FloralModel.tbl_orderDetail">
+        <MappingFragment StoreEntitySet="tbl_orderDetail">
+          <ScalarProperty Name="fullName" ColumnName="fullName" />
+          <ScalarProperty Name="wardID" ColumnName="wardID" />
+          <ScalarProperty Name="orderDetailID" ColumnName="orderDetailID" />
+          <ScalarProperty Name="productID" ColumnName="productID" />
+          <ScalarProperty Name="messageID" ColumnName="messageID" />
+          <ScalarProperty Name="districtID" ColumnName="districtID" />
+          <ScalarProperty Name="orderID" ColumnName="orderID" />
+          <ScalarProperty Name="unitPrice" ColumnName="unitPrice" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="note" ColumnName="note" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_paymentType">
+      <EntityTypeMapping TypeName="Eproject_FloralModel.tbl_paymentType">
+        <MappingFragment StoreEntitySet="tbl_paymentType">
+          <ScalarProperty Name="paymentTypeID" ColumnName="paymentTypeID" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_product">
+      <EntityTypeMapping TypeName="Eproject_FloralModel.tbl_product">
+        <MappingFragment StoreEntitySet="tbl_product">
+          <ScalarProperty Name="productID" ColumnName="productID" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="priceSale" ColumnName="priceSale" />
+          <ScalarProperty Name="dayStartSale" ColumnName="dayStartSale" />
+          <ScalarProperty Name="dayEndSale" ColumnName="dayEndSale" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="isFeatured" ColumnName="isFeatured" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="metaTitle" ColumnName="metaTitle" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="metaKeyword" ColumnName="metaKeyword" />
+          <ScalarProperty Name="countView" ColumnName="countView" />
+          <ScalarProperty Name="categoryID" ColumnName="categoryID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_roles">
+      <EntityTypeMapping TypeName="Eproject_FloralModel.tbl_roles">
+        <MappingFragment StoreEntitySet="tbl_roles">
+          <ScalarProperty Name="roleID" ColumnName="roleID" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="code" ColumnName="code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_shippingType">
+      <EntityTypeMapping TypeName="Eproject_FloralModel.tbl_shippingType">
+        <MappingFragment StoreEntitySet="tbl_shippingType">
+          <ScalarProperty Name="shippingTypeID" ColumnName="shippingTypeID" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_imageList">
+      <EntityTypeMapping TypeName="Eproject_FloralModel.tbl_imageList">
+        <MappingFragment StoreEntitySet="tbl_imageList">
+          <ScalarProperty Name="productID" ColumnName="productID" />
+          <ScalarProperty Name="extendsion" ColumnName="extendsion" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="imageListID" ColumnName="imageListID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_district">
+      <EntityTypeMapping TypeName="Eproject_FloralModel.tbl_district">
+        <MappingFragment StoreEntitySet="tbl_district">
+          <ScalarProperty Name="province_id" ColumnName="province_id" />
+          <ScalarProperty Name="prefix" ColumnName="prefix" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="districtID" ColumnName="districtID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_statusOrder">
+      <EntityTypeMapping TypeName="Eproject_FloralModel.tbl_statusOrder">
+        <MappingFragment StoreEntitySet="tbl_statusOrder">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="statusOrderID" ColumnName="statusOrderID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_ward">
+      <EntityTypeMapping TypeName="Eproject_FloralModel.tbl_ward">
+        <MappingFragment StoreEntitySet="tbl_ward">
+          <ScalarProperty Name="districtID" ColumnName="districtID" />
+          <ScalarProperty Name="provinceID" ColumnName="provinceID" />
+          <ScalarProperty Name="prefix" ColumnName="prefix" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="wardID" ColumnName="wardID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_cart">
+      <EntityTypeMapping TypeName="Eproject_FloralModel.tbl_cart">
+        <MappingFragment StoreEntitySet="tbl_cart">
+          <ScalarProperty Name="note" ColumnName="note" />
+          <ScalarProperty Name="messageID" ColumnName="messageID" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="fullname" ColumnName="fullname" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="customerID" ColumnName="customerID" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="wardID" ColumnName="wardID" />
+          <ScalarProperty Name="districtID" ColumnName="districtID" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="productID" ColumnName="productID" />
+          <ScalarProperty Name="cartID" ColumnName="cartID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,376 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Eproject_FloralModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="tbl_cart">
+    <Key>
+      <PropertyRef Name="cartID" />
+    </Key>
+    <Property Name="cartID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="productID" Type="bigint" />
+    <Property Name="image" Type="varchar" MaxLength="700" />
+    <Property Name="quantity" Type="int" />
+    <Property Name="districtID" Type="bigint" />
+    <Property Name="wardID" Type="bigint" />
+    <Property Name="address" Type="nvarchar" MaxLength="500" />
+    <Property Name="customerID" Type="bigint" />
+    <Property Name="createdDate" Type="datetime" />
+    <Property Name="fullname" Type="nvarchar" MaxLength="250" />
+    <Property Name="phone" Type="varchar" MaxLength="20" />
+    <Property Name="messageID" Type="bigint" />
+    <Property Name="note" Type="nvarchar" MaxLength="700" />
+  </EntityType>
+  <EntityType Name="tbl_category">
+    <Key>
+      <PropertyRef Name="categoryID" />
+    </Key>
+    <Property Name="categoryID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="150" />
+    <Property Name="code" Type="varchar" MaxLength="150" />
+    <Property Name="parentID" Type="int" />
+    <Property Name="isActive" Type="bit" />
+    <Property Name="isDelete" Type="bit" />
+  </EntityType>
+  <EntityType Name="tbl_customer">
+    <Key>
+      <PropertyRef Name="customerID" />
+    </Key>
+    <Property Name="customerID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="firstName" Type="nvarchar" MaxLength="100" />
+    <Property Name="lastName" Type="nvarchar" MaxLength="150" />
+    <Property Name="birthDay" Type="date" />
+    <Property Name="gender" Type="bit" />
+    <Property Name="phoneNumber" Type="varchar" MaxLength="20" />
+    <Property Name="address" Type="nvarchar" MaxLength="250" />
+    <Property Name="email" Type="varchar" MaxLength="100" />
+    <Property Name="password" Type="varchar" MaxLength="700" />
+    <Property Name="isActive" Type="bit" />
+    <Property Name="isDelete" Type="bit" />
+    <Property Name="createdDate" Type="date" />
+    <Property Name="ModifiedDate" Type="date" />
+    <Property Name="tokenID" Type="varchar" MaxLength="500" />
+    <Property Name="roleID" Type="bigint" Nullable="false" />
+    <Property Name="userName" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="tbl_district">
+    <Key>
+      <PropertyRef Name="districtID" />
+    </Key>
+    <Property Name="districtID" Type="bigint" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="250" />
+    <Property Name="prefix" Type="nvarchar" MaxLength="50" />
+    <Property Name="province_id" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_imageList">
+    <Key>
+      <PropertyRef Name="imageListID" />
+    </Key>
+    <Property Name="imageListID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="700" />
+    <Property Name="extendsion" Type="varchar" MaxLength="50" />
+    <Property Name="productID" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_message">
+    <Key>
+      <PropertyRef Name="messageID" />
+    </Key>
+    <Property Name="messageID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="150" />
+    <Property Name="messageCategoryID" Type="bigint" Nullable="false" />
+    <Property Name="message" Type="nvarchar" MaxLength="700" />
+    <Property Name="isActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="tbl_messageCategory">
+    <Key>
+      <PropertyRef Name="messageCategoryID" />
+    </Key>
+    <Property Name="messageCategoryID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="150" />
+    <Property Name="code" Type="varchar" MaxLength="150" />
+    <Property Name="isActive" Type="bit" />
+    <Property Name="isDelete" Type="bit" />
+  </EntityType>
+  <EntityType Name="tbl_order">
+    <Key>
+      <PropertyRef Name="orderID" />
+    </Key>
+    <Property Name="orderID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userName" Type="nvarchar" MaxLength="250" />
+    <Property Name="dateOfStart" Type="date" />
+    <Property Name="dateOffinish" Type="date" />
+    <Property Name="status" Type="bit" />
+    <Property Name="shippingTypeID" Type="bigint" Nullable="false" />
+    <Property Name="customerID" Type="bigint" Nullable="false" />
+    <Property Name="promotionPrice" Type="float" />
+    <Property Name="paymentTypeID" Type="bigint" Nullable="false" />
+    <Property Name="statusOrderID" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_orderDetail">
+    <Key>
+      <PropertyRef Name="orderDetailID" />
+    </Key>
+    <Property Name="orderDetailID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="productID" Type="bigint" Nullable="false" />
+    <Property Name="messageID" Type="bigint" Nullable="false" />
+    <Property Name="districtID" Type="bigint" Nullable="false" />
+    <Property Name="orderID" Type="bigint" Nullable="false" />
+    <Property Name="unitPrice" Type="float" />
+    <Property Name="address" Type="nvarchar" MaxLength="500" />
+    <Property Name="note" Type="nvarchar" MaxLength="500" />
+    <Property Name="phone" Type="varchar" MaxLength="50" />
+    <Property Name="quantity" Type="int" />
+    <Property Name="wardID" Type="bigint" />
+    <Property Name="fullName" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="tbl_paymentType">
+    <Key>
+      <PropertyRef Name="paymentTypeID" />
+    </Key>
+    <Property Name="paymentTypeID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="150" />
+    <Property Name="code" Type="varchar" MaxLength="100" />
+    <Property Name="isActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="tbl_product">
+    <Key>
+      <PropertyRef Name="productID" />
+    </Key>
+    <Property Name="productID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="150" />
+    <Property Name="price" Type="float" />
+    <Property Name="priceSale" Type="float" />
+    <Property Name="dayStartSale" Type="date" />
+    <Property Name="dayEndSale" Type="date" />
+    <Property Name="image" Type="varchar(max)" />
+    <Property Name="isActive" Type="bit" />
+    <Property Name="isFeatured" Type="bit" />
+    <Property Name="createdDate" Type="date" />
+    <Property Name="modifiedDate" Type="date" />
+    <Property Name="quantity" Type="int" />
+    <Property Name="metaTitle" Type="nvarchar" MaxLength="500" />
+    <Property Name="description" Type="nvarchar(max)" />
+    <Property Name="metaKeyword" Type="nvarchar" MaxLength="250" />
+    <Property Name="countView" Type="int" />
+    <Property Name="categoryID" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_roles">
+    <Key>
+      <PropertyRef Name="roleID" />
+    </Key>
+    <Property Name="roleID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="100" />
+    <Property Name="code" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="tbl_shippingType">
+    <Key>
+      <PropertyRef Name="shippingTypeID" />
+    </Key>
+    <Property Name="shippingTypeID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="150" />
+    <Property Name="code" Type="varchar" MaxLength="100" />
+    <Property Name="isActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="tbl_statusOrder">
+    <Key>
+      <PropertyRef Name="statusOrderID" />
+    </Key>
+    <Property Name="statusOrderID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="tbl_ward">
+    <Key>
+      <PropertyRef Name="wardID" />
+    </Key>
+    <Property Name="wardID" Type="bigint" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="250" />
+    <Property Name="prefix" Type="nvarchar" MaxLength="100" />
+    <Property Name="provinceID" Type="bigint" />
+    <Property Name="districtID" Type="bigint" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_customer_role">
+    <End Role="tbl_roles" Type="Self.tbl_roles" Multiplicity="1" />
+    <End Role="tbl_customer" Type="Self.tbl_customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_roles">
+        <PropertyRef Name="roleID" />
+      </Principal>
+      <Dependent Role="tbl_customer">
+        <PropertyRef Name="roleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_imageList_product">
+    <End Role="tbl_product" Type="Self.tbl_product" Multiplicity="1" />
+    <End Role="tbl_imageList" Type="Self.tbl_imageList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_product">
+        <PropertyRef Name="productID" />
+      </Principal>
+      <Dependent Role="tbl_imageList">
+        <PropertyRef Name="productID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_message_messageCategory">
+    <End Role="tbl_messageCategory" Type="Self.tbl_messageCategory" Multiplicity="1" />
+    <End Role="tbl_message" Type="Self.tbl_message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_messageCategory">
+        <PropertyRef Name="messageCategoryID" />
+      </Principal>
+      <Dependent Role="tbl_message">
+        <PropertyRef Name="messageCategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_order_customer">
+    <End Role="tbl_customer" Type="Self.tbl_customer" Multiplicity="1" />
+    <End Role="tbl_order" Type="Self.tbl_order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_customer">
+        <PropertyRef Name="customerID" />
+      </Principal>
+      <Dependent Role="tbl_order">
+        <PropertyRef Name="customerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_order_paymentType">
+    <End Role="tbl_paymentType" Type="Self.tbl_paymentType" Multiplicity="1" />
+    <End Role="tbl_order" Type="Self.tbl_order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_paymentType">
+        <PropertyRef Name="paymentTypeID" />
+      </Principal>
+      <Dependent Role="tbl_order">
+        <PropertyRef Name="paymentTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_order_shippingType">
+    <End Role="tbl_shippingType" Type="Self.tbl_shippingType" Multiplicity="1" />
+    <End Role="tbl_order" Type="Self.tbl_order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_shippingType">
+        <PropertyRef Name="shippingTypeID" />
+      </Principal>
+      <Dependent Role="tbl_order">
+        <PropertyRef Name="shippingTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_order_statusOrder">
+    <End Role="tbl_statusOrder" Type="Self.tbl_statusOrder" Multiplicity="1" />
+    <End Role="tbl_order" Type="Self.tbl_order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_statusOrder">
+        <PropertyRef Name="statusOrderID" />
+      </Principal>
+      <Dependent Role="tbl_order">
+        <PropertyRef Name="statusOrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_orderDetail_ward">
+    <End Role="tbl_ward" Type="Self.tbl_ward" Multiplicity="0..1" />
+    <End Role="tbl_orderDetail" Type="Self.tbl_orderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_ward">
+        <PropertyRef Name="wardID" />
+      </Principal>
+      <Dependent Role="tbl_orderDetail">
+        <PropertyRef Name="wardID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_product_category">
+    <End Role="tbl_category" Type="Self.tbl_category" Multiplicity="1" />
+    <End Role="tbl_product" Type="Self.tbl_product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_category">
+        <PropertyRef Name="categoryID" />
+      </Principal>
+      <Dependent Role="tbl_product">
+        <PropertyRef Name="categoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ward_district">
+    <End Role="tbl_district" Type="Self.tbl_district" Multiplicity="1" />
+    <End Role="tbl_ward" Type="Self.tbl_ward" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_district">
+        <PropertyRef Name="districtID" />
+      </Principal>
+      <Dependent Role="tbl_ward">
+        <PropertyRef Name="districtID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Eproject_FloralModelStoreContainer">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_cart" EntityType="Self.tbl_cart" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_category" EntityType="Self.tbl_category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_customer" EntityType="Self.tbl_customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_district" EntityType="Self.tbl_district" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_imageList" EntityType="Self.tbl_imageList" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_message" EntityType="Self.tbl_message" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_messageCategory" EntityType="Self.tbl_messageCategory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_order" EntityType="Self.tbl_order" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_orderDetail" EntityType="Self.tbl_orderDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_paymentType" EntityType="Self.tbl_paymentType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_product" EntityType="Self.tbl_product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_roles" EntityType="Self.tbl_roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_shippingType" EntityType="Self.tbl_shippingType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_statusOrder" EntityType="Self.tbl_statusOrder" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_ward" EntityType="Self.tbl_ward" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_customer_role" Association="Self.FK_customer_role">
+      <End Role="tbl_roles" EntitySet="tbl_roles" />
+      <End Role="tbl_customer" EntitySet="tbl_customer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_imageList_product" Association="Self.FK_imageList_product">
+      <End Role="tbl_product" EntitySet="tbl_product" />
+      <End Role="tbl_imageList" EntitySet="tbl_imageList" />
+    </AssociationSet>
+    <AssociationSet Name="FK_message_messageCategory" Association="Self.FK_message_messageCategory">
+      <End Role="tbl_messageCategory" EntitySet="tbl_messageCategory" />
+      <End Role="tbl_message" EntitySet="tbl_message" />
+    </AssociationSet>
+    <AssociationSet Name="FK_order_customer" Association="Self.FK_order_customer">
+      <End Role="tbl_customer" EntitySet="tbl_customer" />
+      <End Role="tbl_order" EntitySet="tbl_order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_order_paymentType" Association="Self.FK_order_paymentType">
+      <End Role="tbl_paymentType" EntitySet="tbl_paymentType" />
+      <End Role="tbl_order" EntitySet="tbl_order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_order_shippingType" Association="Self.FK_order_shippingType">
+      <End Role="tbl_shippingType" EntitySet="tbl_shippingType" />
+      <End Role="tbl_order" EntitySet="tbl_order" />
+    </AssociationSet>
+    <AssociationSet Name="fk_order_statusOrder" Association="Self.fk_order_statusOrder">
+      <End Role="tbl_statusOrder" EntitySet="tbl_statusOrder" />
+      <End Role="tbl_order" EntitySet="tbl_order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_orderDetail_ward" Association="Self.FK_orderDetail_ward">
+      <End Role="tbl_ward" EntitySet="tbl_ward" />
+      <End Role="tbl_orderDetail" EntitySet="tbl_orderDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_product_category" Association="Self.FK_product_category">
+      <End Role="tbl_category" EntitySet="tbl_category" />
+      <End Role="tbl_product" EntitySet="tbl_product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ward_district" Association="Self.FK_ward_district">
+      <End Role="tbl_district" EntitySet="tbl_district" />
+      <End Role="tbl_ward" EntitySet="tbl_ward" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

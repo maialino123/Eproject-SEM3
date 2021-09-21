@@ -1,0 +1,1058 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Cart</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="~/assets/admin/MDBBoostrap/mdbBootstrap.min.css" rel="stylesheet" />
+    <!-- Material Design Bootstrap -->
+    <link href="~/assets/admin/MDBBoostrap/MDB.min.css" rel="stylesheet" />
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <link href="~/assets/web/cart/index.css" rel="stylesheet" />
+    <style>
+        .checkBox {
+            width: 20px;
+            height: 20px;
+        }
+
+        .totalPriceOrder {
+            position: relative !important;
+            justify-content: center;
+            padding: 15px;
+            bottom: 0;
+            width: 100%
+        }
+
+        .footerCart {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .footerItemCart {
+            width: 100%;
+            height: 150px;
+            background-color: #fafafa;
+            position: relative;
+            box-sizing: border-box;
+        }
+
+        .footerHeader {
+            padding: 12px;
+            float: right;
+            width: 100%;
+            position: relative;
+            right: 0;
+            text-align: center;
+            border-bottom: 1px solid gray;
+            margin-bottom: 15px;
+        }
+
+            .footerHeader a {
+                float: right;
+            }
+
+            .footerHeader i {
+                position: absolute;
+                font-size: 20px;
+                color: blueviolet;
+                margin-right: 5px;
+                margin-left: 465px;
+            }
+
+            .footerHeader b {
+                margin-left: 500px;
+            }
+
+        .contentCart {
+            position: relative;
+            top: 20%;
+            padding: 15px;
+            margin-top: 10px;
+        }
+
+            .contentCart input {
+                width: 25px;
+                height: 25px;
+            }
+
+        .leftContentCart {
+            position: absolute;
+            right: 0;
+        }
+
+        .bodyCart input {
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        .bodyCart b {
+            margin-left: 10px;
+            margin-right: 20px;
+        }
+
+        .deleteItem {
+            margin-right: 20px;
+        }
+
+        .btnShopping {
+            margin-right: 10px;
+            background-color: blueviolet;
+            border: none;
+            border-radius: 6px;
+            color: #fafafa;
+            padding: 8px;
+            width: 120px;
+        }
+
+        .select2-container .select2-selection--single {
+            height: 42px !important;
+            width: 120px !important
+        }
+    </style>
+    <style>
+        :root {
+            --green: #1cbd2c;
+            --grey: #c4c4c4;
+            --white: #ffffff;
+            --padding: 1em;
+        }
+
+        body {
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            font-family: Helvetica, sans-serif;
+        }
+
+        .mainWrapper {
+            width: 100ch;
+            min-width: 40ch;
+            max-width: 75vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .statusBar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0;
+            width: 100%;
+            position: relative;
+            cursor: default;
+        }
+
+            .statusBar::before {
+                content: "";
+                height: 0.3em;
+                background-color: var(--grey);
+                position: absolute;
+                left: var(--padding);
+                right: var(--padding);
+            }
+
+        .pBar {
+            content: "";
+            height: 0.3em;
+            border-radius: 0 0 0.15em 0.15em;
+            background-color: var(--green);
+            max-width: 100%;
+            margin: 10px #000000 solid;
+            position: absolute;
+            left: 0;
+            width: 0%;
+        }
+
+        .statusBar > .node {
+            background-color: var(--grey);
+            height: 1.2em;
+            width: 1.2em;
+            border-radius: 100%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .node > .text {
+            font-weight: 200;
+            color: var(--grey);
+            text-align: center;
+            position: absolute;
+            top: 2.5em;
+            cursor:;
+        }
+
+        .node.done {
+            background-color: var(--green);
+        }
+
+        .node > .text.done {
+            color: var(--green);
+        }
+
+        .node > .main {
+            position: absolute;
+            border: 0.2em var(--grey) solid;
+            width: 0;
+            height: 0;
+            border-radius: 100%;
+        }
+
+            .node > .main.done {
+                border: 0.2em var(--green) solid;
+                width: 2em;
+                height: 2em;
+                border-radius: 100%;
+            }
+
+        .mainWrapper > .buttonHolder {
+            margin-top: 3em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .button {
+            padding: 0.5em;
+            padding-left: 1em;
+            padding-right: 1em;
+            margin: 1em;
+            font-size: 1.3em;
+            border-radius: 1.5em;
+            cursor: pointer;
+        }
+
+            .button.b-next {
+                background-color: var(--green);
+                color: var(--white);
+            }
+
+                .button.b-next:hover {
+                    box-shadow: 3px 5px 6px 0px rgba(0, 0, 0, 0.2);
+                }
+
+            .button.disabled,
+            .button.disabled:hover {
+                opacity: 30%;
+                cursor: default;
+            }
+
+            .button.b-next.disabled:hover {
+                box-shadow: none;
+            }
+
+            .button.b-back {
+                box-shadow: 0px 0px 0px 0.2em var(--green) inset;
+                background-color: var(--white);
+                color: var(--green);
+            }
+
+        .made {
+            position: absolute;
+            bottom: 0.7em;
+        }
+
+            .made > .credit {
+                opacity: 40%;
+                color: #4b4b4b;
+                text-align: center;
+            }
+
+        .my-custom-scrollbar {
+            position: relative;
+            width: 335px;
+            height: 350px;
+            overflow: auto;
+        }
+
+        .btnNextStep {
+            position: fixed;
+            bottom: 92px;
+            width: 38%;
+            z-index: 1;
+        }
+
+        #tabCheckoutAddons123 {
+            position: relative;
+            height: 450px;
+            width: 690px;
+            overflow: auto !important;
+            overflow-x: hidden !important;
+        }
+
+        .shadow-textarea textarea.form-control::placeholder {
+            font-weight: 300;
+        }
+
+        .shadow-textarea textarea.form-control {
+            padding-left: 0.8rem;
+        }
+    </style>
+    <style>
+        .numberCircle {
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            padding: 3px 5px;
+            border: 2px solid #ccc;
+            text-align: center;
+            font-size: 10px;
+            margin: 3px 8px
+        }
+
+
+        .row-payment-method {
+            margin: 0px 0px 0px 0px;
+            padding: 22px 0px 11px 0px;
+            text-align: left;
+            display: table;
+        }
+
+        .payment-row {
+            background-color: #f5f6fa;
+            padding-left: 30px;
+            padding-right: 30px;
+            width: 100%;
+        }
+
+        .payment-row-last {
+            margin-left: 30px;
+            margin-right: 30px;
+            width: 100%;
+        }
+
+        .payment-padding-right {
+        }
+
+        .select-icon {
+            display: table-cell;
+            vertical-align: top;
+            text-align: left;
+            padding-left: 0px;
+            padding-top: 0px;
+            padding-right: 0px;
+            padding-bottom: 0px;
+            width: 24px;
+            height: 24px;
+        }
+
+        .select-txt {
+            display: table-cell;
+            vertical-align: middle;
+            word-wrap: break-word;
+            height: 60px;
+            text-align: left;
+            padding-left: 15px;
+            font-size: 12pt;
+        }
+
+        .select-logo {
+            padding-right: 0px;
+            vertical-align: top;
+            right: 35px;
+            position: absolute;
+        }
+
+        .select-logo-sub {
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        .logo-spacer {
+            padding-right: 13px;
+        }
+
+        .pymt-type-name {
+            font-weight: 500;
+            font-size: 12pt;
+            padding-bottom: 8px;
+            color: #5a6977;
+        }
+
+        .pymt-type-desc {
+            padding-bottom: 22px;
+            width: 70%;
+            font-size: 14px;
+        }
+
+        .hr {
+            border-bottom: 1px solid #ebf0f5;
+            padding-bottom: 5px;
+        }
+
+        .form-cc {
+            display: table;
+            width: 100%;
+            text-align: left;
+            padding: 0px 0px 30px 30px;
+        }
+
+        .row-cc {
+            display: table;
+            width: 100%;
+            padding-bottom: 7px;
+        }
+
+        .cc-txt {
+            border-color: #e1e8ee;
+            width: 100%;
+        }
+
+        .input {
+            border-radius: 5px;
+            border-style: solid;
+            border-width: 2px;
+            height: 38px;
+            padding-left: 15px;
+            font-weight: 600;
+            font-size: 11pt;
+            color: #5e6977;
+        }
+
+        input[type="text"] {
+            display: initial;
+            padding: 15px
+        }
+
+        .text-validated {
+            border-color: #7DC855;
+            background-image: url("https://www.dropbox.com/s/1mve74fafiwsae1/icon-tick.png?raw=1");
+            background-repeat: no-repeat;
+            background-position: right 18px center;
+        }
+
+        .cc-ddl {
+            border-color: #f0f4f7;
+            background-color: #f0f4f7;
+            width: 100px;
+            margin-right: 10px;
+        }
+
+        .cc-title {
+            font-size: 10.5pt;
+            padding-bottom: 8px;
+        }
+
+        .cc-field {
+            padding-top: 15px;
+            padding-right: 30px;
+            display: table-cell;
+        }
+
+        .button-master-container, .button-master-container:hover {
+            display: table;
+            width: 100%;
+            border-top: 1px solid #e1e8ee;
+            height: 60px;
+            vertical-align: bottom;
+        }
+
+        .button-container {
+            width: 50%;
+            display: table-cell;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        a, a:hover {
+            color: inherit;
+            text-decoration: inherit;
+        }
+
+        .button-container:hover {
+            background-color: #eee;
+            cursor: pointer;
+        }
+
+        .button-finish {
+            border-left: 1px solid #e1e8ee;
+            color: #7DC855;
+            font-weight: 500;
+            font-size: 12pt;
+            background-image: url("https://www.dropbox.com/s/10d95otbo48r0hh/icon-next.png?raw=1");
+            background-repeat: no-repeat;
+            background-position: right 50px center;
+        }
+
+        .cvv-tooltip-img {
+            display: inline-block;
+            vertical-align: middle;
+            padding-left: 17px;
+        }
+
+        input[id^="radio"] {
+            display: none;
+        }
+
+            input[id^="radio"] + label {
+                background-image: url("https://www.dropbox.com/s/mnwbybfl4pnzoi4/radio-inactive.png?raw=1");
+                height: 26px;
+                width: 24px;
+                display: inline-block;
+                padding: 0 0 0 0px;
+                cursor: pointer;
+                border-radius: 50%;
+            }
+
+            input[id^="radio"]:checked + label {
+                background-image: url("https://www.dropbox.com/s/8634yi8i1s7fx7w/radio-active.png?raw=1");
+                height: 26px;
+                width: 24px;
+                display: inline-block;
+                padding: 0 0 0 0px;
+                cursor: pointer;
+            }
+
+        p.credit {
+            text-align: center;
+            color: #ccc;
+        }
+    </style>
+
+</head>
+<body>
+    <input type="hidden" data-id="@ViewBag.customerID" id="customerID" />
+    <!--Section: Live preview-->
+    <!--Modal: modalCoupon-->
+    <div class="modal fade top modalAddress" id="modalAddress" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true" data-backdrop="true">
+        <div class="modal-dialog modal-frame modal-top modal-notify modal-success" role="document">
+            <!--Content-->
+            <div class="modal-content">
+                <!--Body-->
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-1">
+                            <h2>Address: </h2>
+                        </div>
+
+                        <div class="col-md-3">
+                            <select name="" class="form-control" id="district" style="display: block!important" placeholder="Pick a district...">
+                                <option value="">district</option>
+
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <select name="" class="form-control" id="ward" style="display: block!important;" placeholder="Pick a ward...">
+                                <option value="">Ward</option>
+
+                            </select>
+                        </div>
+                        <form action="javascript:void(0)" class="validate col-md-4">
+                            <div class="col-md-12">
+                                <input type="text" name="" id="address" class="form-control mask obg" placeholder="Enter your address...." width="100%">
+                            </div>
+                        </form>
+
+                        <div class="col-md-1">
+                            <button class="btn btn-danger" id="BtnAddAddress">ADD</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--/.Content-->
+        </div>
+    </div>
+    <!--Modal: modalCoupon-->
+    <!--Section: Live preview-->
+
+    <div class="modal fade top modalCardBirthDay" id="modalCardBirthDay" tabindex="-1" role="dialog"
+         aria-hidden="true" data-backdrop="true">
+        <div class="modal-dialog modal-frame modal-top modal-notify modal-success" role="document">
+            <!--Content-->
+            <div class="modal-content">
+                <!--Body-->
+                <div class="modal-body" id="bodyMessageShow">
+                    
+                </div>
+            </div>
+            <!--/.Content-->
+        </div>
+    </div>
+
+
+    <ul class="nav nav-tabs" id="myTab" role="tablist" style="display: none">
+        <li class="nav-item">
+            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="cartOrder"
+               aria-selected="true">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="ReceivingAddress"
+               aria-selected="false">Profile</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="messages-tab" data-toggle="tab" href="#messages" role="tab" aria-controls="messages"
+               aria-selected="false">Messages</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="settings-tab" data-toggle="tab" href="#settings" role="tab" aria-controls="settings"
+               aria-selected="false">Settings</a>
+        </li>
+    </ul>
+    <div class="row" style="margin-top: 10rem !important">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="mainWrapper">
+                <div class="statusBar">
+                    <span class="pBar"></span>
+                    <div class="node n0 done nConfirm0">
+                        <div class="main done m0 done nConfirm0"></div>
+                        <span class="text t0 done nConfirm0">Confirm</span>
+                    </div>
+                    <div class="node n1 nConfirm1">
+                        <div class="main m1 nConfirm1"></div>
+                        <span class="text t1 nConfirm1">Address</span>
+                    </div>
+                    <div class="node n2 nConfirm2">
+                        <div class="main m2 nConfirm2"></div>
+                        <span class="text t2 nConfirm2">Payment</span>
+                    </div>
+                    <div class="node n3 nConfirm3">
+                        <div class="main m3 nConfirm3"></div>
+                        <span class="text t3 nConfirm3">Complete</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    <div class="tab-content">
+        @*tab order carts*@
+        <div class="tab-pane active" id="cartOrder" role="tabpanel" aria-labelledby="home-tab">
+            <div class="container z-depth-1 p-5 my-5">
+
+                <!-- Section: Block Content -->
+                <section>
+
+                    <!-- Shopping Cart table -->
+                    <div class="table-responsive">
+                        <table class="table product-table table-cart-v-1">
+                            <!-- Table head -->
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th class="font-weight-bold">
+                                        <strong>Product</strong>
+                                    </th>
+                                    <th></th>
+                                    <th class="font-weight-bold">
+                                        <strong>Price</strong>
+                                    </th>
+                                    <th class="font-weight-bold">
+                                        <strong>QTY</strong>
+                                    </th>
+                                    <th class="font-weight-bold">
+                                        <strong>Amount</strong>
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <!-- Table head -->
+                            <!-- Table body -->
+                            <tbody class="bodyCartItemLoad">
+                            </tbody>
+                            <!-- Table body -->
+                        </table>
+                        <div class="footerCart">
+                            <div class="row">
+                                <div class="footerItemCart">
+                                    <div class="container">
+                                        <div class="footerHeader">
+                                            <i class="fab fa-salesforce"></i>
+                                            <b>
+                                                Flower Voucher
+                                            </b>
+                                            <a href="#">select or enter code</a>
+                                        </div>
+                                        <div class="contentCart">
+                                            <div class="row bodyCart">
+                                                <!-- Material unchecked -->
+                                                <div class="form-check">
+                                                    <input type="checkbox" class="form-check-input" id="ChangeAllItems">
+                                                    <label class="form-check-label" for="ChangeAllItems">Select all (<span class="txtCountItem"></span>)</label>
+                                                </div>
+                                                <a href="#DeleteItemSelected" class="deleteItem" style="margin-left: 10px">Delete</a>
+                                                <a href="#DeleteProductNoActive" class="deleteItemNoActive">Remove product no active</a>
+                                                <div class="leftContentCart">
+                                                    <b id="txtProductSelect">Total product ( <span id="txtCountProductSelect"> 0 </span>product ) <strong class="txtTotalPriceProductSelect">$0</strong></b>
+                                                    <button class="btnShopping b-next" id="next">Shopping</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Shopping Cart table -->
+                </section>
+                <!-- Section: Block Content -->
+
+            </div>
+        </div>
+        <!--TAB2-->
+        <div class="tab-pane" role="tabpanel" id="ReceivingAddress" aria-labelledby="profile-tab">
+            <div class="container mt-5">
+
+
+                <!--Section: Content-->
+                <section class="dark-grey-text">
+
+                    <div class="card">
+                        <div class="card-body">
+
+                            <!--Grid row-->
+                            <div class="row">
+
+                                <!--Grid column-->
+                                <div class="col-lg-8">
+
+                                    <!-- Pills navs -->
+                                    <ul class="nav md-pills nav-justified pills-primary font-weight-bold">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" data-toggle="tab" href="#tabCheckoutBilling123" role="tab">1. Add receiving Address</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" data-toggle="tab" id="advancedAddress" href="#tabCheckoutAddons123" role="tab">2. Add advanced receiving address</a>
+                                        </li>
+                                    </ul>
+
+                                    <!-- Pills panels -->
+                                    <div class="tab-content pt-4">
+
+                                        <!--Panel 1-->
+                                        <div class="tab-pane fade in show active" id="tabCheckoutBilling123" role="tabpanel">
+
+                                            <!--Card content-->
+                                            <form>
+
+                                                <!--Grid row-->
+                                                <div class="row">
+
+                                                    <!--Grid column-->
+                                                    <div class="col-md-6 mb-4">
+
+                                                        <!--firstName-->
+                                                        <label for="firstName" class="">First name</label>
+                                                        <input type="text" id="firstName" class="form-control">
+
+                                                    </div>
+                                                    <!--Grid column-->
+                                                    <!--Grid column-->
+                                                    <div class="col-md-6 mb-2">
+
+                                                        <!--lastName-->
+                                                        <label for="lastName" class="">Last name</label>
+                                                        <input type="text" id="lastName" class="form-control">
+
+                                                    </div>
+                                                    <!--Grid column-->
+
+                                                </div>
+                                                <!--Grid row-->
+                                                <!--address-->
+                                                <div class="useAddressDefault" style="display: none">
+                                                    <label for="addressUser" class="">Address</label>
+                                                    <input type="text" id="addressUser" class="form-control mb-4" placeholder="1234 Main St">
+                                                    <!--address-2-->
+                                                    <label for="phone" class="">Phone</label>
+                                                    <input type="text" id="phone" class="form-control mb-4" placeholder="Enter your phone number">
+
+                                                    <!--Grid row-->
+                                                    <div class="row">
+
+                                                        <!--Grid column-->
+                                                        <div class="col-lg-6 col-md-12 mb-6">
+
+                                                            <label for="district">District</label>
+                                                            <select class="custom-select d-block w-100" id="districtUser" required>
+                                                                <option value="">Choose...</option>
+
+                                                            </select>
+                                                            <div class="invalid-feedback">
+                                                                Please select a valid district.
+                                                            </div>
+
+                                                        </div>
+                                                        <!--Grid column-->
+                                                        <!--Grid column-->
+                                                        <div class="col-lg-6 col-md-6 mb-6">
+
+                                                            <label for="ward">Ward</label>
+                                                            <select class="custom-select d-block w-100" id="wardUser" required disabled="disabled">
+                                                                <option value="">Choose...</option>
+
+                                                            </select>
+                                                            <div class="invalid-feedback">
+                                                                Please provide a valid ward.
+                                                            </div>
+
+                                                        </div>
+                                                        <!--Grid column-->
+                                                    </div>
+                                                    <!--Grid row-->
+                                                </div>
+                                                
+                                                
+
+                                                
+
+                                                <hr>
+
+                                                <div class="mb-1">
+                                                    <input type="checkbox" class="form-check-input filled-in" id="safeTheInfo">
+                                                    <label class="form-check-label" for="safeTheInfo">Orders are shipped to the same address.</label>
+                                                </div>
+
+                                                <hr>
+
+                                                <div class="row">
+                                                    <div class="col-lg-6 col-md-6 mb-6">
+                                                        <button class="btn btn-primary btn-lg btn-block b-back btnRedirectOrder" id="back" type="submit">Back</button>
+                                                    </div>
+                                                    <div class="col-lg-6 col-md-6 mb-6">
+                                                        <button class="btn btn-danger btn-lg btn-block b-next" id="next" type="submit">Next</button>
+                                                    </div>
+                                                </div>
+
+
+                                            </form>
+
+                                        </div>
+                                        <!--/.Panel 1-->
+                                        <!--Panel 2-->
+                                        <div class="tab-pane fade scrollbarItem" id="tabCheckoutAddons123" role="tabpanel">
+
+
+
+
+
+                                        </div>
+                                        <!--/.Panel 2-->
+                                    </div>
+                                    <!-- Pills panels -->
+
+
+                                </div>
+                                <!--Grid column-->
+                                <!--Grid column-->
+                                <div class="col-lg-4 mb-4">
+
+                                    <button class="btn btn-primary btn-lg btn-block" type="submit">Place order</button>
+
+                                    <!--Card-->
+                                    <div class="card z-depth-0 border border-light rounded-0">
+                                        <h4 class="mb-4 h5 text-center font-weight-bold" style="margin-top: 40px">Summary</h4>
+                                        <!--Card content-->
+                                        <div class="card-body my-custom-scrollbar my-custom-scrollbar-primary listProductOrder">
+
+
+                                        </div>
+                                        <hr>
+
+                                        <dl class="row totalPriceOrder">
+                                            <dt class="col-sm-8">
+                                                Total
+                                            </dt>
+                                            <dt class="col-sm-4" id="totalPriceUserPRoduct">
+                                                $ 2000
+                                            </dt>
+                                        </dl>
+
+                                    </div>
+                                    <!--/.Card-->
+                                </div>
+                                <!--Grid column-->
+                            </div>
+                            <!--Grid row-->
+                        </div>
+                    </div>
+
+                </section>
+                <!--Section: Content-->
+
+
+            </div>
+        </div>
+
+
+        <div class="tab-pane" role="tabpanel" id="reviewItemCart" aria-labelledby="messages-tab">
+            <div class="row mt-5">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <h4 class="payment-title">Choose your payment method</h4>
+                    <hr class="mb-4">
+                    <form action="" method="post">
+                        <div class="pymt-radio">
+
+
+                            <div class="row-payment-method payment-row">
+                                <div class="select-icon">
+                                    <input type="radio" id="radio1" name="radios" value="pp">
+                                    <label for="radio1"></label>
+                                </div>
+                                <div class="select-txt">
+                                    <p class="pymt-type-name">Paypal</p>
+                                    <p class="pymt-type-desc">Safe payment online</p>
+                                </div>
+                                <div class="select-logo">
+                                    <img src="https://www.dropbox.com/s/pycofx0gngss4ef/logo-paypal.png?raw=1" alt="PayPal" />
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="pymt-radio">
+
+                            <div class="row-payment-method payment-row-last">
+                                <div class="select-icon hr">
+                                    <input type="radio" id="radio2" name="radios" value="pp" checked>
+                                    <label for="radio2"></label>
+                                </div>
+                                <div class="select-txt hr">
+                                    <p class="pymt-type-name">Credit Card</p>
+                                    <p class="pymt-type-desc">Safe money transfer using your bank account. Safe payment online. Credit card needed. Visa, Maestro, Discover, American Express</p>
+                                </div>
+                                <div class="select-logo">
+                                    <div class="select-logo-sub logo-spacer">
+                                        <img src="https://www.dropbox.com/s/by52qpmkmcro92l/logo-visa.png?raw=1" alt="Visa" />
+                                    </div>
+                                    <div class="select-logo-sub">
+                                        <img src="https://www.dropbox.com/s/6f5dorw54xomw7p/logo-mastercard.png?raw=1" alt="MasterCard" />
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="form-cc">
+                            <div class="row-cc">
+                                <div class="cc-field">
+                                    <div class="cc-title">
+                                        Credit Card Number
+                                    </div>
+                                    <input type="text" class="input cc-txt text-validated" value="4542 9931 9292 2293" />
+                                </div>
+                            </div>
+                            <div class="row-cc">
+                                <div class="cc-field">
+                                    <div class="cc-title">
+                                        Expiry Date
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <select class="input cc-ddl d-block w-100" required>
+                                                <option selected>01</option>
+                                                <option>02</option>
+                                                <option>03</option>
+                                                <option>04</option>
+                                                <option>05</option>
+                                                <option>06</option>
+                                                <option>07</option>
+                                                <option>08</option>
+                                                <option>09</option>
+                                                <option>10</option>
+                                                <option>11</option>
+                                                <option>12</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <select class="input cc-ddl d-block w-100">
+                                                <option>01</option>
+                                                <option>02</option>
+                                                <option>03</option>
+                                                <option>04</option>
+                                                <option>05</option>
+                                                <option>06</option>
+                                                <option>07</option>
+                                                <option>08</option>
+                                                <option>09</option>
+                                                <option>10</option>
+                                                <option>11</option>
+                                                <option>12</option>
+                                                <option>13</option>
+                                                <option>14</option>
+                                                <option>15</option>
+                                                <option selected>16</option>
+                                                <option>17</option>
+                                                <option>18</option>
+                                                <option>19</option>
+                                                <option>20</option>
+                                                <option>21</option>
+                                                <option>22</option>
+                                                <option>23</option>
+                                                <option>24</option>
+                                                <option>25</option>
+                                                <option>26</option>
+                                                <option>27</option>
+                                                <option>28</option>
+                                                <option>29</option>
+                                                <option>30</option>
+                                                <option>31</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" id="" class="form-control" placeholder="CVV CODE...">
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="row-cc">
+                                <div class="cc-field">
+                                    <div class="cc-title">
+                                        Name on Card
+                                    </div>
+                                    <input type="text" class="input cc-txt" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="button-master-container ">
+                            <div class="button-container btnRedirectAddress">
+                                <a href="#">Return to Shipping</a>
+                            </div>
+                            <div class="button-container button-finish" id="btnClickPayment" style="background: green; color: #fafafa">
+                                <a href="@Url.Action("PaymentWithPayPal", "Payment")">Finish Order</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+        </div>
+        </div>
+        <!-- JQuery -->
+        <script type="text/javascript" src="https://mdbootstrap.com/previews/docs/latest/js/jquery-3.3.1.min.js"></script>
+        <!-- Tooltips -->
+        <script type="text/javascript" src="https://mdbootstrap.com/previews/docs/latest/js/popper.min.js"></script>
+        <!-- Bootstrap core JavaScript -->
+        <script src="~/assets/admin/MDBBoostrap/MDBBoostrap.min.js"></script>
+        <!-- MDB core JavaScript -->
+        <script src="~/assets/admin/MDBBoostrap/MDB.min.js"></script><div class="hiddendiv common"></div>
+        <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLdasOJ0lfMjIYe1Yx_tcAIKixUo4szX4&callback=initMap&libraries=places&v=beta&channel=2&map_ids=8e0a97af9386fef"
+                async defer></script>
+        <link href="~/assets/admin/admin-sbStyle/build/toastr.css" rel="stylesheet" type="text/css" />
+        <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+        <script src="~/assets/admin/admin-sbStyle/build/toastr.js"></script>
+        <script src="~/assets/admin/js/InnerFormValidation.js"></script>
+        @*add library boostrap select*@
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
+        <script src="~/assets/web/cart/index.js"></script>
+</body>
+</html>

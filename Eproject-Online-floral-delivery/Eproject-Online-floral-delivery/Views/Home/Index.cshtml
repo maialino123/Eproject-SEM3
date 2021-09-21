@@ -1,31 +1,1154 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿
+@{
+    Layout = null;
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+<!DOCTYPE html>
+<html lang="en">
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+<head>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Floral Delivery</title>
+    <!-- Font Awesome -->
+    <!--<link rel="stylesheet" href="~/assets/web/home/bootstrapMDB/fontawesome.css">-->
+    <!-- Bootstrap core CSS -->
+    <!--<link href="~/assets/web/home/bootstrapMDB/bootstrap.min.css" rel="stylesheet">-->
+    <!-- Material Design Bootstrap -->
+    <!--<link href="~/assets/web/home/bootstrapMDB/mdb.min.css" rel="stylesheet">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>-->
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="~/assets/admin/MDBBoostrap/mdbBootstrap.min.css" rel="stylesheet" />
+    <!-- Material Design Bootstrap -->
+    <link href="~/assets/admin/MDBBoostrap/MDB.min.css" rel="stylesheet" />
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <link href="~/assets/web/home/header.css" rel="stylesheet" />
+    <style type="text/css">
+        /* Always set the map height explicitly to define the size of the div
+        * element that contains the map. */
+        #map {
+            height: 100%;
+        }
+    </style>
+    <style type="text/css" media="screen">
+        .acction {
+            position: fixed;
+        }
+
+            .acction .profile {
+                position: relative;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                overflow: hidden;
+                cursor: pointer;
+            }
+
+                .acction .profile img {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+
+            .acction .menu {
+                position: absolute;
+                top: 120px;
+                right: -5px;
+                padding: 10px 20px;
+                background: #fff;
+                width: 200px;
+                box-sizing: border-box;
+                border-radius: 15px;
+                transition: 0.5s;
+                visibility: hidden;
+                opacity: 0;
+            }
+
+                .acction .menu::before {
+                    content: '';
+                    position: absolute;
+                    top: -5px;
+                    right: 28px;
+                    width: 20px;
+                    height: 20px;
+                    background: #fff;
+                    transform: rotate(45deg);
+                }
+
+                .acction .menu h3 {
+                    width: 100%;
+                    text-align: center;
+                    font-size: 18px;
+                    padding: 20px 0;
+                    font-weight: 100;
+                    font-size: 18px;
+                    color: #555;
+                    line-height: 1.2em;
+                }
+
+                    .acction .menu h3 span {
+                        font-size: 14px;
+                        color: #cecece;
+                        font-weight: 400;
+                    }
+
+                .acction .menu ul li {
+                    list-style: none;
+                    padding: 10px 0;
+                    border-top: 1px solid rgba(0, 0, 0, 0.05);
+                    display: flex;
+                    align-items: center;
+                }
+
+                    .acction .menu ul li i {
+                        max-width: 20px;
+                        margin-right: 10px;
+                        opacity: 0.5;
+                        transition: 0.5s;
+                    }
+
+                    .acction .menu ul li:hover i {
+                        opacity: 1;
+                    }
+
+                    .acction .menu ul li a {
+                        display: inline-block;
+                        text-decoration: none;
+                        color: #555;
+                        font-weight: 500;
+                        transition: 0.5s;
+                    }
+
+                    .acction .menu ul li:hover a {
+                        color: #ff5d94;
+                    }
+
+                .acction .menu.active {
+                    top: 60px;
+                    visibility: visible;
+                    opacity: 1;
+                    right: -15px;
+                }
+
+        .wow {
+            visibility: hidden;
+        }
+
+        .progress-wrap {
+            position: fixed;
+            right: 50px;
+            bottom: 50px;
+            height: 46px;
+            width: 46px;
+            cursor: pointer;
+            display: block;
+            border-radius: 50px;
+            box-shadow: inset 0 0 0 2px rgba(255,255,255,0.2);
+            z-index: 10000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(15px);
+            -webkit-transition: all 200ms linear;
+            transition: all 200ms linear;
+        }
+
+            .progress-wrap.active-progress {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+
+            .progress-wrap::after {
+                position: absolute;
+                content: '↑';
+                text-align: center;
+                line-height: 46px;
+                font-size: 24px;
+                color: #000;
+                left: 0;
+                top: 0;
+                height: 46px;
+                width: 46px;
+                cursor: pointer;
+                display: block;
+                z-index: 1;
+                -webkit-transition: all 200ms linear;
+                transition: all 200ms linear;
+            }
+
+            .progress-wrap:hover::after {
+                opacity: 0;
+            }
+
+            .progress-wrap::before {
+                position: absolute;
+                content: '↑';
+                text-align: center;
+                line-height: 46px;
+                font-size: 24px;
+                opacity: 0;
+                background-image: linear-gradient(298deg, #da2c4d, #f8ab37);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                left: 0;
+                top: 0;
+                height: 46px;
+                width: 46px;
+                cursor: pointer;
+                display: block;
+                z-index: 2;
+                -webkit-transition: all 200ms linear;
+                transition: all 200ms linear;
+            }
+
+            .progress-wrap:hover::before {
+                opacity: 1;
+            }
+
+            .progress-wrap svg path {
+                fill: none;
+            }
+
+            .progress-wrap svg.progress-circle path {
+                stroke: #212121;
+                stroke-width: 4;
+                box-sizing: border-box;
+                -webkit-transition: all 200ms linear;
+                transition: all 200ms linear;
+            }
+
+        .cartView {
+            width: 400px;
+            height: auto;
+            background-color: #fafafa;
+            padding: 10px;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+
+        .popover {
+            width: 450px !important;
+            height: auto !important;
+            border: 1px solid #CFD8DC;
+            border-radius: 6px;
+            box-shadow: 3px 4px #455A64 0.3em 0.1em rebeccapurple;
+        }
+
+        .headerText p {
+            font-size: 18px;
+            color: thistle;
+        }
+
+        .contentItem li {
+            list-style: none;
+            height: 60px;
+        }
+
+            .contentItem li img {
+                width: 50px;
+                float: left;
+                padding: 10px
+            }
+
+        .priceItem {
+            float: right
+        }
+
+        .textTotalItem p {
+            float: left
+        }
+
+        .btnViewCart button {
+            background-color: blue;
+            color: #fafafa;
+            border-radius: 6px;
+            width: 120px;
+            float: right
+        }
+    </style>
+</head>
+
+<body aria-busy="true">
+
+    <!-- Main navigation -->
+    <!--Big blue-->
+    <div id="mdb-preloader" class="flex-center">
+        <div class="preloader-wrapper active">
+            <div class="spinner-layer spinner-blue-only">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+
+    <!-- Modal -->
+    <div class="modal fade" id="darkModalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog form-dark" role="document">
+            <!--Content-->
+            <div class="modal-content card card-image" style="background-image: url('https://mdbootstrap.com/img/Photos/Others/pricing-table%20(7).jpg');">
+                <div class="text-white rgba-stylish-strong py-5 px-5 z-depth-4">
+                    <!--Header-->
+                    <div class="modal-header text-center pb-4">
+                        <h3 class="modal-title w-100 white-text font-weight-bold" id="myModalLabel">
+                            <strong>SIGN</strong> <a class="green-text font-weight-bold"><strong>IN</strong></a>
+                        </h3>
+                        <button type="button" class="close white-text" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <!--Body-->
+                    <div class="modal-body">
+                        <form action="javascript:void(0)" class="validate">
+                            <!--Body-->
+                            <div class="md-form mb-5">
+                                <input type="email" id="Form-email5" class="form-control validate white-text mask obg email">
+                                <label data-error="wrong" data-success="right" for="Form-email5">Your Email</label>
+                            </div>
+
+                            <div class="md-form pb-3">
+                                <input type="password" id="Form-pass5" class="form-control validate white-text mask obg">
+                                <label data-error="wrong" data-success="right" for="Form-pass5">Your password</label>
+                                <div class="form-group mt-4">
+                                    <p class="font-small blue-text d-flex justify-content-end ">
+                                        <a href="#" class="blue-text ml-1 " id="forgotPasswordRedirect">
+                                            Forgot Password?
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!--Grid row-->
+                            <div class="row d-flex align-items-center mb-4">
+
+                                <!--Grid column-->
+                                <div class="text-center mb-3 col-md-12">
+                                    <button type="button" id="btnSubmitLogin" class="btn btn-success btn-block btn-rounded z-depth-1">Sign in</button>
+                                </div>
+                                <!--Grid column-->
+
+
+                            </div>
+                        </form>
+                        <!--Grid row-->
+                        <p class="font-small dark-grey-text text-right d-flex justify-content-center mb-3 pt-2">
+                            or Login
+                            with:
+                        </p>
+                        <div class="row my-3 d-flex justify-content-center">
+                            <!--Facebook-->
+                            <button type="button" class="btn btn-white btn-rounded mr-md-3 z-depth-1a"><i class="fab fa-facebook-f text-center"></i></button>
+                            <!--Twitter-->
+                            <button type="button" class="btn btn-white btn-rounded mr-md-3 z-depth-1a"><i class="fab fa-twitter"></i></button>
+                            <!--Google +-->
+                            <button type="button" class="btn btn-white btn-rounded z-depth-1a" id="googleLogin"><i class="fab fa-google-plus-g"></i></button>
+                        </div>
+
+                        <!--Grid row-->
+                        <div class="row">
+
+                            <!--Grid column-->
+                            <div class="col-md-12">
+                                <p class="font-small white-text d-flex justify-content-end">
+                                    Have an account? <a href="#signUp" class="green-text ml-1 font-weight-bold" id="signUp">
+                                        Sign up
+                                    </a>
+                                </p>
+                            </div>
+                            <!--Grid column-->
+
+                        </div>
+                        <!--Grid row-->
+
+                    </div>
+                </div>
+            </div>
+            <!--/.Content-->
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+    <!-- Modal -->
+    <header>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
+            <div class="container">
+                <a class="navbar-brand homePage" href="#home">
+                    <strong>Flower</strong>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-7" aria-controls="navbarSupportedContent-7" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent-7">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link waves-effect waves-light homePage" href="#Home">
+                                Home
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link waves-effect waves-light" href="#Products" id="productPage">Shop</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link waves-effect waves-light" href="#blog">Blog</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link waves-effect waves-light" href="#Support">Support</a>
+                        </li>
+                    </ul>
+                    <!-- Search form -->
+                    <form class="form-inline ">
+                        <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Search"
+                               aria-label="Search">
+                        <i class="fas fa-search" aria-hidden="true"></i>
+                    </form>
+                    <form class="form-inline">
+                        <ul class="navbar-nav ml-auto nav-flex-icons">
+                            <li class="nav-item cart">
+                                <a href="#cart" class="nav-link waves-effect pop" data-container="body"
+                                   data-toggle="popover"
+                                   data-placement="bottom"><span class="badge red z-depth-1 mr-1 countItem"> 0 </span><i id="navbar-static-cart" alt="Cart" class="fas fa-shopping-cart"></i><span class="sr-only"> Cart </span></a>
+                            </li>
+                        </ul>
+                    </form>
+                    <form class="form-inline" id="formLoginReload">
+                        @if (Session.Contents["email"] != null)
+                        {
+                            <div class="acction md-form my-1">
+                                <div class="profile">
+                                    <img src="https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg" alt="">
+                                </div>
+                                <div class="menu">
+                                    <h3>Someone Famous <br><span>Website Designer</span></h3>
+                                    <ul>
+                                        <li><i class="fa fa-user-circle-o" aria-hidden="true"></i><a href="#" title="">My Profile</a></li>
+                                        <li><i class="fa fa-pencil-square-o" aria-hidden="true"></i><a href="#" title="">Edit Profile</a></li>
+                                        <li><i class="fa fa-envelope" aria-hidden="true"></i><a href="#" title="">Inbox</a></li>
+                                        <li><i class="fa fa-cog" aria-hidden="true"></i><a href="#" title="">Setting</a></li>
+                                        <li><i class="fa fa-question-circle" aria-hidden="true"></i><a href="#" title="">Help</a></li>
+                                        <li id="logoutUser"><i class="fa fa-sign-out" aria-hidden="true"></i><a href="#logout" title="">LogOut</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <ul class="navbar-nav ml-auto nav-flex-icons actionLogin">
+                                <li class="nav-item">
+                                    <a href="#"
+                                       class="nav-link border border-light rounded waves-effect mr-2 " target="_blank" id="loginForm" data-toggle="modal" data-target="#darkModalForm">
+                                        <i class="far fa-user mr-1"></i>Login/Register
+                                    </a>
+                                </li>
+                            </ul>
+                        }
+
+
+                    </form>
+                </div>
+            </div>
+        </nav>
+        <!-- Navbar -->
+        <!-- Full Page Intro -->
+        <div class="view" style="background-image: url('https://giaohoatannoi247.com/upload/bncd.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+            <!-- Mask & flexbox options-->
+            <div class="mask rgba-gradient d-flex justify-content-center align-items-center">
+                <!-- Content -->
+                <div class="container">
+                    <div class="row mt-5 col-md-10"><h1 style="color: #ffff; font-size: 40px; font-weight: bold;">Where do you want to deliver flowers?</h1></div>
+                    <!--Grid row-->
+                    <div class="row mt-5">
+                        <!--Grid column-->
+                        <div class="col-md-6 mb-4 mt-md-0 mt-5 text-center">
+                            <div id="map"></div>
+                        </div>
+                        <!--Grid column-->
+                        <!--Grid column-->
+                        <div class="col-md-6 col-xl-5 mb-4">
+                            <!--Form-->
+                            <form class="needs-validation" novalidate>
+                                <div class="card wow fadeInRight animated" data-wow-delay="0.3s" style="visibility: visible; animation-name: fadeInRight; animation-delay: 0.3s;">
+                                    <div class="card-body">
+                                        <!--Header-->
+                                        <div class="text-center">
+                                            <h3 class="white-text">
+                                                Location:
+                                            </h3>
+                                            <hr class="hr-light">
+                                        </div>
+                                        <!--Body-->
+                                        <div class="md-form">
+                                            <input type="text" id="form3" class="form-control validate" id="txtAutoComplete">
+                                            <label for="form3" class="" id="lblResult" style="color: #000">The area you want to deliver flowers</label>
+                                        </div>
+                                        <div class="md-form">
+                                            <select class="mdb-select validate md-form colorful-select dropdown-dark province-select" searchable="Search here.." id="txtCity">
+                                                <option value="" disabled selected>Province/City</option>
+                                                <option value="1">USA</option>
+                                                <option value="2">Germany</option>
+                                                <option value="3">France</option>
+                                                <option value="3">Poland</option>
+                                                <option value="3">Japan</option>
+                                            </select>
+                                        </div>
+                                        <div class="md-form">
+                                            <select class="mdb-select validate md-form colorful-select dropdown-dark district-select" searchable="Search here.." id="txtDistrict">
+                                                <option value="" disabled selected>District</option>
+                                                <option value="1">USA</option>
+                                                <option value="2">Germany</option>
+                                                <option value="3">France</option>
+                                                <option value="3">Poland</option>
+                                                <option value="3">Japan</option>
+                                            </select>
+                                        </div>
+                                        <div class="text-center mt-4">
+                                            <button class="btn btn-indigo waves-effect waves-light">Find</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <!--/.Form-->
+                        </div>
+                        <!--Grid column-->
+                    </div>
+                    <!--Grid row-->
+                </div>
+                <!-- Content -->
+            </div>
+            <!-- Mask & flexbox options-->
+        </div>
+        <!-- Full Page Intro -->
+    </header>
+    <!-- Main navigation -->
+    <!--Main Layout-->
+    <!--Main Layout-->
+    <main>
+        <div class="container">
+            <!--Grid row-->
+            <div class="row py-5">
+                <!--Section: Content-->
+                <section class="dark-grey-text text-center">
+
+                    <!-- Section heading -->
+                    <h3 class="font-weight-bold mb-4 pb-2">List of flowers</h3>
+                    <!-- Section description -->
+                    <p class="grey-text w-responsive mx-auto mb-5">Our flowers will be sorted into different categories depending on your purposes and needs.Following are the flower categories of our store. Please choose!</p>
+
+                    <!-- Grid row -->
+                    <div class="row">
+
+                        <!-- Grid column -->
+                        <div class="col-lg-3 col-md-6 mb-4 wow fadeInUp">
+                            <!-- Card -->
+                            <div class="card card-cascade narrower card-ecommerce">
+                                <!-- Card image -->
+                                <div class="view view-cascade overlay">
+                                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/1.jpg" class="card-img-top"
+                                         alt="sample photo">
+                                    <a>
+                                        <div class="mask rgba-stylish-strong"></div>
+                                    </a>
+                                </div>
+                                <!-- Card image -->
+                                <!-- Card content -->
+                                <div class="card-body card-body-cascade text-center pb-3">
+                                    <!-- Title -->
+                                    <h5 class="card-title mb-1">
+                                        <strong>
+                                            <a href="">Denim trousers</a>
+                                        </strong>
+                                    </h5>
+                                    <!-- Description -->
+                                    <p class="card-text">
+                                        Neque porro quisquam est, qui dolorem ipsum quia dolor sit.
+                                    </p>
+                                    <!-- Card footer -->
+                                </div>
+                                <!-- Card content -->
+                            </div>
+                            <!-- Card -->
+                        </div>
+                        <!-- Grid column -->
+                        <!-- Grid column -->
+                        <div class="col-lg-3 col-md-6 mb-4 wow rotateIn">
+                            <!-- Card -->
+                            <div class="card card-cascade narrower card-ecommerce">
+                                <!-- Card image -->
+                                <div class="view view-cascade overlay">
+                                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/2.jpg" class="card-img-top"
+                                         alt="sample photo">
+                                    <a>
+                                        <div class="mask rgba-stylish-strong"></div>
+                                    </a>
+                                </div>
+                                <!-- Card image -->
+                                <!-- Card content -->
+                                <div class="card-body card-body-cascade text-center pb-3">
+                                    <!-- Title -->
+                                    <h5 class="card-title mb-1">
+                                        <strong>
+                                            <a href="">High heels</a>
+                                        </strong>
+                                    </h5>
+                                    <!-- Description -->
+                                    <p class="card-text">
+                                        Neque porro quisquam est, qui dolorem ipsum quia dolor sit.
+                                    </p>
+                                </div>
+                                <!-- Card content -->
+                            </div>
+                            <!-- Card -->
+                        </div>
+                        <!-- Grid column -->
+                        <!-- Grid column -->
+                        <div class="col-lg-3 col-md-6 mb-4 wow rotateIn">
+                            <!-- Card -->
+                            <div class="card card-cascade narrower card-ecommerce">
+                                <!-- Card image -->
+                                <div class="view view-cascade overlay">
+                                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/4.jpg" class="card-img-top"
+                                         alt="sample photo">
+                                    <a>
+                                        <div class="mask rgba-stylish-strong"></div>
+                                    </a>
+                                </div>
+                                <!-- Card image -->
+                                <!-- Card content -->
+                                <div class="card-body card-body-cascade text-center pb-3">
+                                    <!-- Title -->
+                                    <h5 class="card-title mb-1">
+                                        <strong>
+                                            <a href="">Brown coat</a>
+                                        </strong>
+                                    </h5>
+                                    <!-- Description -->
+                                    <p class="card-text">
+                                        Neque porro quisquam est, qui dolorem ipsum quia dolor sit.
+                                    </p>
+                                    <!-- Card footer -->
+                                </div>
+                                <!-- Card content -->
+                            </div>
+                            <!-- Card -->
+                        </div>
+                        <!-- Grid column -->
+                        <!-- Grid column -->
+                        <div class="col-lg-3 col-md-6 mb-4 wow fadeInUp">
+                            <!-- Card -->
+                            <div class="card card-cascade narrower card-ecommerce">
+                                <!-- Card image -->
+                                <div class="view view-cascade overlay">
+                                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/3.jpg" class="card-img-top"
+                                         alt="sample photo">
+                                    <a>
+                                        <div class="mask rgba-stylish-strong"></div>
+                                    </a>
+                                </div>
+                                <!-- Card image -->
+                                <!-- Card content -->
+                                <div class="card-body card-body-cascade text-center pb-3">
+                                    <!-- Title -->
+                                    <h5 class="card-title mb-1">
+                                        <strong>
+                                            <a href="">Shirt</a>
+                                        </strong>
+                                    </h5>
+                                    <!-- Description -->
+                                    <p class="card-text">
+                                        Neque porro quisquam est, qui dolorem ipsum quia dolor sit.
+                                    </p>
+                                    <!-- Card footer -->
+                                </div>
+                                <!-- Card content -->
+                            </div>
+                            <!-- Card -->
+                        </div>
+                        <!-- Grid column -->
+
+                    </div>
+                    <!-- Grid row -->
+
+                </section>
+                <!--Section: Content-->
+
+
+            </div>
+            <!--Grid row-->
+            <!--Section: Content-->
+            <section class="text-center dark-grey-text mt-5">
+                <div class="row">
+
+                    <!-- Grid column -->
+                    <div class="col-md-4 mb-4">
+
+                        <div class="overlay">
+                            <img src="~/assets/web/image/iconLike.jpg" class="animated rubberBand infinite slower"
+                                 alt="sample photo" width="100px">
+                            <a>
+                                <div class="mask rgba-stylish-strong"></div>
+                            </a>
+                        </div>
+                        <h5 class="font-weight-bold my-4">BEAUTIFUL FLOWERS AS PICTURE DESCRIPTION</h5>
+                        <p class="grey-text mb-md-0">
+                            The flowers are as beautiful as the picture and 80-90% similar to the picture on the website.
+                        </p>
+
+                    </div>
+                    <!-- Grid column -->
+                    <!-- Grid column -->
+                    <div class="col-md-4 mb-4">
+
+                        <div class="overlay">
+                            <img src="~/assets/web/image/iconCard.jpg" class="animated rubberBand infinite slower"
+                                 alt="sample photo" width="100px">
+                            <a>
+                                <div class="mask rgba-stylish-strong "></div>
+                            </a>
+                        </div>
+                        <h5 class="font-weight-bold my-4">FREE CARDS/BANNER</h5>
+                        <p class="grey-text mb-md-0">
+                            Free card, congratulation/consolation board upon request.
+                        </p>
+
+                    </div>
+                    <!-- Grid column -->
+                    <!-- Grid column -->
+                    <div class="col-md-4 mb-4">
+
+                        <div class="overlay">
+                            <img src="~/assets/web/image/iconShipping.jpg" class="animated rubberBand infinite slower"
+                                 alt="sample photo " width="100px" id="animated-img1">
+                            <a>
+                                <div class="mask rgba-stylish-strong"></div>
+                            </a>
+                        </div>
+                        <h5 class="font-weight-bold my-4">SUPER SPEED DELIVERY</h5>
+                        <p class="grey-text mb-0">
+                            Fast delivery within 2 hours after completing payment.
+                        </p>
+
+                    </div>
+                    <!-- Grid column -->
+
+                </div>
+                <!-- Grid row -->
+
+            </section>
+            <!--Section: Content-->
+            <!--Section: Content-->
+            <section class="text-center mt-5">
+
+                <!-- Section heading -->
+                <h3 class="font-weight-bold mb-4 pb-2">
+                    Favorite Flowers
+                </h3>
+                <!-- Section description -->
+                <p class="grey-text w-responsive mx-auto mb-5">are flower baskets selected from the most beautiful flowers under the hands of skilled florists to create aristocratic elegance.</p>
+
+
+                <!--Grid row-->
+                <div class="row d-flex justify-content-center " id="hotFlower">
+
+                    <!--Grid column-->
+                    <!--Grid column-->
+
+                </div>
+                <form class="">
+                    <button type="button" class="btn btn-outline-secondary btn-dark waves-effect">see more >></button>
+                </form>
+                <!--Grid row-->
+            </section>
+            <!--Section: Content-->
+            <!--Section: Content-->
+            <section class="text-center mt-5">
+
+                <!-- Section heading -->
+                <h3 class="font-weight-bold mb-4 pb-2">
+                    Birthday flowers
+                </h3>
+                <!-- Section description -->
+                <p class="grey-text w-responsive mx-auto mb-5">are flower baskets selected from the most beautiful flowers under the hands of skilled florists to create aristocratic elegance.</p>
+
+
+                <!--Grid row-->
+                <div class="row d-flex justify-content-center " id="birthDayFlower">
+
+                    <!--Grid column-->
+                    <!--Grid column-->
+                    <form class="">
+                        <button type="button" class="btn btn-outline-secondary btn-dark waves-effect">see more >></button>
+                    </form>
+                </div>
+                <!--Grid row-->
+
+
+            </section>
+            <!--Section: Content-->
+            <!--Section: Content-->
+            <section class="text-center dark-grey-text mt-5">
+
+                <!-- Section heading -->
+                <h3 class="font-weight-bold mb-4 pb-2">Customer reviews</h3>
+
+                <div class="wrapper-carousel-fix">
+                    <!-- Carousel Wrapper -->
+                    <div id="carousel-example-1" class="carousel no-flex testimonial-carousel slide carousel-fade" data-ride="carousel"
+                         data-interval="false">
+                        <!--Slides-->
+                        <div class="carousel-inner" role="listbox">
+                            <!--First slide-->
+                            <div class="carousel-item active">
+                                <div class="testimonial">
+                                    <!--Avatar-->
+                                    <div class="avatar mx-auto mb-4">
+                                        <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(30).jpg" class="rounded-circle img-fluid"
+                                             alt="First sample avatar image">
+                                    </div>
+                                    <!--Content-->
+                                    <p>
+                                        <i class="fas fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod
+                                        eos
+                                        id officiis hic tenetur quae quaerat ad velit ab. Lorem ipsum dolor sit amet, consectetur
+                                        adipisicing elit. Dolore cum accusamus eveniet molestias voluptatum inventore laboriosam labore
+                                        sit, aspernatur praesentium iste impedit quidem dolor veniam.
+                                    </p>
+                                    <h4 class="font-weight-bold">Anna Deynah</h4>
+                                    <h6 class="font-weight-bold my-3">Founder at ET Company</h6>
+                                </div>
+                            </div>
+                            <!--First slide-->
+                            <!--Second slide-->
+                            <div class="carousel-item">
+                                <div class="testimonial">
+                                    <!--Avatar-->
+                                    <div class="avatar mx-auto mb-4">
+                                        <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg" class="rounded-circle img-fluid"
+                                             alt="Second sample avatar image">
+                                    </div>
+                                    <!--Content-->
+                                    <p>
+                                        <i class="fas fa-quote-left"></i> Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut
+                                        odit
+                                        aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque
+                                        porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia
+                                        non numquam eius modi tempora incidunt ut labore.
+                                    </p>
+                                    <h4 class="font-weight-bold">Maria Kate</h4>
+                                    <h6 class="font-weight-bold my-3">Photographer at Studio LA</h6>
+                                </div>
+                            </div>
+                            <!--Second slide-->
+                            <!--Third slide-->
+                            <div class="carousel-item">
+                                <div class="testimonial">
+                                    <!--Avatar-->
+                                    <div class="avatar mx-auto mb-4">
+                                        <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(3).jpg" class="rounded-circle img-fluid"
+                                             alt="Third sample avatar image">
+                                    </div>
+                                    <!--Content-->
+                                    <p>
+                                        <i class="fas fa-quote-left"></i> Duis aute irure dolor in reprehenderit in voluptate velit esse
+                                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+                                        culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus
+                                        error sit voluptatem accusantium doloremque laudantium.
+                                    </p>
+                                    <h4 class="font-weight-bold">John Doe</h4>
+                                    <h6 class="font-weight-bold my-3">Front-end Developer in NY</h6>
+                                </div>
+                            </div>
+                            <!--Third slide-->
+                        </div>
+                        <!--Slides-->
+                        <!--Controls-->
+                        <a class="carousel-control-prev left carousel-control" href="#carousel-example-1" role="button"
+                           data-slide="prev">
+                            <span class="icon-prev" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next right carousel-control" href="#carousel-example-1" role="button"
+                           data-slide="next">
+                            <span class="icon-next" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                        <!--Controls-->
+                    </div>
+                    <!-- Carousel Wrapper -->
+                </div>
+
+            </section>
+            <!--Section: Content-->
+
+
+            <section class="grey lighten-2 mt-5">
+
+                <div class="flex-center">
+
+                    <!--First row-->
+                    <div class="row">
+
+                        <!--First column-->
+                        <div class="col-md-3 flex-center">
+                            <img src="https://mdbootstrap.com/img/Photos/Template/34.png" class="img-fluid wow fadeIn" data-wow-delay=".2s">
+                        </div>
+                        <!--/First column-->
+                        <!--Second column-->
+                        <div class="col-md-3 flex-center">
+                            <img src="https://mdbootstrap.com/img/Photos/Template/35.png" class="img-fluid wow fadeIn" data-wow-delay=".4s">
+                        </div>
+                        <!--/Second column-->
+                        <!--Third column-->
+                        <div class="col-md-3 flex-center">
+                            <img src="https://mdbootstrap.com/img/Photos/Template/36.png" class="img-fluid wow fadeIn" data-wow-delay=".4s">
+                        </div>
+                        <!--/Third column-->
+                        <!--Fourth column-->
+                        <div class="col-md-3 flex-center">
+                            <img src="https://mdbootstrap.com/img/Photos/Template/37.png" class="img-fluid wow fadeIn" data-wow-delay=".2s">
+                        </div>
+                        <!--/Fourth column-->
+
+                    </div>
+                    <!--/First row-->
+
+                </div>
+
+            </section>
+        </div>
+
+        <!-- Footer -->
+        <footer class="page-footer font-small blue pt-4 mt-10">
+
+            <!-- Footer Links -->
+            <div class="container-fluid text-center text-md-left">
+
+                <!-- Grid row -->
+                <div class="row">
+
+                    <!-- Grid column -->
+                    <div class="col-md-6 mt-md-0 mt-3">
+
+                        <!-- Content -->
+                        <h5 class="text-uppercase">Footer Content</h5>
+                        <p>Here you can use rows and columns to organize your footer content.</p>
+
+                    </div>
+                    <!-- Grid column -->
+
+                    <hr class="clearfix w-100 d-md-none pb-3">
+
+                    <!-- Grid column -->
+                    <div class="col-md-3 mb-md-0 mb-3">
+
+                        <!-- Links -->
+                        <h5 class="text-uppercase">Links</h5>
+
+                        <ul class="list-unstyled">
+                            <li>
+                                <a href="#!">Link 1</a>
+                            </li>
+                            <li>
+                                <a href="#!">Link 2</a>
+                            </li>
+                            <li>
+                                <a href="#!">Link 3</a>
+                            </li>
+                            <li>
+                                <a href="#!">Link 4</a>
+                            </li>
+                        </ul>
+
+                    </div>
+                    <!-- Grid column -->
+                    <!-- Grid column -->
+                    <div class="col-md-3 mb-md-0 mb-3">
+
+                        <!-- Links -->
+                        <h5 class="text-uppercase">Links</h5>
+
+                        <ul class="list-unstyled">
+                            <li>
+                                <a href="#!">Link 1</a>
+                            </li>
+                            <li>
+                                <a href="#!">Link 2</a>
+                            </li>
+                            <li>
+                                <a href="#!">Link 3</a>
+                            </li>
+                            <li>
+                                <a href="#!">Link 4</a>
+                            </li>
+                        </ul>
+
+                    </div>
+                    <!-- Grid column -->
+
+                </div>
+                <!-- Grid row -->
+
+            </div>
+            <!-- Footer Links -->
+            <!-- Copyright -->
+            <div class="footer-copyright text-center py-3">
+                © 2018 Copyright:
+                <a href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a>
+            </div>
+            <!-- Copyright -->
+            <div class="progress-wrap">
+                <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                    <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+                </svg>
+            </div>
+            <input type="hidden" id="customerID" data-id="@(Session.Contents["customerID"])" />
+        </footer>
+        <!-- Footer -->
+    </main>
+    <!--Main Layout-->
+    <!--Main Layout-->
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <!--<script type="text/javascript" src="~/assets/web/home/bootstrapMDB/js/jquery-3.3.1.min.js"></script>-->
+    <!-- Tooltips -->
+    <!--<script type="text/javascript" src="~/assets/web/home/bootstrapMDB/js/popper.min.js"></script>-->
+    <!-- Bootstrap core JavaScript -->
+    <!--<script type="text/javascript" src="~/assets/web/home/bootstrapMDB/js/bootstrap.min.js"></script>-->
+    <!-- MDB core JavaScript -->
+    <!--<script type="text/javascript" src="~/assets/web/home/bootstrapMDB/js/mdb.min.js"></script><div class="hiddendiv common"></div>-->
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <script src="~/assets/web/home/bootstrapMDB/js/jquery-3.3.1.min.js"></script>
+    <!-- Tooltips -->
+    <script src="~/assets/web/home/bootstrapMDB/js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script src="~/assets/admin/MDBBoostrap/MDBBoostrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script src="~/assets/admin/MDBBoostrap/MDB.min.js"></script><div class="hiddendiv common"></div>
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLdasOJ0lfMjIYe1Yx_tcAIKixUo4szX4&callback=initMap&libraries=places&v=beta&channel=2&map_ids=8e0a97af9386fef"
+            async defer></script>
+    <link href="~/assets/admin/admin-sbStyle/build/toastr.css" rel="stylesheet" type="text/css" />
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script src="~/assets/admin/admin-sbStyle/build/toastr.js"></script>
+    <script src="~/assets/admin/js/InnerFormValidation.js"></script>
+    <script src="~/assets/web/home/customer/index.js"></script>
+    <script type="text/javascript">
+        $(window).on('load', function () {
+            $('#mdb-preloader').delay(100).fadeOut(200);
+        });
+        // Material Select Initialization
+        $(document).ready(function () {
+            $('.overlay').addClass('zoom');
+            new WOW().init();
+            $('.mdb-select').materialSelect({
+                destroy: true,
+                validate: true,
+                labels: {
+                    validFeedback: 'Correct choice',
+                    invalidFeedback: 'Wrong choice'
+                }
+            });
+            function validateSelect(e) {
+                e.preventDefault();
+                $('.needs-validation').addClass('was-validated');
+                if ($('.needs-validation select').val() === null) {
+                    $('.needs-validation').find('.valid-feedback').hide();
+                    $('.needs-validation').find('.invalid-feedback').show();
+                    $('.needs-validation').find('.select-dropdown').val('').prop('placeholder', 'No countries selected');
+                } else {
+                    $('.needs-validation').find('.valid-feedback').show();
+                    $('.needs-validation').find('.invalid-feedback').hide();
+                }
+            }
+            $('.needs-validation select').on('change', e => validateSelect(e));
+            $('.needs-validation').on('submit', e => validateSelect(e));
+        });
+    </script>
+
+
+
+    <script type="text/javascript" src="~/assets/web/map/map.js"></script>
+    @*<script type="text/javascript">
+          google.maps.event.addDomListener(window, 'load', intilize);
+          function intilize(){
+            let eCity = Document.getElementById('txtCity');
+            let valueCity = eCity.options[e.selectedIndex].text;
+            var autocomplete = new google.maps.places.Autocomplete(valueCity);
+            google.maps.event.addEventListener(autocomplete, 'plac_changed', function(){
+             var places = autocomplete.getplace();
+             let latibute = places.geometry.location.A;
+             let logitude = places.geometry.location.F;
+             console.log(latibute);
+             console.log(logitude);
+             console.log(places.formatter_address);
+           });
+          };
+        </script>*@
+    <script type="text/javascript">
+        $(".profile").on("click", function (e) {
+            e.preventDefault();
+            var className = $(".menu").attr('class');
+            if (className.search("active") != -1) {
+                $(".menu").removeClass('active');
+            } else {
+                $(".menu").addClass('active');
+            }
+            e.stopPropagation();
+        });
+        $(window).click(function (e) {
+            $(".menu").removeClass('active');
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            "use strict";
+            //Scroll back to top
+            var progressPath = document.querySelector('.progress-wrap path');
+            var pathLength = progressPath.getTotalLength();
+            progressPath.style.transition = progressPath.style.WebkitTransition = 'none';
+            progressPath.style.strokeDasharray = pathLength + ' ' + pathLength;
+            progressPath.style.strokeDashoffset = pathLength;
+            progressPath.getBoundingClientRect();
+            progressPath.style.transition = progressPath.style.WebkitTransition = 'stroke-dashoffset 10ms linear';
+            var updateProgress = function () {
+                var scroll = $(window).scrollTop();
+                var height = $(document).height() - $(window).height();
+                var progress = pathLength - (scroll * pathLength / height);
+                progressPath.style.strokeDashoffset = progress;
+            }
+            updateProgress();
+            $(window).scroll(updateProgress);
+            var offset = 50;
+            var duration = 550;
+            jQuery(window).on('scroll', function () {
+                if (jQuery(this).scrollTop() > offset) {
+                    jQuery('.progress-wrap').addClass('active-progress');
+                } else {
+                    jQuery('.progress-wrap').removeClass('active-progress');
+                }
+            });
+            jQuery('.progress-wrap').on('click', function (event) {
+                event.preventDefault();
+                jQuery('html, body').animate({ scrollTop: 0 }, duration);
+                return false;
+            })
+
+
+        });
+    </script>
+</body>
+</html>

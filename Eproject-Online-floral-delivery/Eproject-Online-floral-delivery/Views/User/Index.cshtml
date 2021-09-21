@@ -1,0 +1,740 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="Description" content="Enter your description here" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <link href="~/assets/admin/bootstrap4/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="~/assets/admin/IDesign/css/userPage.css" rel="stylesheet" />
+    <title>User</title>
+</head>
+<body>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Delete Account</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body bodyModalDelete">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3>Are you sure you want to delete?</h3>
+                            <p>This may affect some of your future activities and we do not recommend this action.</p>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="inputRePassword" class="labelRePasswordDelete" style="width: 100%">Enter your password : </label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="password" name="reEnterPassword" id="reEnterPassword" /> <span class="countdown" style="position: absolute; top: 0; right: 10px; color: #311b92; border-left: 1px solid #616161 "></span>
+                                <p id="txtErrorReEnterPassword"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="btnSubmitDelete">Continue</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="codeOTP" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">
+                        The otp code has been sent to your phone number
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="OtpResetpassword" style="width: 100%">CODE : </label>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" name="OtpResetpassword" id="OtpResetpassword" /> <span class="countdown" style="position: absolute; top: 0; right: 10px; color: #311b92; border-left: 1px solid #616161 "></span>
+                            <p id="txtErrorOtpResetpassword"></p>
+                            <button class="sendAgain btn btn-default">
+                                send again
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="btnSubmitOTPResetpassword">SEND</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 mt-5">
+                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                        <ul class="nav ">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#">Home <span style="margin-left: 10px;">/</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">User <span style="margin-left: 10px;">/</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link disabled" href="#" style="color: #9e9e9e">Profile Settings</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-4">
+                    <div class="menuControl d-md-block d-none">
+                        <div class="card-body">
+                            <nav class="nav d-block">
+                                <a href="#profile" class="nav-link active" aria-current="page" data-toggle="tab">
+                                    <i class="fas fa-user"></i>
+                                    Profile
+                                </a>
+                                <a href="#security" class="nav-link " data-toggle="tab">
+                                    <i class="fas fa-shield-alt"></i>
+                                    Security
+                                </a>
+                                <a href="#notification" class="nav-link" data-toggle="tab">
+                                    <i class="far fa-bell"></i>
+                                    Notification
+                                </a>
+                                <a href="#billing" class="nav-link" data-toggle="tab">
+                                    <i class="fab fa-hornbill"></i>
+                                    Billing
+                                </a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-8 col-md-8">
+                    <div class="card d-md-none">
+                        <div class="card-header border-bottom mb-3 headerMenuTab">
+                            <ul class="nav nav-tabs card-header-tabs nav-fill">
+                                <li class="nav-item">
+                                    <a data-toggle="tab" href="#profile" class="nav-link " aria-current="page"><i class="fas fa-user"></i></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a data-toggle="tab" href="#security" class="nav-link active"><i class="fas fa-shield-alt"></i></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a data-toggle="tab" href="#Notification" class="nav-link"><i class="far fa-bell"></i></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a data-toggle="tab" href="#Billing" class="nav-link"><i class="fab fa-hornbill"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- content user profile -->
+                    <!-- <div class="content tab-content" style="display: none;">
+                        <div class="profileContent">
+                            <div class="row">
+                                <div class="col-md-12 headerProfile">
+                                        <p>YOUR PROFILE INFORMATION</p>
+                                        <div class="iconAction">
+                                            <span class="saveAsProfiles"><i class="fas fa-pen"></i></span>
+                                            <span class="moreOptions"><i class="fas fa-ellipsis-v"></i></span>
+                                        </div>
+                                        <div class="dropdownOption" style="display: none;">
+                                           <div class="col-md-12 deleteUser">
+                                               <p><i class="far fa-trash-alt" style="color:#757575;"></i><span>Delete User</span></p>
+                                           </div>
+                                           <div class="col-md-12 ressetPassword">
+                                               <p><i class="fas fa-redo" style="color: #757575;"></i><span>Reset Password</span></p>
+                                           </div>
+                                        </div>
+                                </div>
+                            </div>
+
+                        <form action="POST" action="javascript:void(0)" class="validate">
+                               <div class="row contentControl">
+                                   <div class="col-md-12">
+                                      <div class="row">
+                                          <div class="col-md-4">
+                                              <label for="firstName" class="focusInputLabelFirstName">First Name</label>
+                                              <input type="text" name="firstName" id="firstName" class="firstName  mask alpha obj">
+                                              <span class="errorFirstName" style="display: none;">Required First Name!</span>
+                                          </div>
+                                          <div class="col-md-4">
+                                              <label for="lastName" class="focusInputLabelLastName">Last Name</label>
+                                              <input type="text" name="lastName" id="lastName" class="lastName  mask alpha obj">
+                                              <span class="errorLastName" style="display: none;">Required Last Name!</span>
+                                         </div>
+                                         <div class="col-md-4">
+                                              <input type="date" name="birthDay" id="birthDay" class="birthDay">
+                                              <span class="errorLastName" style="display: none;">Required BirthDay</span>
+                                         </div>
+                                      </div>
+                                   </div>
+                                   <div class="col-md-12 mt-5">
+                                      <div class="row">
+                                               <div class="col-md-4" >
+                                                   <select name="" id="" class="select2 gender">
+                                                       <option value="">Gender</option>
+                                                       <option value="0">Male</option>
+                                                       <option value="1">Female</option>
+                                                   </select>
+                                           </div>
+                                           <div class="col-md-4">
+                                                   <label for="phoneNumber" class="focusInputLabelPhoneNumber ">Phone number</label>
+                                                   <input type="text" name="phoneNumber" id="phoneNumber" class="phoneNumber mask nospace num obj">
+                                                   <span class="errorphoneNumber" style="display: none;">Required phoneNumber</span>
+                                           </div>
+                                           <div class="col-md-4">
+                                               <select name="" id="" class="select2 role">
+                                                   <option value="">Roles</option>
+                                                   <option value="0">Male</option>
+                                               </select>
+                                           </div>
+                                      </div>
+                                   </div>
+                                   <div class="col-md-12 mt-5">
+                                       <div class="row">
+                                           <div class="col-md-12">
+                                               <label for="email" class="focusInputLabelEmail ">Email</label>
+                                               <input type="text" name="Email" id="Email" class="Email mask obj email">
+                                               <span class="errorEmail" style="display: none;">Required Email</span>
+                                           </div>
+                                       </div>
+                                   </div>
+                                   <div class="col-md-12 mt-5">
+                                       <div class="row">
+                                           <div class="col-md-12">
+                                               <label for="Address" class="focusInputLabelAddress " >Address</label>
+                                               <input type="text" name="Address" id="Address" class="Address mask obj">
+                                               <span class="errorAddress" style="display: none;">Required Address</span>
+                                           </div>
+                                       </div>
+                                   </div>
+                               </div>
+                           </form>
+                        </div>
+                    </div> -->
+                    <div class="card-body tab-content">
+                        <div class="tab-pane active" id="profile">
+                            <div class="content">
+                                <div class="profileContent">
+                                    <div class="row">
+                                        <div class="col-md-12 headerProfile">
+                                            <p>PROFILE</p>
+                                            <div class="iconAction">
+                                                <span class="saveAsProfiles"><i class="fas fa-pen"></i></span>
+                                                <span class="moreOptions"><i class="fas fa-ellipsis-v"></i></span>
+                                            </div>
+                                            <div class="dropdownOption" style="display: none;">
+                                                <div class="col-md-12 deleteUser" data-toggle="modal" data-target="#exampleModalCenter">
+                                                    <p><i class="far fa-trash-alt" style="color:#757575;"></i><span>Delete User</span></p>
+                                                </div>
+                                                <div class="col-md-12 ressetPassword" data-toggle="modal" data-target="#codeOTP">
+                                                    <p><i class="fas fa-redo" style="color: #757575;"></i><span>Reset Password</span></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- form content profile -->
+                                    <form action="POST" action="javascript:void(0)" class="validate">
+                                        <div class="form-row contentControl">
+                                            <div class="form-group col-md-6">
+                                                <label for="inputUserName">UserName</label>
+                                                <input type="text" class="form-control" id="inputUserName" readonly>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="inputEmail">Email</label>
+                                                <input type="email" class="form-control mask obg email" id="inputEmail" placeholder="Enter your Email">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="inputFirstName">First Name</label>
+                                                <input type="text" class="form-control mask obg alpha" id="inputFirstName" placeholder="Enter your First Name">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="inputLastName">Last Name</label>
+                                                <input type="text" class="form-control mask obg alpha " id="inputLastName" placeholder="Enter your Last Name">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="inputPhone">Phone</label>
+                                                <input type="text" class="form-control mask obg num" id="inputPhone" placeholder="Enter your Phone Number">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="inputBirthDay">BirthDay</label>
+                                                <input type="date" class="form-control mask obg" id="inputBirthDay">
+                                            </div>
+                                            <div class="form-group col-md-6 genderSelect" style="margin-left: 15px;">
+                                                <label for="inputGender" style="margin-left: 0px;">Gender</label>
+                                                <select name="" id="Gender" class="select2 gender mask obg" style="width: 90%;">
+                                                    <option value="">Gender</option>
+
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-md-5 roleSelect" style="margin-left: 0;">
+                                                <label for="inputRole" style="margin-left: 0px;" class="labelRoleSelect">Role</label>
+                                                <select name="" id="role" class="select2 role mask obg" style="width: 110%;">
+                                                    <option value="">Role</option>
+
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group col-md-12">
+                                                <label for="inputAddress">Address</label>
+                                                <input type="text" class="form-control mask obg" id="inputAddress" placeholder="Enter your Address" style="width: 95%">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="security">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <!-- change password -->
+                                    <div class="login" id="login">
+                                        <div class="col-md-12" style="padding: 0">
+                                            <p class="textLoginHeader" style="margin: 0;">Login</p>
+                                        </div>
+                                        <div class="card">
+                                            <div class="" id="headingOne">
+                                                <div class="col-md-12 changePassword" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                                    <p><i class="fas fa-key"></i><span class="textTopChange">Change Password</span> <p class="textChangePass">You should use a strong password that you have not used anywhere else</p></p>
+                                                    <button class="btn btnEditPassordShow">Edit</button>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 contentChangePassword collapse in" id="collapseOne">
+                                                <div class="card-body">
+                                                    <div class="row formContentChange">
+                                                        <div class="col-md-4">
+                                                            <label for="inputCurrentPassword" class="label-contentPassword">Current Password : </label>
+                                                            <label for="inputNewPassword" class="label-contentPassword">New Password : </label>
+                                                            <label for="inputEnterTheNewPassword" class="label-contentPassword">Enter The New Password : </label>
+                                                            <div class="col-md-12" id="forgotPassword">
+                                                                <a href="">Forgot password?</a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 contentFormInput">
+                                                            <form action="" class="formChangePassword">
+                                                                <div class="col-md-12">
+                                                                    <input type="password" name="currentPassword" id="currentPassword" class="mask obg">
+                                                                </div>
+                                                                <div class="col-md-12">
+                                                                    <input type="password" class="mask obg" name="newPassword" id="newPassword">
+                                                                    <p class="errorNewpassword" style="color: #ffff; margin-top: -25px"></p>
+                                                                </div>
+                                                                <div class="col-md-12">
+                                                                    <input type="password" name="enterNewPassword" id="enterNewPassword" class="mask obg">
+                                                                    <p class="errorEnterNewpassword" style="color: #ffff; margin-top: -25px"></p>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                        <div class="col-md-2"></div>
+                                                    </div>
+                                                    <div class="row btnSaveChange">
+                                                        <div class="col-md-3">
+                                                            <button class="btn btnSavePasswordNew" style="background: blue; color: #ffff">Save Change</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="" id="headingTwo">
+                                                <div class="col-md-12 changePassword" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                    <p><i class="far fa-user-circle"></i><span class="textTopChange">use two-factor authentication</span> <p class="textChangePass"> <span id="statusSaveLogin" style="color:blue; font-weight: bold;">.ON</span> We'll let you know if someone logs in from a device or browser you don't normally use</p></p>
+                                                    <button class="btn btnEditPassordShow">Edit</button>
+                                                </div>
+                                                <div class="col-md-12 contentSaveCookie collapse in" id="collapseTwo" style="background-color: #212121;">
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <label for="" style="position: absolute; top: 45%; margin-left: 40px; color: #757575;">Re-enter your password : </label>
+                                                        </div>
+                                                        <div class="col-md-8" style="border-bottom: 1px solid #757575;">
+                                                            <div class="browserCurrent">
+                                                                <div class="col-md-12 mt-3">
+                                                                    <form action="">
+                                                                        <input type="password" name="rePassword" id="rePassword" class="mask obg">
+                                                                        <div style="margin-top: 10px;">
+                                                                            <a href="">Forgot password?</a>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                <button class="btn btnSubmitPassword">Next</button>
+                                                                <input type="hidden" data-name="@Session.Contents["userName"]" id="userNameSession" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- change password -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- content user profile -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/assets/admin/bootstrap4/js/popper.min.js"></script>
+    <script src="~/assets/admin/bootstrap4/js/bootstrap.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script src="~/assets/admin/js/InnerFormValidation.js"></script>
+    <script src="~/assets/admin/IDesign/js/userPage.js"></script>
+    <script>
+        let roleID, createdDate, ModifiedDate, customerID, isActive, isDelete, password, tokenID, sendingValOTP, sendingValOtprespose, phoneNumber, email;
+        $(document).ready(function () {
+            var userName = $("#userNameSession").data("name");
+            getUserSetting(userName);
+            $("#currentPassword").val(password);
+        });
+        function putDataToForm(dataJson) {
+            var rowGender = '';
+            createdDate = dataJson.createdDate;
+            ModifiedDate = dataJson.ModifiedDate;
+            customerID = dataJson.customerID;
+            isActive = dataJson.isActive;
+            isDelete = dataJson.isDelete;
+            password = dataJson.password;
+            tokenID = dataJson.tokenID;
+            email = dataJson.email;
+            phoneNumber = dataJson.phoneNumber;
+            $("#currentPassword").val(password);
+            $("#inputUserName").val(dataJson.userName);
+            $("#inputEmail").val(email);
+            $("#inputFirstName").val(dataJson.firstName);
+            $("#inputLastName").val(dataJson.lastName);
+            $("#inputPhone").val(phoneNumber);
+            var BirthDay = dataJson.birthDay;
+            var convertBirhDay = BirthDay.toString("yyyy-MM-dd").split("T")[0];
+            $("#inputBirthDay").val(convertBirhDay);
+            $("#inputAddress").val(dataJson.address);
+            roleID = dataJson.roleID;
+            gender = dataJson.gender;
+            if (gender == true) {
+                rowGender += `<option value="1" selected>Male</option>`;
+                rowGender += `<option value="0">Female</option>`;
+            } else {
+                rowGender += `<option value="1">Male</option>`;
+                rowGender += `<option value="0" selected>Female</option>`;
+            }
+            $(".gender").append(rowGender);
+        }
+        //get user profile
+        async function getUserSetting(userName) {
+            $.ajax({
+                url: "/User/getUser",
+                type: 'POST',
+                dataType: 'json',
+                contentType: "application/json; charset=UTF-8",
+                data: JSON.stringify({ userName: userName }),
+                success: function (respose) {
+                    //convert data to JSON
+                    var dataJson = JSON.parse(respose);
+
+                    console.log(dataJson);
+                    if (respose != null) {
+                        if (respose === 1) {
+                            window.location.href = "/Home/error404";
+                        }
+                        putDataToForm(dataJson);
+                        //console.log("from : " + dataJson.birthDay + " To " + convertBirhDay);
+                    }
+                },
+                error: function (respose) {
+
+                }
+            });
+
+            setTimeout(function () {
+                $.getJSON("/User/getAllRoles", function (respose) {
+                    var dataConvert = JSON.parse(respose);
+                    //console.log(dataConvert);
+                    putRoleSelect(dataConvert);
+                });
+            }, 100)
+        };
+        function putRoleSelect(dataConvert) {
+            var rows = '';
+            for (var item of dataConvert) {
+                if (item.roleID === roleID) {
+                    rows += `<option value="${item.roleID}" selected>${item.name}</option>`;
+                } else {
+                    rows += `<option value="${item.roleID}">${item.name}</option>`;
+                }
+            }
+            $(".role").append(rows);
+        }
+        //button click update profile
+        $(document).on("click", ".btnSubmit", function (e) {
+            e.preventDefault();
+            var valData = new Object();
+            valData.customerID = customerID;
+            valData.createdDate = createdDate;
+            valData.ModifiedDate = ModifiedDate;
+            valData.customerID = customerID;
+            valData.isActive = isActive;
+            valData.isDelete = isDelete;
+            valData.password = password;
+            valData.tokenID = tokenID;
+            valData.userName = $("#inputUserName").val();
+            valData.email = $("#inputEmail").val();
+            valData.firstName = $("#inputFirstName").val();
+            valData.lastName = $("#inputLastName").val();
+            valData.phoneNumber = $("#inputPhone").val();
+            valData.birthDay = $("#inputBirthDay").val();
+            valData.address = $("#inputAddress").val();
+            valData.roleID = $(".role").val();
+            var genderEnter = $(".gender").val();
+            if (genderEnter == 1) {
+                valData.gender = true;
+            } else {
+                valData.gender = false;
+            }
+            updateProfile(valData);
+        });
+        function updateProfile(valData) {
+            $.ajax({
+                url: "/User/updateProfile",
+                type: 'POST',
+                dataType: 'json',
+                contentType: "application/json; charset=UTF-8",
+                data: JSON.stringify(valData),
+                success: function (respose) {
+                    console.log(respose);
+                },
+                error: function (respose) {
+
+                }
+            });
+        }
+        //Button click remove user
+        $(document).on("click", "#btnSubmitDelete", function (e) {
+            e.preventDefault();
+            var rePasswordVal = $("#reEnterPassword").val();
+            if (rePasswordVal == "") {
+                $("#reEnterPassword").css("border", "1px solid red");
+                $("#txtErrorReEnterPassword").text("Required password!");
+                $("#txtErrorReEnterPassword").css("color", "red");
+            } else if (rePasswordVal != password) {
+                $("#reEnterPassword").css("border", "1px solid red");
+                $("#txtErrorReEnterPassword").text("Invalid password!");
+                $("#txtErrorReEnterPassword").css("color", "red");
+            } else {
+                $("#reEnterPassword").val("");
+                $("#reEnterPassword").css("border", "1px solid #000");
+                $("#txtErrorReEnterPassword").text("");
+                $(".labelRePasswordDelete").text("CODE : ");
+                $("#reEnterPassword").addClass("inputCodeOTP");
+                $("#reEnterPassword").removeAttr("id");
+                $("#btnSubmitDelete").text("SEND");
+                $("#btnSubmitDelete").addClass("submitOTP");
+                $("#btnSubmitDelete").removeAttr("id");
+                $("#txtErrorReEnterPassword").addClass("txtErrorOTP");
+                $("#txtErrorReEnterPassword").removeAttr("id");
+                $(".inputCodeOTP").attr("type", "number");
+                $(".inputCodeOTP").css("text-align", "center");
+
+                sendingOTP(phoneNumber);
+            }
+        });
+
+        $(document).on("click", ".submitOTP", function (e) {
+            e.preventDefault();
+            sendingValOTP = $(".inputCodeOTP").val();
+            if (sendingValOTP == "") {
+                $(".txtErrorOTP").text("Required code OTP!");
+            } else {
+
+                if (sendingValOtprespose != sendingValOTP) {
+                    $(".txtErrorOTP").text("Invalid code OTP!");
+                    $(".txtErrorOTP").css("color", "red");
+                } else {
+                    removeProfile(customerID);
+                }
+            }
+        });
+
+        //countdown
+        async function countdownOTP(otp) {
+            var timer2 = "5:01";
+            await setInterval(function () {
+                var timer = timer2.split(":");
+                var minutes = parseInt(timer[0], 10);
+                var seconds = parseInt(timer[1], 10);
+                --seconds;
+                minutes = (seconds < 0) ? --minutes : minutes;
+                if (minutes < 0) {
+                    otp = null;
+                };
+                seconds = (seconds < 0) ? 59 : seconds;
+                seconds = (seconds < 10) ? '0' + seconds : seconds;
+                $(".countdown").html(minutes + ':' + seconds);
+                timer2 = minutes + ':' + seconds;
+            }, 1000);
+        }
+
+        //sendding OTP
+        function sendingOTP(phoneNumber) {
+            $.ajax({
+                url: "/SMS/SendSMS",
+                type: 'POST',
+                dataType: 'json',
+                contentType: "application/json; charset=UTF-8",
+                data: JSON.stringify({ phoneNumber: phoneNumber }),
+                success: function (respose) {
+                    console.log(respose);
+                    if (respose == 1) {
+                        window.location.href = "/Home/error404";
+                    } else if (respose == 0) {
+
+                    }
+                    //countdown 5 minutes otp sendding
+                    countdownOTP(respose);
+
+                    sendingValOtprespose = respose;
+                },
+                error: function (respose) {
+
+                }
+            });
+        };
+
+        //Remove user
+        function removeProfile(customerID) {
+            $.ajax({
+                url: "/User/deleteProfile",
+                type: 'POST',
+                dataType: 'json',
+                contentType: "application/json; charset=UTF-8",
+                data: JSON.stringify({ customerID: customerID }),
+                success: function (respose) {
+                    console.log(respose);
+                    DataJsonConvertDeleteCustomer = JSON.parse(respose);
+                    if (DataJsonConvertDeleteCustomer == 1) {
+                        window.location.href = "/Home/error404";
+                    }
+                    window.location.href = "/Home/Index";
+                }
+            });
+        }
+
+
+        //event click reset password
+        $(document).on("click", ".ressetPassword", function (e) {
+            e.preventDefault();
+            sendingOTP(phoneNumber);
+        });
+        //button click submit OTP
+        $(document).on("click", "#btnSubmitOTPResetpassword", function (e) {
+            e.preventDefault();
+            var otpResetPassword = $("#OtpResetpassword").val();
+            if (otpResetPassword == "") {
+                $("#txtErrorOtpResetpassword").html("Required code OTP!");
+                $("#txtErrorOtpResetpassword").css("color", "red");
+                $("#OtpResetpassword").css("border", "1px solid red");
+            } else if (sendingValOtprespose != otpResetPassword) {
+                $("#txtErrorOtpResetpassword").html("Invalid code OTP!");
+                $("#txtErrorOtpResetpassword").css("color", "red");
+            } else {
+                sendingValOtprespose = null;
+                resetPassword(email);
+            }
+        });
+        function resetPassword(email) {
+            $.ajax({
+                url: "/SMS/sendEmail",
+                type: 'POST',
+                dataType: 'json',
+                contentType: "application/json; charset=UTF-8",
+                data: JSON.stringify({ email : email, type: "password" }),
+                success: function (respose) {
+                    if (respose == 1) {
+                        window.location.href = "/Home/error404"
+                    } else {
+                        changePassword(respose);
+                    }
+                },
+                error: function (respose) {
+
+                }
+            });
+        }
+        function changePassword(password) {
+            console.log(password);
+            $.ajax({
+                url: "/User/resetPassword",
+                type: "POST",
+                dataType: 'json',
+                contentType: "application/json; charset=UTF-8",
+                data: JSON.stringify({ customerID : customerID, newPassword: password }),
+                success: function (resposePass) {
+                    if (resposePass == 1) {
+                        window.location.href = "/Home/error404"
+                    } else {
+                        window.location.href = "/Login/Index"
+                    }
+                },
+                error: function (resposePass) {
+
+                }
+            });
+        }
+        //button click send otp again
+        $(document).on("click", ".sendAgain", function (e) {
+            e.preventDefault();
+            sendingOTP(phoneNumber);
+        });
+        //button click change password
+        $(document).on("click", ".btnSavePasswordNew", function (e) {
+            e.preventDefault();
+            var newPasswordChange = $("#newPassword").val();
+            var enterNewPassword = $("#enterNewPassword").val();
+            if (newPasswordChange == "") {
+                $(".errorNewpassword").html("Required new password!");
+                $(".errorNewpassword").css("color", "red");
+                $("#newPassword").css("border", "1px solid red");
+            }
+            if (enterNewPassword == "") {
+                $(".errorEnterNewpassword").html("Required enter new password!");
+                $(".errorEnterNewpassword").css("color", "red");
+                $("#enterNewPassword").css("border", "1px solid red");
+            }
+            if (newPasswordChange != enterNewPassword) {
+                $(".errorEnterNewpassword").html("Re-entered password does not match!");
+                $(".errorEnterNewpassword").css("color", "red");
+                $("#enterNewPassword").css("border", "1px solid red");
+            }
+            changePassword(enterNewPassword);
+        });
+    </script>
+</body>
+</html>

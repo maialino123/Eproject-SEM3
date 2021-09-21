@@ -1,0 +1,469 @@
+﻿@model List<Eproject_Online_floral_delivery.DAL.tbl_category>
+@{
+    ViewBag.Title = "addProduct";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    .error {
+        border-color: red !important;
+    }
+
+    .success {
+        border-color: green !important;
+    }
+
+    .select2-container .select2-selection--single {
+        height: 42px !important;
+    }
+
+    .select2-container--default .select2-selection--single {
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+
+    #dropZone {
+        border: 1px dotted blue;
+        text-align: center;
+        height: 100px;
+        vertical-align: middle !important;
+        line-height: 90px
+    }
+
+    .Description {
+        display: flex;
+        float: right;
+        position: absolute;
+        top: 0;
+        margin-top: 220px;
+        justify-content: right;
+        margin-left: 650px;
+        height: 500px !important
+    }
+</style>
+
+<main>
+    <div class="container-fluid">
+        <h1 class="mt-4">Add Product</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="../Admin/Dashboard">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="../Admin/Product">Product</a></li>
+            <li class="breadcrumb-item active">add product</li>
+        </ol>
+        <form action="javascript:void(0)" class="validate" enctype="multipart/form-data" method="post" id="myForm">
+            <div class="row">
+                <div class="row mb-3">
+                    <div class="col-md-3">
+                        <div class="form-control mb-3 mb-md-0">
+                            <label for="productName">Product Name</label>
+                            <input class="form-control mask alphanumeric obg" name="productName" id="productName" type="text" placeholder="Enter product name" data-invalidmessage="Enter product name" autocomplete="off"/>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-control mb-3 mb-md-0">
+                            <label for="">Category</label>
+                            <select class="form-control col-md-12 select2 obg" id="categoryName" name="categoryName">
+                                <option value="">Category Name</option>
+                                @foreach (var item in Model)
+                                {
+                                    <option value="@(item.categoryID)">@(item.name)</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-control mb-3 mb-md-0 ">
+                            <label for="">Quantity</label>
+                            <div class="counter form-control" id="quantityNumber" name="quantity" min="1" max="9999"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-control mb-3 mb-md-0 ">
+                            <label for="productName">Price</label>
+                            <input class="form-control mask num obg" name="price" id="price" type="text" placeholder="Enter Price" data-invalidmessage="Enter Price" autocomplete="off" />
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-control mb-3 mb-md-0 ">
+                            <label for="productName">
+                                Reduced price
+                            </label>
+                            <input class="form-control mask num" name="priceSale" id="priceSale" type="text" placeholder="Enter Reduced Price" autocomplete="off"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-5">
+                        <div class="form-control">
+                            <div class="form-check-inline">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="optradio" id="isActive" checked> Active
+                                </label>
+                            </div>
+                            <div class="form-check-inline">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="optradio"> Non Active
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-6 title">
+                    <div class="col-md-5">
+                        <div class="form-control mb-3 mb-md-0">
+                            <label for="">
+                                Title
+                            </label>
+                            <textarea class="ckeditor" name="metaTitle">
+
+                            </textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row col-md-6 pull-right Description mb-6" style="">
+                <div class="col-md-12">
+                    <div class="mb-6 mb-md-3">
+                        <label for="">
+                            Description
+                        </label>
+                        <textarea class="ckeditor" name="description">
+
+                     </textarea>
+                    </div>
+                </div>
+            </div>
+
+            <br />
+            <div class="row col-md-6 pull-right btnSystem" style="right: 0; ">
+                <div class="col-md-2">
+                    <div class="mb-6">
+                        <button class="btn btn-primary" id="btnSubmit">Add To List</button>
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <div class="mb-6">
+                        <button class="btn btn-secondary" id="btnReset" style="color: #fff !important">
+                            Resset
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="container-fluid">
+                <br />
+                <div class="col-md-12 text-center">
+                    <h1>List of Products Needed More</h1>
+                </div>
+                <br />
+                <br />
+                <div class="col-md-12">
+                    <div class="card-header justify-content-center text-justify">
+                        <i class="fas fa-table me-1"></i>
+                        List Items Products
+                        <!--Elegant-->
+                    </div>
+                    <div class="card-body">
+                        <table id="datatablesSimple">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Category</th>
+                                    <th>Quantity</th>
+                                    <th>Price</th>
+                                    <th>Price Sale</th>
+                                    <th>Day Start Sale</th>
+                                    <th>Day End Sale</th>
+                                    <th>Title</th>
+                                    <th>Description</th>
+                                    <th>Active</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Category</th>
+                                    <th>Quantity</th>
+                                    <th>Price</th>
+                                    <th>Price Sale</th>
+                                    <th>Day Start Sale</th>
+                                    <th>Day End Sale</th>
+                                    <th>Title</th>
+                                    <th>Description</th>
+                                    <th>Active</th>
+                                </tr>
+                            </tfoot>
+                            <tbody class="ListItemAdd">
+                            </tbody>
+                        </table>
+                        <div class="col-md-12" style="float: right">
+                            <button  class="btn btn-primary" id="btnClose">Close</button>
+                            <button id="saveOrder" type="submit" class="btn btn-danger">Save Order</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @*<div class="row">
+                    <div class="col-md-2">
+                        <button class="btn btn-lg btn-indigo" data-toggle="modal" data-target="#myModal">Open Modal</button>
+                    </div>
+                </div>*@
+
+            <style>
+                .error {
+                    border-color: red !important;
+                }
+
+                .success {
+                    border-color: green !important;
+                }
+            </style>
+        </form>
+    </div>
+</main>
+
+@section scripts{
+    @*add validate form*@
+    <script type="text/javascript" src="~/assets/admin/js/InnerFormValidation.js"></script>
+    @*add library boostrap select*@
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    @*quantity number spinder*@
+    <script src="~/assets/admin/js/numberSpinder/plugin.js"></script>
+    @*toasts jquery*@
+    <link href="~/assets/admin/admin-sbStyle/build/toastr.css" rel="stylesheet" type="text/css" />
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script src="~/assets/admin/admin-sbStyle/build/toastr.js"></script>
+    @*toasts jquery end*@
+    @*modal date sale product*@
+    <script src="~/assets/admin/modal-sale-date/js/popper.js"></script>
+    <script src="~/assets/admin/modal-sale-date/js/main.js"></script>
+    @*modal date sale product end*@
+
+    @*ckeditor*@
+    <script src="~/Scripts/ckeditor/ckeditor.js"></script>
+    @*cxDialog*@
+    <link href="~/assets/admin/js/cxDialog/jquery.cxdialog.css" rel="stylesheet" />
+    <script src="~/assets/admin/js/cxDialog/jquery.cxdialog.min.js"></script>
+    <script src="~/assets/admin/MDBBoostrap/fontAll.min.js"></script>
+    @*toottip*@
+    @*<link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+        <link href="~/assets/admin/js/toottipShow/css/envato-preview.css" rel="stylesheet" />
+        <script src="~/assets/admin/js/toottipShow/js/envato-preview.js"></script>*@
+    <script type="text/javascript">
+        let dayStartSale, dayEndSale;
+        $(document).ready(function (e) {
+            $('.select2').select2();
+            $('#quantityNumber').htmlNumberSpinner();
+            toastr.options = {
+                closeButton: true,
+                debug: true,
+                newestOnTop: true,
+                progressBar: true,
+                positionClass: "toast-top-right",
+                preventDuplicates: false,
+                onclick: null,
+                showDuration: 300,
+                hideDuration: 1000,
+                timeOut: 5000,
+                extendedTimeOut: 1000,
+                showEasing: "swing",
+                hideEasing: "linear",
+                showMethod: "fadeIn",
+                hideMethod: "fadeOut"
+            };
+            $.cxDialog.defaults.background = '#000';
+            //$('input[type="file"]').change(function (e) {
+            //    var fileSize = e.target.files[0].size;
+            //    var ext = $('#file').val().split('.').pop().toLowerCase();
+            //    if ($.inArray(ext, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
+            //        document.getElementById('file').value = "";
+            //        //Show toast
+            //        shortCutFunction = "error";
+            //        msg = "invalid extension use (gif , png, jpg, jpeg)!";
+            //        title = "error!"
+            //        var $toast = toastr[shortCutFunction](msg, title);
+            //        $toastlast = $toast;
+            //        //Show toast
+            //    }
+            //    if (fileSize > 2097152) {
+            //        document.getElementById('file').value = "";
+            //        //Show toast
+            //        shortCutFunction = "error";
+            //        msg = "File size is greater than 2MB";
+            //        title = "error!"
+            //        var $toast = toastr[shortCutFunction](msg, title);
+            //        $toastlast = $toast;
+            //        //Show toast
+            //    } else {
+
+            //        fileName = e.target.files[0].name;
+            //        UploadImage = e.target.files[0];
+            //        console.log(UploadImage);
+            //        $('.envato-preview').envatoPreview();
+            //        $('.envato-preview').attr("data-preview-url", URL.createObjectURL(UploadImage));
+            //        $('.envato-preview').attr("data-item-name", "Preview Image : " + fileName);
+            //        $('.envato-preview').attr("data-item-author", "Size : " + fileSize);
+            //    }
+            //});
+            
+        });
+        $("#priceSale").on("blur", function () {
+            $.cxDialog({
+                title: 'Discount start date to end date',
+                info: `<div class="row mb-3" id="datePriceSale">
+                                                                        <div class="col-md-12">
+                                                                            <div class="form-control mb-3 mb-md-0">
+                                                                                From
+                                                                        <div class="mb-3" id="startDate">
+                                                                            <input class="form-control mask num obg" name="startDate" id="" type="date" />
+                                                                        </div>
+                                                                        To
+                                                                        <div class="mb-3" id="endDate">
+                                                                            <input class="form-control mask num obg" name="endDate" id="" type="date" />
+                                                                        </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>`,
+                okText: 'Confirm',
+                no: null,
+                noText: 'Cancel',
+                ok: function () {
+                    dayStartSale = $('#startDate').find("input").val();
+                    dayEndSale = $('#endDate').find("input").val();
+                    console.log(dayStartSale);
+                    console.log(dayEndSale);
+                },
+                no: function () {
+                    console.log('cancel');
+                },
+                baseClass: 'ios'
+            });
+        });
+
+        $(document).on("click", "#btnSubmit", function (e) {
+            e.preventDefault();
+            var valData = new Object();
+            valData.name = $('#productName').val();
+            valData.categoryID = $('#categoryName').val();
+            valData.quantity = $('#quantityNumber').getSpinnerValue();
+            valData.price = $('#price').val();
+            if ($('#priceSale').val() != null) {
+                valData.priceSale = $('#priceSale').val();
+                valData.dayStartSale = dayStartSale;
+                valData.dayEndSale = dayEndSale;
+            };
+            valData.metaTitle = CKEDITOR.instances['metaTitle'].getData();
+            valData.description = CKEDITOR.instances['description'].getData();
+            if ($('input[id=isActive]:checked', '#myForm').val() != undefined) {
+                valData.isActive = true;
+            } else {
+                valData.isActive = false;
+            }
+            if (valData != null) {
+                //addProduct(valData);
+                //ADD item to table product Items
+                var productItem = '<tr><td>' + valData.name + '</td><td>'
+                    + valData.categoryID + '</td><td>' + valData.quantity + '</td><td>' + valData.price
+                    + '</td><td>' + valData.priceSale + '</td><td>' + valData.dayStartSale + '</td><td>'
+                    + valData.dayEndSale + '</td><td>' + valData.metaTitle + '</td><td>' + valData.description
+                    + '</td><td>' + valData.isActive
+                    + '</td><td><button id="btnRemoveItem" data-id="0" style="margin-left: 8px"><i class="far fa-trash-alt"></i></button></td></tr>';
+                console.log(productItem);
+                $('.ListItemAdd').append(productItem);
+            }
+        });
+
+        //remove item from list product item
+        $(document).on("click", "#btnRemoveItem", function (e) {
+            e.preventDefault();
+            if ($(this).attr('data-id') == "0") {
+                $(this).parents('tr').css("background-color", "#ff6347").fadeOut(800, function () {
+                    $(this).remove();
+                });
+            };
+        });
+
+        //After Click Save Button Pass All Data View To Controller For Save Database
+        $(document).on("click", "#saveOrder", function (e) {
+            e.preventDefault();
+            var productArr = [];
+            productArr.length = 0;
+
+            $.each($('#datatablesSimple tbody tr'), function () {
+                productArr.push({
+                    name: $(this).find('td:eq(0)').html(),
+                    categoryID: $(this).find('td:eq(1)').html(),
+                    quantity: $(this).find('td:eq(2)').html(),
+                    price: $(this).find('td:eq(3)').html(),
+                    priceSale: $(this).find('td:eq(4)').html(),
+                    dayStartSale: $(this).find('td:eq(5)').html(),
+                    dayEndSale: $(this).find('td:eq(6)').html(),
+                    metaTitle: $(this).find('td:eq(7)').html(),
+                    description: $(this).find('td:eq(8)').html(),
+                    isActive: $(this).find('td:eq(9)').html()
+                });
+            });
+            console.log(productArr);
+            addProduct(productArr);
+        });
+
+        function addProduct(valData) {
+            $.ajax({
+                url: "/Admin/addProduct",
+                type: 'POST',
+                dataType: 'json',
+                contentType: 'application/json; charset=UTF-8',
+                data: JSON.stringify(valData),
+                success: function (respose) {
+                    console.log(respose);
+                    if (respose != null) {
+                        //Show toast
+                        shortCutFunction = "success";
+                        msg = "Successfully added a new product.";
+                        title = "success!"
+                        var $toast = toastr[shortCutFunction](msg, title);
+                        $toastlast = $toast;
+                        //Show toast
+                        setTimeout(function () {
+                            location.reload();
+                        }, 1000);
+                    } else {
+                        //Show toast
+                        shortCutFunction = "error";
+                        msg = "Add new failed products.";
+                        title = "error!"
+                        var $toast = toastr[shortCutFunction](msg, title);
+                        $toastlast = $toast;
+                        //Show toast
+                    }
+                },
+                error: function (respose) {
+                    console.log(respose);
+                },
+                statusCode: {
+                    404: function () {
+                        //window.location.href = "/Home/page404";
+                    }
+                },
+            });
+        };
+        //btn click load form
+        $('#btnReset').on("click", function () {
+            window.location.reload();
+        });
+        //btn click redirect product tables
+        $('#btnClose').on("click", function (e) {
+            e.preventDefault();
+            window.location.href = "/Admin/Product";
+        });
+    </script>
+
+}
+
+
+

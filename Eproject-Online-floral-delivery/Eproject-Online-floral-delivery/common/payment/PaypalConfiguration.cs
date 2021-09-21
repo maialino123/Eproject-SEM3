@@ -16,8 +16,8 @@ namespace Eproject_Online_floral_delivery.common.payment
         static PaypalConfiguration()
         {
             var config = getConfig();
-            clientId = "Aec1dxqv1-HzGnfSX9zubd2u1arJq7k6r3wZ78dxzOlr76I5IuSU6VT5ZbBHXy2LQSnfYSkzzYoiMSO_";
-            clientSecret = "EK0vgLaQZjz5ou7fe8MM_0yswyjSHM7VmGKp0Y48WCbPhgwb6nBv3FfnguIvJ31m1Dty8F9CrU8gdlE-";
+            clientId = config["clientId"];
+            clientSecret = config["clientSecret"];
         }
 
         private static Dictionary<string, string> getConfig()

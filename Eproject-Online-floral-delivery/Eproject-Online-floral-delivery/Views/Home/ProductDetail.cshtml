@@ -1,0 +1,780 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Floral Delivery</title>
+    <!-- Font Awesome -->
+    <!--<link rel="stylesheet" href="~/assets/web/home/bootstrapMDB/fontawesome.css">-->
+    <!-- Bootstrap core CSS -->
+    <!--<link href="~/assets/web/home/bootstrapMDB/bootstrap.min.css" rel="stylesheet">-->
+    <!-- Material Design Bootstrap -->
+    <!--<link href="~/assets/web/home/bootstrapMDB/mdb.min.css" rel="stylesheet">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>-->
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="~/assets/admin/MDBBoostrap/mdbBootstrap.min.css" rel="stylesheet" />
+    <!-- Material Design Bootstrap -->
+    <link href="~/assets/admin/MDBBoostrap/MDB.min.css" rel="stylesheet" />
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <style>
+            header {
+                background-color: blue !important;
+            }
+
+            .picZoomer {
+                position: relative;
+                /*margin-left: 40px;
+        padding: 15px;*/
+            }
+
+            .picZoomer-pic-wp {
+                position: relative;
+                overflow: hidden;
+                text-align: center;
+            }
+
+                .picZoomer-pic-wp:hover .picZoomer-cursor {
+                    display: block;
+                }
+
+            .picZoomer-zoom-pic {
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+
+            .picZoomer-pic {
+                /*width: 100%;
+        height: 100%;*/
+            }
+
+            .picZoomer-zoom-wp {
+                display: none;
+                position: absolute;
+                z-index: 999;
+                overflow: hidden;
+                border: 1px solid #eee;
+                height: 460px;
+                margin-top: -19px;
+            }
+
+            .picZoomer-cursor {
+                display: none;
+                cursor: crosshair;
+                width: 100px;
+                height: 100px;
+                position: absolute;
+                top: 0;
+                left: 0;
+                border-radius: 50%;
+                border: 1px solid #eee;
+                background-color: rgba(0,0,0,.1);
+            }
+
+            .picZoomCursor-ico {
+                width: 23px;
+                height: 23px;
+                position: absolute;
+                top: 40px;
+                left: 40px;
+            }
+
+            .my_img {
+                vertical-align: middle;
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                margin: auto;
+                height: 100%;
+            }
+
+            .piclist li {
+                display: inline-block;
+                width: 90px;
+                height: 114px;
+                border: 1px solid #eee;
+            }
+
+                .piclist li img {
+                    width: 97%;
+                    height: auto;
+                }
+
+            /* custom style */
+            .picZoomer-pic-wp,
+            .picZoomer-zoom-wp {
+                border: 1px solid #eee;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .row-sm .col-md-6 {
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+
+            /*===pic-Zoom===*/
+            ._boxzoom .zoom-thumb {
+                width: 90px;
+                display: inline-block;
+                vertical-align: top;
+                margin-top: 0px;
+            }
+
+                ._boxzoom .zoom-thumb ul.piclist {
+                    padding-left: 0px;
+                    top: 0px;
+                }
+
+            ._boxzoom ._product-images {
+                width: 80%;
+                display: inline-block;
+            }
+
+                ._boxzoom ._product-images .picZoomer {
+                    width: 100%;
+                }
+
+                    ._boxzoom ._product-images .picZoomer .picZoomer-pic-wp img {
+                        left: 0px;
+                    }
+
+                    ._boxzoom ._product-images .picZoomer img.my_img {
+                        width: 100%;
+                    }
+
+            .piclist li img {
+                height: 100px;
+                object-fit: cover;
+            }
+
+            /*======products-details=====*/
+            ._product-detail-content {
+                background: #fff;
+                padding: 15px;
+                border: 1px solid lightgray;
+            }
+
+                ._product-detail-content p._p-name {
+                    color: black;
+                    font-size: 20px;
+                    border-bottom: 1px solid lightgray;
+                    padding-bottom: 12px;
+                }
+
+            .p-list span {
+                margin-right: 15px;
+            }
+
+                .p-list span.price {
+                    font-size: 25px;
+                    color: #318234;
+                }
+
+            ._p-qty > span {
+                color: black;
+                margin-right: 15px;
+                font-weight: 500;
+            }
+
+            ._p-qty .value-button {
+                display: inline-flex;
+                border: 0px solid #ddd;
+                margin: 0px;
+                width: 30px;
+                height: 35px;
+                justify-content: center;
+                align-items: center;
+                background: #fd7f34;
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -khtml-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+                color: #fff;
+            }
+
+            ._p-qty .value-button {
+                border: 0px solid #fe0000;
+                height: 35px;
+                font-size: 20px;
+                font-weight: bold;
+            }
+
+            ._p-qty input#number {
+                text-align: center;
+                border: none;
+                border-top: 1px solid #fe0000;
+                border-bottom: 1px solid #fe0000;
+                margin: 0px;
+                width: 50px;
+                height: 35px;
+                font-size: 14px;
+                box-sizing: border-box;
+            }
+
+            ._p-add-cart {
+                margin-left: 0px;
+                margin-bottom: 15px;
+            }
+
+            .p-list {
+                margin-bottom: 10px;
+            }
+
+            ._p-features > span {
+                display: block;
+                font-size: 16px;
+                color: #000;
+                font-weight: 500;
+            }
+
+            ._p-add-cart .buy-btn {
+                background-color: #fd7f34;
+                color: #fff;
+            }
+
+            ._p-add-cart .btn {
+                text-transform: capitalize;
+                padding: 6px 20px;
+                /* width: 200px; */
+                border-radius: 52px;
+            }
+
+            ._p-add-cart .btn {
+                margin: 0px 8px;
+            }
+
+
+            /*========box========*/
+            .sq_box {
+                padding-bottom: 5px;
+                border-bottom: solid 2px #fd7f34;
+                background-color: #fff;
+                text-align: center;
+                padding: 15px 10px;
+                margin-bottom: 20px;
+                border-radius: 4px;
+            }
+
+            .item .sq_box span.wishlist {
+                right: 5px !important;
+            }
+
+            .sq_box span.wishlist {
+                position: absolute;
+                top: 10px;
+                right: 20px;
+            }
+
+            .sq_box span {
+                font-size: 14px;
+                font-weight: 600;
+                margin: 0px 10px;
+            }
+
+                .sq_box span.wishlist i {
+                    color: #adb5bd;
+                    font-size: 20px;
+                }
+
+            .sq_box h4 {
+                font-size: 18px;
+                text-align: center;
+                font-weight: 500;
+                color: #343a40;
+                margin-top: 10px;
+                margin-bottom: 10px !important;
+            }
+
+            .sq_box .price-box {
+                margin-bottom: 15px !important;
+            }
+
+            .sq_box .btn {
+                border-radius: 50px;
+                padding: 5px 13px;
+                font-size: 15px;
+                color: #fff;
+                background-color: #fd7f34;
+                font-weight: 600;
+            }
+
+            .sq_box .price-box span.price {
+                text-decoration: line-through;
+                color: #6c757d;
+            }
+
+            .sq_box span {
+                font-size: 14px;
+                font-weight: 600;
+                margin: 0px 10px;
+            }
+
+            .sq_box .price-box span.offer-price {
+                color: #28a745;
+            }
+
+            .sq_box img {
+                object-fit: cover;
+                height: 150px !important;
+                margin-top: 20px;
+            }
+
+            .sq_box span.wishlist i:hover {
+                color: #fd7f34;
+            }
+    </style>
+</head>
+<body>
+    <input type="hidden" data-id="@ViewBag.productID" id="productID" />
+    <header>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="https://mdbootstrap.com/previews/docs/latest/html/intros/intro-register-classic-form.html#">
+                    <strong>MDB</strong>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-7" aria-controls="navbarSupportedContent-7" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent-7">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link waves-effect waves-light" href="https://mdbootstrap.com/previews/docs/latest/html/intros/intro-register-classic-form.html#">
+                                Home
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link waves-effect waves-light" href="https://mdbootstrap.com/previews/docs/latest/html/intros/intro-register-classic-form.html#">Shop</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link waves-effect waves-light" href="https://mdbootstrap.com/previews/docs/latest/html/intros/intro-register-classic-form.html#">Blog</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link waves-effect waves-light" href="https://mdbootstrap.com/previews/docs/latest/html/intros/intro-register-classic-form.html#">Support</a>
+                        </li>
+                    </ul>
+                    <form class="form-inline">
+                        <ul class="navbar-nav ml-auto nav-flex-icons">
+                            <li class="nav-item cart">
+                                <a href="#cart" class="nav-link waves-effect pop" data-container="body"
+                                   data-toggle="popover"
+                                   data-placement="bottom"><span class="badge red z-depth-1 mr-1 countItem"> 0 </span><i id="navbar-static-cart" alt="Cart" class="fas fa-shopping-cart"></i><span class="sr-only"> Cart </span></a>
+                            </li>
+                        </ul>
+                    </form>
+                    <form class="form-inline" id="formLoginReload">
+                        @if (Session.Contents["email"] != null)
+                        {
+                            <div class="acction md-form my-1">
+                                <div class="profile">
+                                    <img src="#" alt="">
+                                </div>
+                                <div class="menu">
+                                    <h3>Someone Famous <br><span>Website Designer</span></h3>
+                                    <ul>
+                                        <li><i class="fa fa-user-circle-o" aria-hidden="true"></i><a href="#" title="">My Profile</a></li>
+                                        <li><i class="fa fa-pencil-square-o" aria-hidden="true"></i><a href="#" title="">Edit Profile</a></li>
+                                        <li><i class="fa fa-envelope" aria-hidden="true"></i><a href="#" title="">Inbox</a></li>
+                                        <li><i class="fa fa-cog" aria-hidden="true"></i><a href="#" title="">Setting</a></li>
+                                        <li><i class="fa fa-question-circle" aria-hidden="true"></i><a href="#" title="">Help</a></li>
+                                        <li id="logoutUser"><i class="fa fa-sign-out" aria-hidden="true"></i><a href="#logout" title="">LogOut</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <ul class="navbar-nav ml-auto nav-flex-icons actionLogin">
+                                <li class="nav-item">
+                                    <a href="#"
+                                       class="nav-link border border-light rounded waves-effect mr-2 " target="_blank" id="loginForm" data-toggle="modal" data-target="#darkModalForm">
+                                        <i class="far fa-user mr-1"></i>Login/Register
+                                    </a>
+                                </li>
+                            </ul>
+                        }
+
+
+                    </form>
+                </div>
+            </div>
+        </nav>
+        <!-- Navbar -->
+    </header>
+
+    <section id="services" class="services section-bg">
+        <div class="container">
+            <div class="col-sm-12 text-center mb-4">
+                <h1>ProductDetail</h1>
+            </div>
+            <hr class="md-5" />
+            <div class="row row-sm mt-5" id="contentProduct">
+
+            </div>
+        </div>
+    </section>
+
+
+    <div class="container my-5">
+        <!--Section: Block Content-->
+        <section class="dark-grey-text mb-5">
+
+            <!-- Section heading -->
+            <h3 class="font-weight-bold text-center mb-5">Product Reviews</h3>
+
+            <div class="media mb-3">
+                <img class="card-img-100 rounded-circle z-depth-1-half d-flex mr-3" src="https://mdbootstrap.com/img/Photos/Avatars/img (8).jpg" alt="Generic placeholder image">
+                <div class="media-body">
+                    <a>
+                        <h5 class="user-name font-weight-bold">John Doe</h5>
+                    </a>
+                    <!-- Rating -->
+                    <ul class="rating mb-2">
+                        <li>
+                            <i class="fas fa-star blue-text"></i>
+                        </li>
+                        <li>
+                            <i class="fas fa-star blue-text"></i>
+                        </li>
+                        <li>
+                            <i class="fas fa-star blue-text"></i>
+                        </li>
+                        <li>
+                            <i class="fas fa-star blue-text"></i>
+                        </li>
+                        <li>
+                            <i class="fas fa-star blue-text"></i>
+                        </li>
+                    </ul>
+                    <div class="card-data">
+                        <ul class="list-unstyled mb-1">
+                            <li class="comment-date font-small grey-text">
+                                <i class="far fa-clock"></i> 05/10/2015
+                            </li>
+                        </ul>
+                    </div>
+                    <p class="dark-grey-text article">
+                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                        aliquip ex ea commodo
+                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                        nulla pariatur. Excepteur sint occaecat cupidatat non proident.
+                    </p>
+                </div>
+            </div>
+
+            <div class="media mb-3">
+                <img class=" card-img-100 rounded-circle z-depth-1-half d-flex mr-3" src="https://mdbootstrap.com/img/Photos/Avatars/img (28).jpg" alt="Generic placeholder image">
+                <div class="media-body">
+                    <a>
+                        <h5 class="user-name font-weight-bold">Martha Smith</h5>
+                    </a>
+                    <!-- Rating -->
+                    <ul class="rating mb-2">
+                        <li>
+                            <i class="fas fa-star blue-text"></i>
+                        </li>
+                        <li>
+                            <i class="fas fa-star blue-text"></i>
+                        </li>
+                        <li>
+                            <i class="fas fa-star blue-text"></i>
+                        </li>
+                        <li>
+                            <i class="fas fa-star blue-text"></i>
+                        </li>
+                        <li>
+                            <i class="fas fa-star grey-text"></i>
+                        </li>
+                    </ul>
+                    <div class="card-data">
+                        <ul class="list-unstyled mb-1">
+                            <li class="comment-date font-small grey-text">
+                                <i class="far fa-clock"></i> 05/10/2015
+                            </li>
+                        </ul>
+                    </div>
+                    <p class="dark-grey-text article">
+                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                        aliquip ex ea commodo
+                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                        nulla pariatur. Excepteur sint occaecat cupidatat non proident.
+                    </p>
+                </div>
+            </div>
+
+            <div class="media">
+                <img class=" card-img-100 rounded-circle z-depth-1-half d-flex mr-3" src="https://mdbootstrap.com/img/Photos/Avatars/img (30).jpg" alt="Generic placeholder image">
+                <div class="media-body">
+                    <a>
+                        <h5 class="user-name font-weight-bold">Lily Brown</h5>
+                    </a>
+                    <!-- Rating -->
+                    <ul class="rating mb-2">
+                        <li>
+                            <i class="fas fa-star blue-text"></i>
+                        </li>
+                        <li>
+                            <i class="fas fa-star blue-text"></i>
+                        </li>
+                        <li>
+                            <i class="fas fa-star blue-text"></i>
+                        </li>
+                        <li>
+                            <i class="fas fa-star blue-text"></i>
+                        </li>
+                        <li>
+                            <i class="fas fa-star blue-text"></i>
+                        </li>
+                    </ul>
+                    <div class="card-data">
+                        <ul class="list-unstyled mb-1">
+                            <li class="comment-date font-small grey-text">
+                                <i class="far fa-clock"></i> 05/10/2015
+                            </li>
+                        </ul>
+                    </div>
+                    <p class="dark-grey-text article">
+                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                        aliquip ex ea commodo
+                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                        nulla pariatur. Excepteur sint occaecat cupidatat non proident.
+                    </p>
+                </div>
+            </div>
+
+        </section>
+        <!--Section: Block Content-->
+
+
+    </div>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <link href="~/assets/admin/admin-sbStyle/build/toastr.css" rel="stylesheet" type="text/css" />
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script src="~/assets/admin/admin-sbStyle/build/toastr.js"></script>
+    <script>
+        $(document).ready(function (e) {
+            var productID = $("#productID").data("id");
+            getProduct(productID);
+        });
+        //get product
+        async function getProduct(productID) {
+            await $.ajax({
+                url: "/Home/ProductDetailResult",
+                type: 'POST',
+                dataType: 'json',
+                contentType: "application/json; charset=UTF-8",
+                data: JSON.stringify({ productID: productID }),
+                success: function (respose) {
+                    DataJsonProduct = JSON.parse(respose);
+                    console.log(DataJsonProduct);
+                    let img = "/MyImages/";
+                    let pathImg = DataJsonProduct.tbl_imageList;
+                    let row = `<div class="col-md-6 _boxzoom">
+                    <div class="zoom-thumb">
+                        <ul class="piclist">
+                            <li><img src="${img + pathImg[0].name + pathImg[0].extendsion}" alt=""></li>
+                            <li><img src="${img + pathImg[1].name + pathImg[1].extendsion}" alt=""></li>
+                            <li><img src="${img + pathImg[2].name + pathImg[2].extendsion}" alt=""></li>
+                            <li><img src="${img + pathImg[3].name + pathImg[3].extendsion}" alt=""></li>
+                        </ul>
+                    </div>
+                    <div class="_product-images">
+                        <div class="picZoomer">
+                            <img class="my_img" src="${img + pathImg[0].name + pathImg[0].extendsion}" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="_product-detail-content">
+                        <p class="_p-name"> ${DataJsonProduct.name} </p>
+                        <div class="_p-price-box">
+                            <div class="p-list">
+                                <span> M.R.P. : <i class="fa fa-inr"></i> <del> ${DataJsonProduct.price}  </del>   </span>
+                                <span class="price"> Rs. ${DataJsonProduct.priceSale} </span>
+                            </div>
+                            <div class="_p-add-cart">
+                                <div class="_p-qty">
+                                    <span>Add Quantity</span>
+                                    <div class="value-button decrease_" id="" value="Decrease Value">-</div>
+                                    <input type="number" name="qty" id="number" value="1" disabled="disabled"/>
+                                    <div class="value-button increase_" id="" value="Increase Value">+</div>
+                                </div>
+                            </div>
+                            <div class="_p-features">
+                                <span> Description About this product:- </span>
+                                ${DataJsonProduct.description}
+                            </div>
+                            <form action="" method="post" accept-charset="utf-8">
+                                <ul class="spe_ul"></ul>
+                                <div class="_p-qty-and-cart">
+                                    <div class="_p-add-cart">
+                                        <button class="btn-theme btn buy-btn" tabindex="0">
+                                            <i class="fa fa-shopping-cart"></i> Buy Now
+                                        </button>
+                                        <button class="btn-theme btn btn-success" data-id="${DataJsonProduct.productID}" tabindex="0" id="btnAddToCart">
+                                            <i class="fa fa-shopping-cart"></i> Add to Cart
+                                        </button>
+                                        <input type="hidden" name="pid" value="18" />
+                                        <input type="hidden" name="price" value="850" />
+                                        <input type="hidden" name="url" value="" />
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>`;
+
+                    $("#contentProduct").html(row);
+
+
+                    //btn add to card
+                    $(document).on("click", "#btnAddToCart", function (e) {
+                        e.preventDefault();
+                        var productID = $(this).data("id");
+                        var quantity = parseInt($("#number").text());
+                        //add
+                        addToCart(productID, quantity);
+
+                    });
+                    //btn redirect cart
+                    $(document).on("click", ".cart", function (e) {
+                        e.preventDefault();
+                        window.location.href = "/Home/Cart?customerID=" + customerID;
+                    });
+
+                    function addToCart(productID, quantity) {
+                        $.ajax({
+                            url: "/Home/addToCart",
+                            type: 'POST',
+                            dataType: 'json',
+                            contentType: "application/json; charset=UTF-8",
+                            data: JSON.stringify({ productID: productID, quantity: quantity}),
+                            success: function (respose) {
+                                if (respose == 0) {
+                                    //Show toast
+                                    shortCutFunction = "success";
+                                    msg = "add successfully product!";
+                                    title = "successfully!";
+                                    var $toast = toastr[shortCutFunction](msg, title);
+                                    $toastlast = $toast;
+                                    //Show toast
+                                } else if (respose == 1) {
+                                    //Show toast
+                                    shortCutFunction = "warning";
+                                    msg = "product This product is already in your cart!";
+                                    title = "warning!";
+                                    var $toast = toastr[shortCutFunction](msg, title);
+                                    $toastlast = $toast;
+                                    //Show toast
+                                }
+                            },
+                            error: function (respose) {
+                                if (respose.statusCode == 404) {
+                                    window.location.href = "/Home/error404"
+                                }
+                            }
+                        });
+                    };
+
+
+                    $.fn.picZoomer = function (options) {
+                        var opts = $.extend({}, $.fn.picZoomer.defaults, options),
+                            $this = this,
+                            $picBD = $('<div class="picZoomer-pic-wp"></div>').css({ 'width': opts.picWidth + 'px', 'height': opts.picHeight + 'px' }).appendTo($this),
+                            $pic = $this.children('img').addClass('picZoomer-pic').appendTo($picBD),
+                            $cursor = $('<div class="picZoomer-cursor"><i class="f-is picZoomCursor-ico"></i></div>').appendTo($picBD),
+                            cursorSizeHalf = { w: $cursor.width() / 2, h: $cursor.height() / 2 },
+                            $zoomWP = $('<div class="picZoomer-zoom-wp"><img src="" alt="" class="picZoomer-zoom-pic"></div>').appendTo($this),
+                            $zoomPic = $zoomWP.find('.picZoomer-zoom-pic'),
+                            picBDOffset = { x: $picBD.offset().left, y: $picBD.offset().top };
+
+
+                        opts.zoomWidth = opts.zoomWidth || opts.picWidth;
+                        opts.zoomHeight = opts.zoomHeight || opts.picHeight;
+                        var zoomWPSizeHalf = { w: opts.zoomWidth / 2, h: opts.zoomHeight / 2 };
+
+
+                        $zoomWP.css({ 'width': opts.zoomWidth + 'px', 'height': opts.zoomHeight + 'px' });
+                        $zoomWP.css(opts.zoomerPosition || { top: 0, left: opts.picWidth + 30 + 'px' });
+
+                        $zoomPic.css({ 'width': opts.picWidth * opts.scale + 'px', 'height': opts.picHeight * opts.scale + 'px' });
+
+
+                        $picBD.on('mouseenter', function (event) {
+                            $cursor.show();
+                            $zoomWP.show();
+                            $zoomPic.attr('src', $pic.attr('src'))
+                        }).on('mouseleave', function (event) {
+                            $cursor.hide();
+                            $zoomWP.hide();
+                        }).on('mousemove', function (event) {
+                            var x = event.pageX - picBDOffset.x,
+                                y = event.pageY - picBDOffset.y;
+
+                            $cursor.css({ 'left': x - cursorSizeHalf.w + 'px', 'top': y - cursorSizeHalf.h + 'px' });
+                            $zoomPic.css({ 'left': -(x * opts.scale - zoomWPSizeHalf.w) + 'px', 'top': -(y * opts.scale - zoomWPSizeHalf.h) + 'px' });
+
+                        });
+                        return $this;
+
+                    };
+                    $.fn.picZoomer.defaults = {
+                        picHeight: 460,
+                        scale: 2.5,
+                        zoomerPosition: { top: '0', left: '380px' },
+
+                        zoomWidth: 400,
+                        zoomHeight: 460
+                    };
+
+
+                    $('.picZoomer').picZoomer();
+                    $('.piclist li').on('click', function (event) {
+                        var $pic = $(this).find('img');
+                        $('.picZoomer-pic').attr('src', $pic.attr('src'));
+                    });
+
+                    $('.decrease_').click(function () {
+                        decreaseValue(this);
+                    });
+                    $('.increase_').click(function () {
+                        increaseValue(this);
+                    });
+                    function increaseValue(_this) {
+                        var value = parseInt($(_this).siblings('input#number').val(), 10);
+                        value = isNaN(value) ? 0 : value;
+                        if (value != DataJsonProduct.quantity) {
+                            value++;
+                        }
+                        $(_this).siblings('input#number').val(value);
+                    }
+
+                    function decreaseValue(_this) {
+                        var value = parseInt($(_this).siblings('input#number').val(), 10);
+                        value = isNaN(value) ? 0 : value;
+                        value < 1 ? value = 1 : '';
+                        value--;
+                        $(_this).siblings('input#number').val(value);
+                    }
+                }
+            });
+        };
+    </script>
+</body>
+</html>

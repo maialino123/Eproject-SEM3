@@ -1,0 +1,260 @@
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    .container-fluid {
+        background-color: #4B515D;
+        height: 1100px;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+    .navbar {
+        background-color: #424242 !important;
+        box-shadow: inset 11em 1em rgba(158, 158, 158, 0.7);
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+   .nav .nav-item a {
+       color: #fff;
+       font-size: 14px;
+   }
+   .menuControl {
+       background-attachment: fixed;
+       background-color: #424242;
+       border-radius: 8px;
+       box-shadow: 2px 2px #9575cd, -0.2em 2px rgba(255, 255, 255, 0.1);
+       justify-content: center;
+       color: #bdbdbd;
+       height: 300px;
+       align-items: center;
+       align-content: center;
+   }
+   .menuControl .mt-3 p i {
+       font-size: 13px;
+       color: #f3e5f5;
+   }
+   .menuControl div {
+       margin-left: 30px;
+       top: 10px;
+       padding-top: 20px;
+       cursor: pointer;
+   }
+   .menuControl div a {
+       list-style: none;
+       text-decoration: none;
+       color: #9e9e9e;
+   }
+   .menuControl div i {
+       margin-right: 5px;
+   }
+   .menuControl div:hover {
+       color: #fafafa;
+   }
+
+   .menuControl div a:hover {
+       color: #ffff !important;
+   }
+   .menuControl div span {
+       margin-left: 8px;
+   }
+   .menuControl .card-body nav a {
+       padding-top: 20px
+   }
+   .content {
+       background-color: #fff !important;
+       height: auto;
+       border-radius: 8px;
+       box-sizing: border-box;
+       box-shadow: 3px 1px #37474F, 0.2em 0.2em #263238;
+   }
+   .content .headerProfile p {
+       margin:15px 15px 0 20px;
+       font-size: 16px;
+       font-weight: bold;
+       color: #bdbdbd;
+       border-bottom: 1px solid #bdbdbd;
+       padding-bottom: 10px;
+   }
+
+   
+   .content .iconAction {
+       right: 35px;
+       position: absolute;
+       top: 5px;
+       font-size: 25px;
+       color: #bdbdbd;
+       cursor: pointer
+   }
+   .content .iconAction .saveAsProfiles:hover , .content .iconAction .moreOptions:hover{
+       color: #263238;
+   }
+   .content .iconAction .moreOptions {
+       margin-left: 25px
+   }
+   .contentControl {
+       margin-top: 10px;
+   }
+    .contentControl input, label  {
+       outline: none;
+       width: 90%;
+       margin-left: 15px;
+   }
+   
+  .dropdownOption {
+      z-index: 1;
+      position: absolute;
+      width: 240px;
+      height: 140px;
+      right: 20px;
+      top: 0;
+      border-radius: 10px;
+      box-sizing: border-box;
+      box-shadow: 1px 2px #4B515D, -0.2em 0.1em #616161;
+      justify-content: center;
+      align-items: center;
+      background: #ffffff;
+  }
+  .deleteUser,.ressetPassword {
+      cursor: pointer;
+  }
+  .deleteUser p , .ressetPassword p{
+    border: none !important;
+    padding: 10px
+  }
+  .deleteUser p span {
+      margin-left: 20px;
+      color: #757575;
+      
+  }
+  .deleteUser:hover {
+      background-color: #bdbdbd;
+  }
+  .ressetPassword:hover {
+    background-color: #bdbdbd;
+  }
+  .ressetPassword p span {
+    margin-left: 20px;
+    color: #757575;
+  }
+ .activeShow {
+     display: block !important;
+ }
+
+ .headerMenuTab ul li a i {
+     color: #bdbdbd;
+     font-size: 20px
+ }
+
+ .login {
+     background: #424242;
+     width: 100%;
+     height: auto;
+     border: 1px solid #616161;
+     padding: 0 !important;
+     margin: 0 !important;
+     border-radius: 8px;
+ }
+ .login .textLoginHeader {
+     font-size: 20px;
+     color: #e0e0e0;
+     background-color: #424242;
+     margin-left: 15px !important;
+    padding: 10px !important;
+ }
+ .changePassword {
+     cursor: pointer;
+    height: 60px;
+    padding-top: 10px !important;
+    background-color: #212121;
+    border: 1px solid #9e9e9e;
+ }
+ .changePassword p i{
+     position:absolute;
+    font-size: 20px;
+    margin-top: 10px;
+    color: #e0e0e0;
+ }
+ .btnEditPassordShow {
+     display: inline-block;
+     position: absolute;
+    right: 10px;
+     top: 10px;
+     background-color: #000;
+     color: #424242;
+     padding-left: 30px;
+     text-align: center;
+     padding-right: 30px;
+ }
+ .textTopChange {
+     margin-left: 35px;
+     color: #e0e0e0;
+ }
+.textChangePass {
+    color: #e0e0e0;
+     margin-left: 35px;
+     margin-top: -15px;
+     font-size: 12px;
+ }
+.contentChangePassword {
+    background-color: #212121;
+    height: auto;
+}
+.label-contentPassword {
+    color: #fafafa;
+    margin-bottom: 35px;
+    width: 100%;
+}
+.contentFormInput input {
+   margin-bottom: 30px;
+   width: 100%;
+}
+#forgotPassword {
+    margin-top: -20px;
+    width: 100%;
+}
+.formContentChange {
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 15px;
+}
+.btnSaveChange {
+    margin-top: 10px;
+    margin-left: 5px;
+}
+.btnSavePassword {
+    color: #fafafa;
+    background-color: #0091ea;
+}
+.btnSavePassword:hover {
+    color: #757575;
+}
+.btnSubmitPassword {
+    background-color: #0091ea;
+    display: inline-block;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-left: 600px;
+    margin-top: 10px;
+    color: #fafafa;
+}
+
+ @media screen and (max-width: 800px) {
+   .roleSelect .select2-container {
+        width: 90% !important;
+        margin-left: 15px !important;
+    }
+    .genderSelect .select2-container {
+        width: 93% !important
+    }
+    .labelRoleSelect {
+        margin-left: 15px !important;;
+    }
+    #inputAddress {
+        width: 90% !important
+    }
+    .textChangePass {
+        display: none;
+    }
+ }

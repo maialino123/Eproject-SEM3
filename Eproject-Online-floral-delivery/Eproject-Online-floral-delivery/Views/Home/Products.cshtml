@@ -1,0 +1,273 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Floral Delivery</title>
+    <!-- Font Awesome -->
+    <!--<link rel="stylesheet" href="~/assets/web/home/bootstrapMDB/fontawesome.css">-->
+    <!-- Bootstrap core CSS -->
+    <!--<link href="~/assets/web/home/bootstrapMDB/bootstrap.min.css" rel="stylesheet">-->
+    <!-- Material Design Bootstrap -->
+    <!--<link href="~/assets/web/home/bootstrapMDB/mdb.min.css" rel="stylesheet">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>-->
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="~/assets/admin/MDBBoostrap/mdbBootstrap.min.css" rel="stylesheet" />
+    <!-- Material Design Bootstrap -->
+    <link href="~/assets/admin/MDBBoostrap/MDB.min.css" rel="stylesheet" />
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <link href="~/assets/web/ourProducts/Index.css" rel="stylesheet" />
+</head>
+<body>
+    <header>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background: blue">
+            <div class="container">
+                <a class="navbar-brand" href="https://mdbootstrap.com/previews/docs/latest/html/intros/intro-register-classic-form.html#">
+                    <strong>MDB</strong>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-7" aria-controls="navbarSupportedContent-7" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent-7">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link waves-effect waves-light" href="https://mdbootstrap.com/previews/docs/latest/html/intros/intro-register-classic-form.html#">
+                                Home
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link waves-effect waves-light" href="https://mdbootstrap.com/previews/docs/latest/html/intros/intro-register-classic-form.html#">Shop</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link waves-effect waves-light" href="https://mdbootstrap.com/previews/docs/latest/html/intros/intro-register-classic-form.html#">Blog</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link waves-effect waves-light" href="https://mdbootstrap.com/previews/docs/latest/html/intros/intro-register-classic-form.html#">Support</a>
+                        </li>
+                    </ul>
+                    <form class="form-inline">
+                        <ul class="navbar-nav ml-auto nav-flex-icons">
+                            <li class="nav-item cart">
+                                <a href="#cart" class="nav-link waves-effect pop" data-container="body"
+                                   data-toggle="popover"
+                                   data-placement="bottom"><span class="badge red z-depth-1 mr-1 countItem"> 0 </span><i id="navbar-static-cart" alt="Cart" class="fas fa-shopping-cart"></i><span class="sr-only"> Cart </span></a>
+                            </li>
+                        </ul>
+                    </form>
+                    <form class="form-inline" id="formLoginReload">
+                        @if (Session.Contents["email"] != null)
+                        {
+                            <div class="acction md-form my-1">
+                                <div class="profile">
+                                    <img src="#" alt="">
+                                </div>
+                                <div class="menu">
+                                    <h3>Someone Famous <br><span>Website Designer</span></h3>
+                                    <ul>
+                                        <li><i class="fa fa-user-circle-o" aria-hidden="true"></i><a href="#" title="">My Profile</a></li>
+                                        <li><i class="fa fa-pencil-square-o" aria-hidden="true"></i><a href="#" title="">Edit Profile</a></li>
+                                        <li><i class="fa fa-envelope" aria-hidden="true"></i><a href="#" title="">Inbox</a></li>
+                                        <li><i class="fa fa-cog" aria-hidden="true"></i><a href="#" title="">Setting</a></li>
+                                        <li><i class="fa fa-question-circle" aria-hidden="true"></i><a href="#" title="">Help</a></li>
+                                        <li id="logoutUser"><i class="fa fa-sign-out" aria-hidden="true"></i><a href="#logout" title="">LogOut</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <ul class="navbar-nav ml-auto nav-flex-icons actionLogin">
+                                <li class="nav-item">
+                                    <a href="#"
+                                       class="nav-link border border-light rounded waves-effect mr-2 " target="_blank" id="loginForm" data-toggle="modal" data-target="#darkModalForm">
+                                        <i class="far fa-user mr-1"></i>Login/Register
+                                    </a>
+                                </li>
+                            </ul>
+                        }
+
+
+                    </form>
+                </div>
+            </div>
+        </nav>
+        <!-- Navbar -->
+    </header>
+
+    <section id="services" class="services section-bg mt-5">
+        <div class="container-fluid">
+            <div class="col-sm-12 text-center mb-4">
+                <h1>ProductDetail</h1>
+            </div>
+            <hr class="md-5" />
+            <div class="row row-sm mt-5" style="padding: 50px">
+                <div class="col-md-2">
+                    <!--Section: Content-->
+                    <section class="">
+                        <style>
+                            .link-black a {
+                                color: black;
+                            }
+
+                                .link-black a:hover {
+                                    color: #0056b3;
+                                }
+
+                            .link-black .active {
+                                color: #0056b3;
+                            }
+
+                            .divider-small {
+                                width: 30px;
+                                background-color: rgba(0, 0, 0, .1);
+                                height: 3px;
+                            }
+                        </style>
+
+
+                        <!--Grid row-->
+                        <div class="row d-flex justify-content-center">
+
+                            <!--Grid column-->
+                            <div class="col-lg-12 col-md-12 col-sm-12 border p-4">
+
+                                <!-- Filter panel -->
+                                <div class="mb-5">
+                                    <h5 class="font-weight-bold mb-3">Order by</h5>
+
+                                    <div class="divider-small mb-3"></div>
+
+                                    <ul class="list-unstyled link-black">
+                                        <li class="mb-2">
+                                            <a href="#default" class="active" id="default">Default</a>
+                                        </li>
+                                        <li class="mb-2">
+                                            <a href="#Popularity" class="" id="Popularity">Popularity</a>
+                                        </li>
+                                        <li class="mb-2">
+                                            <a href="#sortPrice" class="" id="sortPriceAsc">Price: low to high</a>
+                                        </li>
+                                        <li class="mb-2">
+                                            <a href="#sortPriceDesc" class="" id="sortPriceDesc">Price: high to low</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- Filter panel -->
+                                <!-- Filter panel -->
+                                <div class="mb-5">
+
+                                    <h5 class="font-weight-bold mb-3">Category</h5>
+
+                                    <div class="divider-small mb-3"></div>
+
+                                    <div id="categoryAll">
+                                        <div class="form-check pl-0 mb-2">
+                                            <input type="radio" class="form-check-input" id="materialGroupExample1" name="groupOfMaterialRadios">
+                                            <label class="form-check-label" for="materialGroupExample1">All</label>
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+                                <!-- Filter panel -->
+                                <!-- Filter panel -->
+                                <div class="mb-5">
+
+                                    <h5 class="font-weight-bold mb-3">Price</h5>
+
+                                    <div class="divider-small mb-3"></div>
+
+                                    <form class="range-field">
+                                        <input type="range" id="rangePrice" min="0" max="319" />
+                                    </form>
+
+                                    <div class="row justify-content-center">
+
+                                        <!-- Grid column -->
+                                        <div class="col-md-6 text-left">
+                                            <p class="dark-grey-text"><strong id="resellerEarnings">0$</strong></p>
+                                        </div>
+                                        <!-- Grid column -->
+                                        <!-- Grid column -->
+                                        <div class="col-md-6 text-right">
+                                            <p class="dark-grey-text"><strong id="clientPrice">319$</strong></p>
+                                        </div>
+                                        <!-- Grid column -->
+                                    </div>
+
+                                </div>
+                                <!-- Filter panel -->
+                                <!-- Filter panel -->
+                                <div class="link-black">
+
+                                    <h5 class="font-weight-bold mb-3">Rating</h5>
+
+                                    <div class="divider-small mb-3"></div>
+
+                                    <div class="amber-text fa-sm mb-1">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <a href="" class="ml-2 active">4 and more</a>
+                                    </div>
+
+                                    <div class="amber-text fa-sm mb-1">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <a href="" class="ml-2">3 - 3,99</a>
+                                    </div>
+
+                                    <div class="amber-text fa-sm mb-1">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <a href="" class="ml-2">3.00 and less</a>
+                                    </div>
+
+                                </div>
+                                <!-- Filter panel -->
+
+                            </div>
+                            <!--Grid column-->
+
+                        </div>
+                        <!--Grid row-->
+
+
+                    </section>
+                    <!--Section: Content-->
+                </div>
+                <div class="col-md-10 row d-flex justify-content-center " id="contentProduct">
+
+                </div>
+                <div id="pagination-container" class="paginationjs-theme-blue"></div>
+            </div>
+        </div>
+    </section>
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <link href="~/assets/admin/admin-sbStyle/build/toastr.css" rel="stylesheet" type="text/css" />
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script src="~/assets/admin/admin-sbStyle/build/toastr.js"></script>
+    <script src="~/assets/web/ourProducts/pagination.min.js"></script>
+    <script src="~/assets/web/ourProducts/Index.js"></script>
+</body>
+</html>

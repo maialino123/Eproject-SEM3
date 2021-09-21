@@ -1,0 +1,245 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <link href="~/assets/admin/bootstrap4/css/bootstrap.css" rel="stylesheet" />
+    <style>
+        /**
+        * 01/28/2016
+        * This pen is years old, and watching at the code after all
+        * those years made me fall from my chair, so I:
+        * - changed all IDs to classes
+        * - converted all units to pixels and em units
+        * - changed all global elements to classes or children of
+        *   .login
+        * - cleaned the syntax to be more consistent
+        * - added a lot of spaces that I so hard tried to avoid
+        *   a few years ago
+        *   (because it's cool to not use them)
+        * - and probably something else that I can't remember anymore
+        *
+        * I sticked to the same philosophy, meaning:
+        * - the design is almost the same
+        * - only pure HTML and CSS
+        * - no frameworks, preprocessors or resets
+        */
+
+        /* 'Open Sans' font from Google Fonts */
+
+        body {
+            background: #456;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .login {
+            width: 400px;
+            margin: 16px auto;
+            font-size: 16px;
+        }
+
+            /* Reset top and bottom margins from certain elements */
+            .login-header,
+            .login p {
+                margin-top: 0;
+                margin-bottom: 0;
+            }
+
+        /* The triangle form is achieved by a CSS hack */
+        .login-triangle {
+            width: 0;
+            margin-right: auto;
+            margin-left: auto;
+            border: 12px solid transparent;
+            border-bottom-color: #28d;
+        }
+
+        .login-header {
+            background: #28d;
+            padding: 20px;
+            font-size: 1.4em;
+            font-weight: normal;
+            text-align: center;
+            text-transform: uppercase;
+            color: #fff;
+        }
+
+        .login-container {
+            background: #ebebeb;
+            padding: 12px;
+        }
+
+        /* Every row inside .login-container is defined with p tags */
+        .login p {
+            padding: 12px;
+        }
+
+        .login input {
+            box-sizing: border-box;
+            display: block;
+            width: 100%;
+            border-width: 1px;
+            border-style: solid;
+            padding: 16px;
+            outline: 0;
+            font-family: inherit;
+            font-size: 0.95em;
+        }
+
+            .login input[type="email"],
+            .login input[type="password"] {
+                background: #fff;
+                border-color: #bbb;
+                color: #555;
+            }
+
+                /* Text fields' focus effect */
+                .login input[type="email"]:focus,
+                .login input[type="password"]:focus {
+                    border-color: #888;
+                }
+
+        .login button {
+            background: #28d;
+            border-color: transparent;
+            color: #fff;
+            cursor: pointer;
+        }
+
+            .login button:hover {
+                background: #17c;
+            }
+
+            /* Buttons' focus effect */
+            .login button:focus {
+                border-color: #05a;
+            }
+
+        .error {
+            border: 2px solid #fc0606;
+        }
+
+        .success {
+            border: 2px solid #24ff03;
+        }
+
+        .errorTextUserName, .errorTextPassword {
+            color: #fc0606;
+            position: absolute;
+            margin-top: -40px;
+            margin-left: 170px;
+        }
+
+        .active {
+            display: block !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="login">
+        <div class="login-triangle"></div>
+
+        <h2 class="login-header">Log in</h2>
+
+        <form class="login-container validate" action="javascript:void(0)">
+            <p>
+                <input type="text" placeholder="UserName" class="mask alphanumeric obg nospace userName">
+                <span class="errorTextUserName" style="display: none">Required userName...<i class="fas fa-exclamation-circle"></i></span>
+            </p>
+            <p>
+                <input type="password" placeholder="Password" class="mask nospace obg password">
+                <span class="errorTextPassword" style="display: none">Required passWord...<i class="fas fa-exclamation-circle"></i></span>
+            </p>
+            <button id="btnSubmit" style="text-align: center; margin-left: 14px; width: 93%;height: 50px">submit</button>
+            <p style="margin-left: 200px">
+                <a href="#" class="blue-text ml-1">
+                    Forgot Password?
+                </a>
+            </p>
+        </form>
+    </div>
+    @*add validate form*@
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/assets/admin/bootstrap4/js/bootstrap.js"></script>
+    <script type="text/javascript" src="~/assets/admin/js/InnerFormValidation.js"></script>
+    <script src="~/assets/admin/MDBBoostrap/fontAll.min.js"></script>
+    <link href="~/assets/admin/admin-sbStyle/build/toastr.css" rel="stylesheet" type="text/css" />
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script src="~/assets/admin/admin-sbStyle/build/toastr.js"></script>
+    <script>
+        $(document).ready(function (e) {
+            toastr.options = {
+                closeButton: true,
+                debug: true,
+                newestOnTop: true,
+                progressBar: true,
+                positionClass: "toast-top-right",
+                preventDuplicates: false,
+                onclick: null,
+                showDuration: 300,
+                hideDuration: 1000,
+                timeOut: 5000,
+                extendedTimeOut: 1000,
+                showEasing: "swing",
+                hideEasing: "linear",
+                showMethod: "fadeIn",
+                hideMethod: "fadeOut"
+            };
+        });
+        $(document).on("click", "#btnSubmit", function (e) {
+            e.preventDefault();
+            var userName = $(".userName").val();
+            var passWord = $(".password").val();
+            console.log(userName);
+            if (userName == "") {
+                $(".userName").css("border", "2px solid #fc0606");
+                $(".errorTextUserName").css("display", "block").fadeOut(3500);
+            }
+            if (passWord == "") {
+                $(".password").css("border", "2px solid #fc0606")
+                $(".errorTextPassword").css("display", "block").fadeOut(3500);
+            }
+            var Data = new Object();
+            Data.userName = userName;
+            Data.passWord = passWord;
+            $.ajax({
+                url: "/Login/Login",
+                type: "POST",
+                dataType: 'json',
+                contentType: "application/json; charset=UTF-8",
+                data: JSON.stringify(Data),
+                success: function (respose) {
+                    var dataJson = JSON.parse(respose);
+                    console.log(dataJson);
+                    if (respose == 1) {
+                        //Show toast
+                        shortCutFunction = "error";
+                        msg = "Incorrect userName or password!";
+                        title = "error!"
+                        var $toast = toastr[shortCutFunction](msg, title);
+                        $toastlast = $toast;
+                        //Show toast
+                    } else if (dataJson.userName != null && dataJson.tbl_roles.name != null) {
+                        window.location.href = "/Admin/Index";
+                        
+                    } else if (respose == "user") {
+                        //window.location.href = "/Home/Index";
+                    }
+                }
+            });
+        });
+        $(document).on("focusin", ".userName", function (e) {
+            $(".userName").css("border", "1px solid #000")
+        });
+        $(document).on("focusin", ".password", function (e) {
+            $(".password").css("border", "1px solid #000")
+        });
+    </script>
+</body>
+</html>

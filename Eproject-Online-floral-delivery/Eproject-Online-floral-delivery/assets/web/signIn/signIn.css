@@ -1,0 +1,192 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container-fluid {
+    width: 100%;
+    height: 1100px;
+    background-color: #F5F5F5;
+}
+
+.content {
+    border-radius: 10px;
+    box-shadow: 2px 2px #9575cd, -0.2em 2px rgba(255, 255, 255, 0.1);
+    width: 100%;
+    height: auto;
+    padding: 20px;
+    justify-content: center;
+    background-color: #FFFFFF;
+}
+
+.contentHeader {
+    border-bottom: 1.5px solid #424242;
+    padding-bottom: 8px;
+    position: relative;
+    animation-name: firstHeaderAnimation;
+    animation-duration: 1.5s;
+    animation-fill-mode: forwards;
+}
+
+input, select {
+    width: 100%;
+    padding: 6px;
+    border-radius: 8px;
+    outline: none;
+}
+
+select, option {
+    padding: 8px;
+    border-radius: 8px !important;
+    border: 2px solid #000;
+}
+
+Label {
+    font-size: 18px;
+}
+
+#animationName {
+    position: relative;
+    animation-name: firstNameAnimation;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+
+#animationEmail {
+    position: relative;
+    animation-name: firstNameAnimation;
+    animation-duration: 2.2s;
+    animation-fill-mode: forwards;
+}
+
+#animationBirthday {
+    position: relative;
+    animation-name: firstNameAnimation;
+    animation-duration: 2.4s;
+    animation-fill-mode: forwards;
+}
+
+#animationPassword {
+    position: relative;
+    animation-name: firstNameAnimation;
+    animation-duration: 2.5s;
+    animation-fill-mode: forwards;
+}
+
+#animationLastName {
+    position: relative;
+    animation-name: animationLastName;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+
+#animationPhone {
+    position: relative;
+    animation-name: animationLastName;
+    animation-duration: 2.2s;
+    animation-fill-mode: forwards;
+}
+
+#animationGender {
+    position: relative;
+    animation-name: animationLastName;
+    animation-duration: 2.4s;
+    animation-fill-mode: forwards;
+}
+
+#animationRetype {
+    position: relative;
+    animation-name: animationLastName;
+    animation-duration: 2.5s;
+    animation-fill-mode: forwards;
+}
+
+#animationAddress {
+    position: relative;
+    animation-name: animationAddress;
+    animation-duration: 1.5s;
+    animation-fill-mode: forwards;
+}
+
+#animationSignIn {
+    position: relative;
+    animation-name: animationSignIn;
+    animation-duration: 1.5s;
+    animation-fill-mode: forwards;
+}
+
+.Error {
+    position: absolute;
+    color: red;
+    display: none
+}
+
+@keyframes firstNameAnimation {
+    from {
+        left: -1000px
+    }
+
+    to {
+        left: 0;
+    }
+}
+
+@keyframes firstHeaderAnimation {
+    from {
+        top: -1000px
+    }
+
+    to {
+        top: 0
+    }
+}
+
+@keyframes animationLastName {
+    from {
+        right: -1000px;
+    }
+
+    to {
+        right: 0;
+    }
+}
+
+@keyframes animationAddress {
+    from {
+        bottom: -1000px;
+    }
+
+    to {
+        bottom: 0
+    }
+}
+
+@keyframes animationSignIn {
+    0% {
+        top: -1000px;
+    }
+
+    25% {
+        left: 400px;
+        top: -500px;
+        right: 500px
+    }
+
+    50% {
+        left: -100px;
+        top: -200px;
+        right: 600px
+    }
+
+    100% {
+        top: 0;
+        left: 0;
+        right: 0
+    }
+}
+
+#txtErrorOtpResetpassword {
+    display: none !important
+}
+

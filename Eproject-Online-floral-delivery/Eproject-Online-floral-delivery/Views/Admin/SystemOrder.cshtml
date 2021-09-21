@@ -1,0 +1,107 @@
+﻿
+@{
+    ViewBag.Title = "SystemOrder";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid my-5">
+
+
+    <!-- Section: Block Content -->
+    <section>
+
+        <h2 class='mb-3'>Orders</h2>
+        <table id="dtBasicExample" class="table" width="100%" cellspacing="0">
+            <thead>
+                <tr>
+                    <th class="th-sm">
+                        OrderID
+                    </th>
+                    <th class="th-sm">
+                        Item
+                    </th>
+                    <th class="th-sm">
+                        FullName
+                    </th>
+                    <th class="th-sm">
+                        Phone
+                    </th>
+                    <th class="th-sm">
+                        Address
+                    </th>
+                    <th class="th-sm">
+                        Quantity
+                    </th>
+                    <th class="th-sm">
+                        start date
+                    </th>
+                    <th class="th-sm">
+                        UnitPrice
+                    </th>
+                    <th class="th-sm">
+                        status
+                    </th>
+                </tr>
+            </thead>
+            <tbody id="contentOrder">
+                
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th class="th-sm">
+                        OrderID
+                    </th>
+                    <th class="th-sm">
+                        Item
+                    </th>
+                    <th class="th-sm">
+                        FullName
+                    </th>
+                    <th class="th-sm">
+                        Phone
+                    </th>
+                    <th class="th-sm">
+                        Address
+                    </th>
+                    <th class="th-sm">
+                        Quantity
+                    </th>
+                    <th class="th-sm">
+                        start date
+                    </th>
+                    <th class="th-sm">
+                        UnitPrice
+                    </th>
+                    <th class="th-sm">
+                        status
+                    </th>
+
+                </tr>
+            </tfoot>
+        </table>
+
+    </section>
+    <!-- Section: Block Content -->
+
+
+</div>
+
+@section scripts {
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.3.1/flatly/bootstrap.min.css">
+    <link href="~/assets/admin/MDBBoostrap/mdbBootstrap.min.css" rel="stylesheet" />
+    <!-- Material Design Bootstrap -->
+    <script src="~/assets/admin/MDBBoostrap/MDBBoostrap.min.js"></script>
+    <link href="~/assets/admin/MDBBoostrap/MDB.min.css" rel="stylesheet" />
+    <script src="~/assets/admin/MDBBoostrap/fontAll.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script src="~/assets/admin/MDBBoostrap/MDB.min.js"></script><div class="hiddendiv common"></div>
+    <link href="~/assets/admin/admin-sbStyle/build/toastr.css" rel="stylesheet" type="text/css" />
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script src="~/assets/admin/admin-sbStyle/build/toastr.js"></script>
+    <script src="~/assets/admin/Order/datatables.min.js"></script>
+    <link href="~/assets/admin/Order/Datatables.min.css" rel="stylesheet" />
+    <link href="~/assets/admin/Order/jquery.treetable.css" rel="stylesheet" />
+    <link href="~/assets/admin/Order/jquery.treetable.theme.default.css" rel="stylesheet" />
+    <script src="~/assets/admin/Order/jquery.treetable.js"></script>
+    <script src="~/assets/admin/Order/Index.js"></script>
+}

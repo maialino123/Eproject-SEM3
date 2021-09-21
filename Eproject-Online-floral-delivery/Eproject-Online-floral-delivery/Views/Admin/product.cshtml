@@ -1,0 +1,227 @@
+﻿@model List<Eproject_Online_floral_delivery.DAL.tbl_product>
+@{
+    ViewBag.Title = "product";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<style>
+    .addRemove {
+        background-color: #ef5350;
+    }
+
+    .popover {
+        text-align: center;
+        justify-content: center;
+    }
+</style>
+<main>
+
+    <div class="modalRemoveProduct">
+        <div class="modal fade right" id="sideModalTLInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-notify modal-info modal-side modal-top-right" role="document">
+                <!--Content-->
+                <div class="modal-content">
+                    <!--Header-->
+                    <div class="modal-header">
+                        <p class="heading lead">
+                            Are You Sure?
+                        </p>
+
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" class="white-text">&times;</span>
+                        </button>
+                    </div>
+
+                    <!--Body-->
+                    <div class="modal-body">
+
+                        <img src="https://mdbootstrap.com/wp-content/uploads/2016/11/admin-dashboard-bootstrap.jpg" alt=""
+                             class="img-fluid">
+
+                        <div class="text-center">
+                            <p>Deleting the category will result in some products being temporarily closed. You can also turn off actives instead of deleting them.</p>
+                        </div>
+                    </div>
+
+                    <!--Footer-->
+                    <div class="modal-footer justify-content-center">
+                        <a type="button" class="btn btn-info" id="deleteNow">
+                            Delete <i class="far fa-trash-alt white-text"></i>
+                        </a>
+                        <a type="button" class="btn btn-outline-info waves-effect" data-dismiss="modal">Cancel</a>
+                    </div>
+                </div>
+                <!--/.Content-->
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Tables</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="../Admin/Dashboard">Dashboard</a></li>
+            <li class="breadcrumb-item active">Products</li>
+        </ol>
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table me-1"></i>
+                Product Details
+                <!--Elegant-->
+                <button type="button" class="btn btn-black justify-content-center teal-texta btnAddProduct" style="float: right"><i class="fas fa-plus"></i> Add New</button>
+                <button type="button" class="btn btn-default justify-content-center btn-refreshCategoryAdd" style="float: right"><i class="fas fa-sync-alt"></i> Refresh</button>
+                <button type="button" class="btn btn-elegant justify-content-center teal-texta btnDrop" data-toggle="modal" data-target="#sideModalTLInfo" style="float: right; border-radius: 100px"><i class="far fa-trash-alt" style="font-size: 20px"></i><span class="textNumberDrop" style="position: absolute; top: 0; color: #ff0000; font-size: 15px; font-weight: bold">0</span></button>
+            </div>
+            <div class="card-body">
+                <table id="datatablesSimple">
+                    <thead>
+                        <tr>
+                            <th>Sr. No.</th>
+                            <th>Prodduct Name</th>
+                            <th>Price</th>
+                            <th>price sale</th>
+                            <th>Quantity</th>
+                            <th>Category</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Sr. No.</th>
+                            <th>Product Name</th>
+                            <th>Price</th>
+                            <th>price sale</th>
+                            <th>Quantity</th>
+                            <th>Category</th>
+                            <th>Action</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr id="rowProduct">
+
+                                <td><strong style="font-weight: bold">@(Model.IndexOf(item) + 1)</strong></td>
+                                <td>@Html.DisplayFor(ModelItem => item.name)</td>
+                                <td><strong style="font-weight: bold">$</strong>@Html.DisplayFor(ModelItem => item.price)</td>
+                                <td><strong style="font-weight: bold">$</strong>@Html.DisplayFor(ModelItem => item.priceSale)</td>
+                                <td>@Html.DisplayFor(ModelItem => item.quantity)</td>
+                                <td>@Html.DisplayFor(ModelItem => item.tbl_category.name)</td>
+                                <td>
+                                    <button id="btnEdit"><a href="@Url.Action("updateProduct", new { id = @item.productID })"><i class="far fa-edit"></i></a></button>
+                                    <button id="btnRemove" data-id="@item.productID" style="margin-left: 8px"><i class="far fa-trash-alt"></i></button>
+                                    <button id="btnDetail" data-id="@item.productID" data-toggle="popover" data-placement="bottom" data-trigger="hover" style="margin-left: 8px">Detail</button>
+                                    <button style="margin-left: 8px"><a href="@Url.Action("addMoreImage", new { id = @item.productID })">Add Images</a></button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+
+@section scripts{
+    <link href="~/assets/admin/MDBBoostrap/mdbBootstrap.min.css" rel="stylesheet" />
+    <!-- Material Design Bootstrap -->
+    <script src="~/assets/admin/MDBBoostrap/MDBBoostrap.min.js"></script>
+    <link href="~/assets/admin/MDBBoostrap/MDB.min.css" rel="stylesheet" />
+    <script src="~/assets/admin/MDBBoostrap/fontAll.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script src="~/assets/admin/MDBBoostrap/MDB.min.js"></script><div class="hiddendiv common"></div>
+    <link href="~/assets/admin/admin-sbStyle/build/toastr.css" rel="stylesheet" type="text/css" />
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script src="~/assets/admin/admin-sbStyle/build/toastr.js"></script>
+
+    <script>
+let idArr = [];
+    //Button click add new product
+    $('.btnAddProduct').on("click", function () {
+        window.location.href = "/Admin/addProduct";
+    });
+    //Button click add id remove
+    $(document).on("click", "#btnRemove", function (e) {
+        e.preventDefault();
+        var id = $(this).data("id");
+        console.log(id);
+        var numberItemDrop = parseInt($('.btnDrop').find("span").text());
+        if (idArr.length > 0) {
+            var index = idArr.indexOf(id);
+            if (index !== -1) {
+                var numberRemove = numberItemDrop - 1;
+                idArr.splice(index, 1);
+                $(this).parents('tr').removeClass("addRemove");
+                $('.btnDrop').find("span").html(numberRemove);
+            } else {
+                var numberRemove = numberItemDrop + 1;
+                idArr.push(id);
+                $(this).parents('tr').addClass("addRemove");
+                $('.btnDrop').find("span").html(numberRemove);
+            }
+        } else {
+            var numberRemove = numberItemDrop + 1;
+            idArr.push(id);
+            $(this).parents('tr').addClass("addRemove");
+            $('.btnDrop').find("span").html(numberRemove);
+        }
+        console.log(idArr);
+    });
+    $(document).on("click", "#deleteNow", function (e) {
+        e.preventDefault();
+        removeProducs(idArr);
+    });
+    function removeProducs(data) {
+        $.ajax({
+            url: "/Admin/removeProduct",
+            type: 'POST',
+            dataType: 'json',
+            contentType: "application/json; charset=UTF-8",
+            data: JSON.stringify(data),
+            success: function (respose) {
+                if (respose == "success") {
+                    //Show toast
+                    shortCutFunction = "success";
+                    msg = "Delete successfully";
+                    title = "success!";
+                    var $toast = toastr[shortCutFunction](msg, title);
+                    $toastlast = $toast;
+                    //Show toast
+                    setTimeout(function () {
+                        location.reload();
+                    }, 600);
+                } else {
+                    //Show toast
+                    shortCutFunction = "error";
+                    msg = "Error when deleting";
+                    title = "error!";
+                    var $toast = toastr[shortCutFunction](msg, title);
+                    $toastlast = $toast;
+                    //Show toast
+                }
+            },
+            error: function (respose) {
+                console.log(respose);
+            }
+        });
+            };
+    $(document).ready(function (e) {
+        $('[data-toggle="popover"]').popover({
+            container: "body",
+            placement: 'bottom',
+            html: true,
+            title: "abc",
+            template: `<div class="popover" role="popover">
+<div class="popover-arrow"></div>
+<div class="popover-inner"><div class="row">
+<div class="col-md-4" style="font-weight: bold;">
+  productName :
+</div>
+<div class="col-md-8">
+  Hoa Dep abcas fjasfnasfdasjfnas;f
+</div>
+</div></div>
+</div>`
+        });
+    });
+    </script>
+}

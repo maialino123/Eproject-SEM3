@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="df09eed0b4f24a7a8ed84e1493f5a6a1" Name="Diagram1">
+        <EntityTypeShape EntityType="Eproject_FloralModel.sysdiagram" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Eproject_FloralModel.tbl_category" Width="1.5" PointX="3" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Eproject_FloralModel.tbl_customer" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Eproject_FloralModel.tbl_message" Width="1.5" PointX="5.25" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Eproject_FloralModel.tbl_messageCategory" Width="1.5" PointX="3" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Eproject_FloralModel.tbl_order" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Eproject_FloralModel.tbl_orderDetail" Width="1.5" PointX="7.5" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Eproject_FloralModel.tbl_paymentType" Width="1.5" PointX="3" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Eproject_FloralModel.tbl_product" Width="1.5" PointX="5.25" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Eproject_FloralModel.tbl_roles" Width="1.5" PointX="0.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Eproject_FloralModel.tbl_shippingType" Width="1.5" PointX="3" PointY="9.5" IsExpanded="true" />
+        <AssociationConnector Association="Eproject_FloralModel.FK_product_category" ManuallyRouted="false" />
+        <AssociationConnector Association="Eproject_FloralModel.FK_customer_role" ManuallyRouted="false" />
+        <AssociationConnector Association="Eproject_FloralModel.FK_order_customer" ManuallyRouted="false" />
+        <AssociationConnector Association="Eproject_FloralModel.FK_message_messageCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="Eproject_FloralModel.FK_orderDetail_message" ManuallyRouted="false" />
+        <AssociationConnector Association="Eproject_FloralModel.FK_order_paymentType" ManuallyRouted="false" />
+        <AssociationConnector Association="Eproject_FloralModel.FK_order_shippingType" ManuallyRouted="false" />
+        <AssociationConnector Association="Eproject_FloralModel.FK_orderDetail_order" ManuallyRouted="false" />
+        <AssociationConnector Association="Eproject_FloralModel.FK_orderDetail_product" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Eproject_FloralModel.tbl_imageList" Width="1.5" PointX="7.5" PointY="20.375" />
+        <AssociationConnector Association="Eproject_FloralModel.FK_imageList_product" />
+        <EntityTypeShape EntityType="Eproject_FloralModel.tbl_district" Width="1.5" PointX="8.375" PointY="6.875" />
+        <AssociationConnector Association="Eproject_FloralModel.FK_orderDetail_district" />
+        <EntityTypeShape EntityType="Eproject_FloralModel.tbl_statusOrder" Width="1.5" PointX="5.375" PointY="9.875" />
+        <AssociationConnector Association="Eproject_FloralModel.fk_order_statusOrder" />
+        <EntityTypeShape EntityType="Eproject_FloralModel.tbl_ward" Width="1.5" PointX="10.625" PointY="6.875" />
+        <AssociationConnector Association="Eproject_FloralModel.FK_ward_district" />
+        <AssociationConnector Association="Eproject_FloralModel.FK_orderDetail_ward" />
+        <EntityTypeShape EntityType="Eproject_FloralModel.tbl_cart" Width="1.5" PointX="10.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,55 @@
+﻿@model List<Eproject_Online_floral_delivery.DAL.tbl_imageList>
+@if (Model == null || (Model != null && Model.Count == 0))
+{
+    <span>Images of the product are displayed here <br />Image of the product not found</span>
+}
+else
+{
+    foreach (var item in Model)
+    {
+        var image = @item.name + @item.extendsion;
+        <div class="col-md-3 mb-4 mt-4 containerImage">
+            <!-- Card Dark -->
+            <div class="card">
+
+                <!-- Card image -->
+                <div class="view overlay zoom">
+                    <img class="card-img-top img-fluid" src="~/MyImages/@image"
+                         alt="Card image cap" max-width="200" style="max-height:200px; max-width:200px;">
+                    <a>
+                        <div class="mask rgba-white-slight"></div>
+                    </a>
+                </div>
+
+                <!-- Card content -->
+                <div class="card-body elegant-color white-text rounded-bottom">
+                    <!-- Link -->
+                    <button class="btn btn-danger btn-rounded del-pic btnDelete" data-name="@(item.name)">Delete</button>
+                </div>
+            </div>
+            <!-- Card Dark -->
+        </div>
+    }
+
+    <script>
+        $(document).on("click", ".btnDelete", function (e) {
+            e.preventDefault();
+            var name = $(this).data("name");
+            $.ajax({
+                url: "/Admin/RemoveProductPicture",
+                type: "POST",
+                dataType: 'json',
+                contentType: "application/json; charset=UTF-8",
+                data: JSON.stringify({name : name}),
+                success: function (respose) {
+                    if (respose != "error") {
+                        window.location.reload();
+                    }
+                },
+            });
+        });
+    </script>
+}
+
+
+

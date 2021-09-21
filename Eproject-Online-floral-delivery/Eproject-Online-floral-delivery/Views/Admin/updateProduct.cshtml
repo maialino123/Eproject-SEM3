@@ -1,0 +1,361 @@
+﻿@{
+    ViewBag.Title = "updateProduct";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<style>
+    .error {
+        border-color: red !important;
+    }
+
+    .success {
+        border-color: green !important;
+    }
+
+    .select2-container .select2-selection--single {
+        height: 42px !important;
+    }
+
+    .select2-container--default .select2-selection--single {
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+
+    #dropZone {
+        border: 1px dotted blue;
+        text-align: center;
+        height: 100px;
+        vertical-align: middle !important;
+        line-height: 90px
+    }
+
+    .Description {
+        display: flex;
+        float: right;
+        position: absolute;
+        top: 0;
+        margin-top: 220px;
+        justify-content: right;
+        margin-left: 650px;
+        height: 500px !important
+    }
+</style>
+<main>
+    <div class="container-fluid">
+        <h1 class="mt-4">Add Product</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="../Admin/Dashboard">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="../Admin/Product">Product</a></li>
+            <li class="breadcrumb-item active">edit product</li>
+        </ol>
+        <form action="javascript:void(0)" class="validate" enctype="multipart/form-data" method="post" id="myForm">
+            <div class="row">
+                <div class="row mb-3">
+                    <div class="col-md-3">
+                        <div class="form-control mb-3 mb-md-0">
+                            <label for="productName">Product Name</label>
+                            <input class="form-control mask alphanumeric obg" name="productName" id="productName" type="text" placeholder="Enter product name" data-invalidmessage="Enter product name" autocomplete="off" value="@Model.name" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-control mb-3 mb-md-0">
+                            <label for="">Category</label>
+                            <select class="form-control col-md-12 select2 obg" id="categoryName" name="categoryName">
+                                <option value="">Category Name</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-control mb-3 mb-md-0 ">
+                            <label for="">Quantity</label>
+                            <div class="counter form-control" id="quantityNumber" name="quantity" min="@Model.quantity" max="9999"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-control mb-3 mb-md-0 ">
+                            <label for="productName">Price</label>
+                            <input class="form-control mask num obg" name="price" id="price" type="text" placeholder="Enter Price" data-invalidmessage="Enter Price" autocomplete="off" value="@Model.price" />
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-control mb-3 mb-md-0 ">
+                            <label for="productName">
+                                Reduced price
+                            </label>
+                            <input class="form-control mask num" name="priceSale" id="priceSale" type="text" placeholder="Enter Reduced Price" autocomplete="off" value="@Model.priceSale" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-5">
+                        <div class="form-control">
+                            <div class="form-check-inline">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="optradio" id="isActive" > Active
+                                </label>
+
+                            </div>
+
+                            <div class="form-check-inline">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="optradio" id="nonActive"> Non Active
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-6 title">
+                    <div class="col-md-5">
+                        <div class="form-control mb-3 mb-md-0">
+                            <label for="">
+                                Title
+                            </label>
+                            <textarea class="ckeditor" name="metaTitle">
+
+                            </textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row col-md-6 pull-right Description mb-6" style="">
+                <div class="col-md-12">
+                    <div class="mb-6 mb-md-3">
+                        <label for="">
+                            Description
+                        </label>
+                        <textarea class="ckeditor" name="description">
+
+                     </textarea>
+                    </div>
+                </div>
+            </div>
+
+            <br />
+            <div class="row col-md-6 pull-right btnSystem" style="right: 0; ">
+                <div class="col-md-1">
+                    <div class="mb-6">
+                        <button class="btn btn-primary" id="btnSubmit">Save</button>
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <div class="mb-6">
+                        <button class="btn btn-secondary" id="btnReset" style="color: #fff !important">
+                            Resset
+                        </button>
+                        <input type="hidden" class="btnCategoryID" value="@Model.categoryID" />
+                        <input type="hidden" class="btnProductID" value="@Model.productID" />
+                    </div>
+                </div>
+
+            </div>
+            <style>
+                .error {
+                    border-color: red !important;
+                }
+
+                .success {
+                    border-color: green !important;
+                }
+            </style>
+        </form>
+    </div>
+</main>
+@section scripts {
+    @*add validate form*@
+    <script type="text/javascript" src="~/assets/admin/js/InnerFormValidation.js"></script>
+    @*add library boostrap select*@
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    @*quantity number spinder*@
+    <script src="~/assets/admin/js/numberSpinder/plugin.js"></script>
+    @*toasts jquery*@
+    <link href="~/assets/admin/admin-sbStyle/build/toastr.css" rel="stylesheet" type="text/css" />
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script src="~/assets/admin/admin-sbStyle/build/toastr.js"></script>
+    @*toasts jquery end*@
+    @*modal date sale product*@
+    <script src="~/assets/admin/modal-sale-date/js/popper.js"></script>
+    <script src="~/assets/admin/modal-sale-date/js/main.js"></script>
+    @*modal date sale product end*@
+
+    @*ckeditor*@
+    <script src="~/Scripts/ckeditor/ckeditor.js"></script>
+    @*cxDialog*@
+    <link href="~/assets/admin/js/cxDialog/jquery.cxdialog.css" rel="stylesheet" />
+    <script src="~/assets/admin/js/cxDialog/jquery.cxdialog.min.js"></script>
+    <script src="~/assets/admin/MDBBoostrap/fontAll.min.js"></script>
+    @*toottip*@
+
+
+    <script>
+        let dayStartSale, dayEndSale, createdDate, metaKeyword, countView;
+        $(document).ready(function (e) {
+            $('.select2').select2();
+            $('#quantityNumber').htmlNumberSpinner();
+            toastr.options = {
+                closeButton: true,
+                debug: true,
+                newestOnTop: true,
+                progressBar: true,
+                positionClass: "toast-top-right",
+                preventDuplicates: false,
+                onclick: null,
+                showDuration: 300,
+                hideDuration: 1000,
+                timeOut: 5000,
+                extendedTimeOut: 1000,
+                showEasing: "swing",
+                hideEasing: "linear",
+                showMethod: "fadeIn",
+                hideMethod: "fadeOut"
+            };
+            $.cxDialog.defaults.background = '#000';
+            loadCategory();
+        });
+
+        //Load data async
+        async function loadCategory() {
+            $.getJSON("/Admin/CategoryAll", function (data) {
+                //convert JSON
+                var dataJson = JSON.parse(data);
+                //console.log(dataJson);
+                //console.log($('.btnCategoryID').val());
+                var categoryID = $('.btnCategoryID').val();
+                var productID = $('.btnProductID').val();
+                //console.log(productID);
+                var rows = '';
+                var index = 0;
+                for (let item of dataJson) {
+                    if (item.categoryID == categoryID) {
+                        rows += `<option value="${item.categoryID}" selected>${item.name}</option>`;
+                    } else {
+                        rows += `<option value="${item.categoryID}">${item.name}</option>`;
+                    }
+                    if (item.tbl_product[index] != undefined) {
+                        if (item.tbl_product[index].productID == productID) {
+                            var product = item.tbl_product[index];
+                            //console.log(product.name);
+                            //console.log(product.description);
+                            console.log(product.isActive);
+                            if (product.isActive) {
+                                $("#isActive").attr("checked", "checked");
+                            } else {
+                                $("#nonActive").attr("checked", "checked");
+                            }
+                            setTimeout(function () {
+                                CKEDITOR.instances['metaTitle'].setData(product.metaTitle);
+                                CKEDITOR.instances['description'].setData(product.description);
+                            }, 100);
+                            dayStartSale = product.dayStartSale;
+                            dayEndSale = product.dayEndSale;
+                            createdDate = product.createdDate;
+                            metaKeyword = product.metaKeyword;
+                            countView = product.countView;
+                        }
+                        index++;
+                    }
+                }
+                $('#categoryName').append(rows);
+            });
+        }
+        $("#priceSale").on("blur", function () {
+            var convertDate = dayStartSale.toString("yyyy-MM-dd").split("T")[0];
+            var convertEndDate = dayEndSale.toString("yyyy-MM-dd").split("T")[0];
+            //console.log(convertDate);
+            $.cxDialog({
+                title: 'Discount start date to end date',
+                info: `<div class="row mb-3" id="datePriceSale">
+                                                                                                <div class="col-md-12">
+                                                                                                    <div class="form-control mb-3 mb-md-0">
+                                                                                                        From
+                                                                                                <div class="mb-3" id="startDate">
+                                                                                                    <input class="form-control mask num obg" name="startDate" id="" type="date" value="${convertDate}" />
+                                                                                                </div>
+                                                                                                To
+                                                                                                <div class="mb-3" id="endDate">
+                                                                                                    <input class="form-control mask num obg" name="endDate" id="" type="date" value="${convertEndDate}"/>
+                                                                                                </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>`,
+                okText: 'Confirm',
+                no: null,
+                noText: 'Cancel',
+                ok: function () {
+                    dayStartSale = $('#startDate').find("input").val();
+                    dayEndSale = $('#endDate').find("input").val();
+                    //console.log(dayStartSale);
+                    //console.log(dayEndSale);
+                },
+                no: function () {
+                    console.log('cancel');
+                },
+                baseClass: 'ios'
+            });
+        });
+
+        //Button click update
+        $(document).on("click", "#btnSubmit", function (e) {
+            e.preventDefault();
+            var valData = new Object();
+            valData.name = $('#productName').val();
+            valData.categoryID = $('#categoryName').val();
+            valData.quantity = $('#quantityNumber').getSpinnerValue();
+            valData.price = $('#price').val();
+            if ($('#priceSale').val() != null) {
+                valData.priceSale = $('#priceSale').val();
+                valData.dayStartSale = dayStartSale;
+                valData.dayEndSale = dayEndSale;
+            };
+            valData.metaTitle = CKEDITOR.instances['metaTitle'].getData();
+            valData.description = CKEDITOR.instances['description'].getData();
+            valData.createdDate = createdDate;
+            valData.metaKeyword = metaKeyword;
+            valData.countView = countView;
+            if ($('input[id=isActive]:checked', '#myForm').val() != undefined) {
+                valData.isActive = true;
+            } else {
+                valData.isActive = false;
+            }
+            valData.productID = $('.btnProductID').val();
+            if (valData != null) {
+                updateData(valData);
+            }
+        });
+
+        function updateData(data) {
+            $.ajax({
+                url: "/Admin/updateProductData",
+                type: 'POST',
+                dataType: 'json',
+                contentType: "application/json; charset=UTF-8",
+                data: JSON.stringify(data),
+                success: function (respose) {
+                    //Show toast
+                    shortCutFunction = "success";
+                    msg = "Update a product" + respose.name + " successfully";
+                    title = "success!";
+                    var $toast = toastr[shortCutFunction](msg, title);
+                    $toastlast = $toast;
+                    //Show toast
+                    setTimeout(function () {
+                        window.location.href = "/Admin/product";
+                    }, 500);
+                },
+                error: function (respose) {
+                    //Show toast
+                    shortCutFunction = "error";
+                    msg = "Update a product error!";
+                    title = "error!";
+                    var $toast = toastr[shortCutFunction](msg, title);
+                    $toastlast = $toast;
+                    //Show toast
+                }
+            });
+        };
+
+    </script>
+}
